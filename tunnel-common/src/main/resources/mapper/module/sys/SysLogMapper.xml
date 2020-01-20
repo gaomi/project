@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.sys.dao.SysLogMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.sys.model.SysLog">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+        <result column="OPERATION" jdbcType="VARCHAR" property="operation"/>
+        <result column="METHOD" jdbcType="VARCHAR" property="method"/>
+        <result column="PARAMS" jdbcType="VARCHAR" property="params"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="OPERATE_TIME" jdbcType="TIMESTAMP" property="operateTime"/>
+        <result column="OPERATE_IP" jdbcType="VARCHAR" property="operateIp"/>
+        <result column="TIME" jdbcType="DECIMAL" property="time"/>
+        <result column="LOCATION" jdbcType="VARCHAR" property="location"/>
+    </resultMap>
+
+    <delete id="deleteAllLogs">
+       delete from j302_td_sys_log
+  </delete>
+</mapper>

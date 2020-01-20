@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.eam.dao.EamMapper">
+    <insert id="batchSavePerson" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into J302_EAM_PERSON (UUID, PERSONID, PERSONNAME, INSERT_DATE) (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() ,
+            #{item.personId,jdbcType = VARCHAR} ,
+            #{item.personName,jdbcType = VARCHAR},
+            sysdate
+            from dual
+        </foreach>
+        ) temp
+        )
+
+    </insert>
+    <insert id="batchSaveDepart" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into j302_eam_depart (UUID, DEPTID, DEPTNAME, INSERT_DATE) (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() UUID,
+            #{item.deptId,jdbcType = VARCHAR} DEPTID,
+            #{item.deptName,jdbcType = VARCHAR} DEPTNAME,
+            sysdate INSERT_DATE
+            from dual
+        </foreach>
+        ) temp  )
+
+
+    </insert>
+    <insert id="batchSaveEquip" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into j302_eam_equip (UUID, EQUIPNO, EQUIPNAME, INSERT_DATE) (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() ,
+            #{item.equipNo,jdbcType = VARCHAR} ,
+            #{item.equipName,jdbcType = VARCHAR},
+            sysdate
+            from dual
+        </foreach>
+        ) temp
+        )
+
+    </insert>
+    <insert id="batchSaveFault" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into j302_eam_fault (UUID, FAULTNO, FAULTNAME, INSERT_DATE) (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() ,
+            #{item.faultNo,jdbcType = VARCHAR} ,
+            #{item.faultName,jdbcType = VARCHAR},
+            sysdate
+            from dual
+        </foreach>
+        ) temp
+        )
+
+    </insert>
+    <insert id="batchSaveWorkOrder" parameterType="java.util.Map" useGeneratedKeys="false">
+        insert into j302_eam_WorkOrder (UUID, LINENO, QMQX, PLANNATURE, REGISTERSTA, STARTSTA, ENDSTA, HIGHLOW, WORKTYPE, PLANSTARTTIME, PLANENDTIME, DEPTID, DUTYID, ISTD, TDSTART, TDEND, PARTDESC, PLANIDEAM,ORDER_STATUS, INSERT_DATE) (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+        select sys_guid() ,
+        #{item.lineNo,jdbcType = VARCHAR} ,
+        #{item.qmQx,jdbcType = VARCHAR},
+        #{item.planNature,jdbcType = VARCHAR},
+        #{item.registerSta,jdbcType = VARCHAR},
+        #{item.startSta,jdbcType = VARCHAR},
+        #{item.endSta,jdbcType = VARCHAR},
+        #{item.highLow,jdbcType = VARCHAR},
+        #{item.workType,jdbcType = VARCHAR},
+        to_date(#{item.planStartTime,jdbcType = VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+        to_date(#{item.planEndTime,jdbcType = VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+        #{item.deptId,jdbcType = VARCHAR},
+        #{item.dutyId,jdbcType = VARCHAR},
+        #{item.isTd,jdbcType = VARCHAR},
+        #{item.tdStart,jdbcType = VARCHAR},
+        #{item.tdEnd,jdbcType = VARCHAR},
+        #{item.partDesc,jdbcType = VARCHAR},
+        #{item.planIdEAM,jdbcType = VARCHAR},
+        '0',
+        sysdate
+        from dual
+        </foreach>
+        ) temp
+        )
+
+    </insert>
+
+    <insert id="insertData" parameterType="java.util.Map">
+      insert into j302_eam_dept (UUID, DEPTID, DEPTNAME, INSERT_DATE) values (sys_guid() ,
+            #{deptId,jdbcType = VARCHAR} ,
+            #{deptName,jdbcType = VARCHAR},
+            sysdate)
+
+    </insert>
+</mapper>

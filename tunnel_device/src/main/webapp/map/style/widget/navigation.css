@@ -1,0 +1,217 @@
+/* 地图导航工具条 */
+/*.toolBar {font-size:1px; width:73px; height:250px;position: absolute; top:10px; left:15px; z-index:888;}*/
+.toolBar {
+    font-size: 1px;
+    position: absolute;
+    bottom: 60px;
+    right: 15px;
+    z-index: 888;
+}
+
+.toolBar_button {
+    width: 42px;
+    height: 42px;
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+}
+
+.toolBar_button_Nover {
+    width: 42px;
+    height: 42px;
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 0px -44px;
+    background-repeat: no-repeat;
+}
+
+.toolBar_button_Sover {
+    width: 42px;
+    height: 42px;
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 0px -132px;
+    background-repeat: no-repeat;
+}
+
+.toolBar_button_Wover {
+    width: 42px;
+    height: 42px;
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 0px -176px;
+    background-repeat: no-repeat;
+}
+
+.toolBar_button_Eover {
+    width: 42px;
+    height: 42px;
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 0px -88px;
+    background-repeat: no-repeat;
+}
+
+.toolBar_button_north {
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 10px;
+    height: 14px;
+    margin-left: 17px;
+}
+
+.toolBar_button_south {
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 10px;
+    height: 18px;
+    margin-left: 17px;
+}
+
+.toolBar_button_west {
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 14px;
+    height: 10px;
+    float: left;
+}
+
+.toolBar_button_east {
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    float: left;
+}
+
+.toolBar_button_center {
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 15px;
+    height: 12px;
+    float: left;
+}
+
+.toolBar_slider {
+    width: 21px;
+    margin-top: 5px;
+    margin-left: 9px;
+    float: left;
+    display: inline;
+}
+
+.toolBar_slider_zoomIn {
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 3px -220px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 26px;
+    height: 20px;
+}
+
+.toolBar_slider_zoomOut {
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 3px -265px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 26px;
+    height: 20px;
+}
+
+.toolBar_slider_ticks {
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: -28px -233px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 7px;
+    height: 130px;
+    position: relative;
+    left: 10px;
+}
+
+.toolBar_slider_ticksSel {
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: -36px -233px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 7px;
+    height: 130px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.toolBar_slider_float_nonactivated {
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 0px -309px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 18px;
+    height: 10px;
+    position: absolute;
+    z-index: 2001;
+    left: -6px;
+    bottom: 0px;
+}
+
+.toolBar_slider_float_activated {
+    background-image: url(../../images/map/MapSlider/mapNav.png);
+    background-position: 0px -320px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 18px;
+    height: 10px;
+    position: absolute;
+    z-index: 2001;
+    left: -6px;
+    bottom: 0px;
+}
+
+.toolBar_mark {
+    float: left;
+    display: inline;
+    position: relative;
+}
+
+.toolBar_mark:hover {
+    display: none;
+}
+
+.toolBar_mark_street {
+    position: absolute;
+    background-image: url(../../images/map/MapSlider/mark.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 27px;
+    height: 18px;
+    top: 0px;
+}
+
+.toolBar_mark_city {
+    position: absolute;
+    background-image: url(../../images/map/MapSlider/mark.png);
+    background-position: 0px -20px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 27px;
+    height: 18px;
+    top: 0px;
+}
+
+.toolBar_mark_province {
+    position: absolute;
+    background-image: url(../../images/map/MapSlider/mark.png);
+    background-position: 0px -40px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 27px;
+    height: 18px;
+    top: 0px;
+}
+
+.toolBar_mark_country {
+    position: absolute;
+    background-image: url(../../images/map/MapSlider/mark.png);
+    background-position: 0px -60px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 27px;
+    height: 18px;
+    top: 0px;
+}

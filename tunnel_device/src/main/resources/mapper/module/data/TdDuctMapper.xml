@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdDuctMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdDuct">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="DUCT_CODE" jdbcType="DECIMAL" property="ductCode"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="SEGMENT_UUID" jdbcType="VARCHAR" property="segmentUuid"/>
+        <result column="SEGMENT_GROUP" jdbcType="CHAR" property="segmentGroup"/>
+        <result column="MILEAGE_CODE" jdbcType="DECIMAL" property="mileageCode"/>
+        <result column="IS_SECTION" jdbcType="CHAR" property="isSection"/>
+        <result column="SEQ" jdbcType="DECIMAL" property="seq"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+
+    <insert id="batchCreateSeq" parameterType="java.util.List">
+        -- insert into J302_TD_DUCT_INFO (UUID, DUCT_CODE,LINE_UUID,UPDOWN,SEGMENT_UUID,SEQ,MILEAGE_CODE)
+        insert into J302_TD_DUCT_INFO (UUID, DUCT_CODE,LINE_UUID,UPDOWN,SEGMENT_UUID,SEQ,MILEAGE_CODE)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() uuid,
+            #{item.duct_code,jdbcType = DECIMAL} duct_code ,
+            #{item.line_uuid,jdbcType =VARCHAR} line_uuid,
+            #{item.updown,jdbcType =VARCHAR} UPDOWN ,
+            #{item.segment_uuid,jdbcType =VARCHAR} SEGMENT_UUID ,
+            #{item.seq,jdbcType =DECIMAL} seq,
+            #{item.mileage_code,jdbcType =DECIMAL} mileage_code
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+    <select id="getSegmentDuct" resultType="map" parameterType="java.util.Map">
+        select DUCT_CODE,MILEAGE_CODE,SEGMENT_UUID
+        from J302_TD_DUCT_INFO
+        where SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        ORDER BY seq
+    </select>
+
+    <select id="selectDuct" resultType="map" parameterType="map">
+    select duct.*,(seg.start_station_name ||'-'|| seg.end_station_name) segment_name from ( select * from J302_TD_DUCT_INFO  order by seq ) duct left join J302_TD_SEGMENT_INFO seg on duct.segment_uuid = seg.UUID
+    <where>
+        <if test="_parameter.containsKey('ductCode')">
+        and duct.DUCT_CODE= #{ductCode}
+        </if>
+        <if test="_parameter.containsKey('group_segment')">
+           and duct.SEGMENT_UUID in
+            <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                #{item_segment}
+            </foreach>
+        </if>
+        <if test="_parameter.containsKey('lineUuid')">
+            and duct.LINE_UUID = #{lineUuid}
+        </if>
+    </where>
+
+
+    </select>
+
+    <select id="selectRange" parameterType="java.util.Map" resultType="java.util.Map">
+    with res as (select *
+                       from (select md.line_id,
+                                    case
+                                      when md.direction = '上行' then
+                                       '0'
+                                      when md.direction = '下行' then
+                                       '1'
+                                      else
+                                       '2'
+                                    end updown,
+                                    to_number(md.meters) mileage,
+                                    substr(md.start_station, 3, 2) start_station,
+                                    substr(md.end_station, 3, 2) end_station,
+                                    md.duct_code,
+                                    md.station_flag,
+                                    md.group_id,
+                                    case
+                                      when md.station_flag = 'NSK' then
+                                       '1'
+                                      when md.station_flag = 'SK' then
+                                       '0'
+                                      when md.station_flag = 'NDK' then
+                                       '1'
+                                      else
+                                       '0'
+                                    end seq,
+                                    case
+                                      when md.station_flag = 'NSK' then
+                                       rank()
+                                       over(partition by md.direction,
+                                            md.start_station,
+                                            md.station_flag order by
+                                            to_number(md.meters) desc)
+                                      when md.station_flag = 'SK' then
+                                       rank()
+                                       over(partition by md.direction,
+                                            md.start_station,
+                                            md.station_flag order by
+                                            to_number(md.meters) asc)
+                                      when md.station_flag = 'NDK' then
+                                       rank()
+                                       over(partition by md.direction,
+                                            md.start_station,
+                                            md.station_flag order by
+                                            to_number(md.meters) desc)
+                                      else
+                                       rank()
+                                       over(partition by md.direction,
+                                            md.start_station,
+                                            md.station_flag order by
+                                            to_number(md.meters) asc)
+                                    end mm
+                               from J302_METRO_DUCT_METER_GW md
+                              where md.line_id = #{line_code} and md.major='维保工务隧道') t3 where  t3.updown !=  '2'
+                      order by t3.updown, t3.start_station, t3.mm)
+
+         select s1.line_id,
+                s1.updown,
+                s1.start_station,
+                s1.end_station,
+                s1.duct_code     start_duct_code,
+                s1.mileage       start_mileage,
+                s1.station_flag  start_station_flag,
+                s2.duct_code     end_duct_code,
+                s2.mileage       end_mileage,
+                s2.station_flag  end_station_flag,
+                lpad(s1.group_id,2,'0') group_id
+           from (select * from res where res.mm = '1') s1
+           left join (select * from res where res.mm = '2') s2
+             on s1.line_id = s2.line_id
+            and s1.updown = s2.updown
+            and s1.start_station = s2.start_station
+            and s1.station_flag = s2.station_flag
+    </select>
+    <select id="findByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from J302_METRO_DUCT_INFO where
+         DIRECTION = #{direction}
+      and START_STATION = #{startStation}
+      and LINE_ID = #{lineId}
+      and DUCT_CODE = #{ductCode}
+
+  </select>
+
+    <select id="getAllDuct" parameterType="java.util.Map" resultType="java.util.Map">
+        select to_number(DUCT_CODE) DUCT_CODE,MILEAGE_CODE from J302_TD_DUCT_INFO where SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        ORDER BY SEQ
+    </select>
+
+    <update id="updateSeg" parameterType="java.util.Map">
+        update J302_TD_DUCT_INFO set SEGMENT_UUID in <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+        #{item_segment}
+    </foreach> where UUID = #{DUCTID}
+    </update>
+
+    <select id="selectSegmentDuct" resultType="java.util.Map">
+    select SEGMENT_UUID,duct_code from J302_TD_DUCT_INFO where line_code = '07'
+  </select>
+
+    <select id="getPangTongDao" resultType="java.util.Map" parameterType="java.util.Map">
+        select bb.* from (
+        select
+        ROUND(pointsmileage,0) MILEAGE_CODE
+        from D0400_NEWPOINTS_WHB t WHERE t.POINTSDEMO = '旁通道' and linecode=#{line} and updown=#{updown} ORDER BY pointsmileage
+        ) aa inner join
+        (
+        select
+        DUCT_CODE,MILEAGE_CODE
+        from J302_TD_DUCT_INFO where SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        and updown=#{updown} ORDER BY mileage_code
+        )bb on aa.MILEAGE_CODE=ROUND(bb.MILEAGE_CODE,0)
+    </select>
+
+    <select id="selectRange2" parameterType="java.util.Map" resultType="java.util.Map">
+        select t.*,
+        case
+        when t.group_id = '10' then
+        to_number(t.start_station_code) * 100
+        else
+        to_number(t.start_station_code) * 100 + (t.group_id - 10)
+        end s,
+        to_number(t.end_station_code) * 100 e
+        from (select rank() over(partition by md.direction, md.line_id, md.start_station, md.end_station, md.station_flag order by to_number(md.meters)) ranknum,
+        md.line_id,
+        case
+        when md.direction = '上行' then
+        '0'
+        when md.direction = '下行' then
+        '1'
+        else
+        '2'
+        end updown,
+        case
+        when substr(md.end_station, 3, 2) >
+        substr(md.start_station, 3, 2) then
+        substr(md.start_station, 3, 2)
+        else
+        substr(md.end_station, 3, 2)
+        end start_station_code,
+        case
+        when substr(md.end_station, 3, 2) >
+        substr(md.start_station, 3, 2) then
+        substr(md.end_station, 3, 2)
+        else
+        substr(md.start_station, 3, 2)
+        end end_station_code,
+        md.start_station,
+        md.end_station,
+        to_number(md.meters) mileage,
+        md.duct_code,
+        md.station_flag,
+        rpad(md.group_id,2,'0') group_id
+        from J302_METRO_DUCT_METER_GW md
+        where md.major = '维保工务隧道'
+        <if test="line_code != null and line_code != ''">
+            and md.line_id = #{line_code}
+        </if>
+        ) t
+    </select>
+    <update id="updateMileage" parameterType="java.util.Map">
+        begin
+        <foreach collection="list" item="item" separator=";">
+          update J302_TD_DUCT_INFO set MILEAGE_CODE= #{item.mileage} where SEGMENT_UUID = #{segment} and DUCT_CODE = #{item.ductCode}
+        </foreach>
+        ;end;
+    </update>
+
+</mapper>

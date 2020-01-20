@@ -1,0 +1,250 @@
+#divLayerList {
+    font-family: "微软雅黑";
+    position: absolute;
+    z-index: 888;
+    top: 80px;
+    right: 30px;
+    width: 280px;
+    height: 350px;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border: 1px solid #B6CCF8;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
+    display: none;
+}
+
+#divLayerList .layerListTitle {
+    background-image: linear-gradient(to top, #DEE9FF, #fff);
+    height: 30px;
+    line-height: 30px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+}
+
+#divLayerList .layerListTitle .icon_layer {
+    margin-bottom: 2px;
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+}
+
+#divLayerList .layerListTitle .closeLayer {
+    float: right;
+    width: 12px;
+    height: 12px;
+    margin-top: 8px;
+    cursor: pointer;
+    background-image: url(../../images/widget/layerList/ico_del.png);
+    background-repeat: no-repeat;
+}
+
+#divLayerList .layerListTitle .closeLayer:hover {
+    float: right;
+    width: 12px;
+    height: 12px;
+    margin-top: 8px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url(../../images/widget/layerList/ico_del_focus.png);
+}
+
+#divLayerList .layerListLine {
+    width: 100%;
+    height: 1px;
+    background: #AAC4FF;
+}
+
+#divLayerList .divLayerTree {
+    width: 100%;
+    height: 317px;
+    overflow: auto;
+    background-color: #ffffff;
+}
+
+#divLayerList .divLayerTree::-webkit-scrollbar {
+    width: 4px;
+}
+
+#divLayerList .divLayerTree::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#divLayerList .divLayerTree::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.ztree li span.button.icon_Folder_ico_open {
+    background: url(../../images/widget/layerList/icon_folder.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Folder_ico_close {
+    background: url(../../images/widget/layerList/icon_folder.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Folder_ico_docu {
+    background: url(../../images/widget/layerList/icon_folder.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Server_ico_open {
+    background: url(../../images/widget/layerList/icon_server.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Server_ico_close {
+    background: url(../../images/widget/layerList/icon_server.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Server_ico_docu {
+    background: url(../../images/widget/layerList/icon_server.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Group_ico_open {
+    background: url(../../images/widget/layerList/icon_group.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Group_ico_close {
+    background: url(../../images/widget/layerList/icon_group.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Group_ico_docu {
+    background: url(../../images/widget/layerList/icon_group.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_ico_open {
+    background: url(../../images/widget/layerList/icon_layer.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_ico_close {
+    background: url(../../images/widget/layerList/icon_layer.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_ico_docu {
+    background: url(../../images/widget/layerList/icon_layer.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Point_ico_open {
+    background: url(../../images/widget/layerList/icon_layer_point.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Point_ico_close {
+    background: url(../../images/widget/layerList/icon_layer_point.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Point_ico_docu {
+    background: url(../../images/widget/layerList/icon_layer_point.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Line_ico_open {
+    background: url(../../images/widget/layerList/icon_layer_line.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Line_ico_close {
+    background: url(../../images/widget/layerList/icon_layer_line.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Line_ico_docu {
+    background: url(../../images/widget/layerList/icon_layer_line.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Polygon_ico_open {
+    background: url(../../images/widget/layerList/icon_layer_polygon.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Polygon_ico_close {
+    background: url(../../images/widget/layerList/icon_layer_polygon.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}
+
+.ztree li span.button.icon_Layer_Polygon_ico_docu {
+    background: url(../../images/widget/layerList/icon_layer_polygon.png) no-repeat scroll 0 0 transparent;
+    margin-left: 2px;
+    margin-top: 3px;
+    vertical-align: top;
+    *vertical-align: middle;
+}

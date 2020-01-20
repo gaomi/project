@@ -1,0 +1,1 @@
+define(["dojo/_base/declare","esri/map"],function(e,n){return e("GisCommon",null,{_map:null,constructor:function(e){this._map=e},clearGraphics:function(){this._map.graphics.clear()},setMapLevel:function(){this._map.setLevel(3)}})});

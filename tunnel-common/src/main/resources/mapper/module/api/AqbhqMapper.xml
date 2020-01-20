@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.api.dao.AqbhqMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.api.model.AqbhqProject">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="PROJECTID" jdbcType="VARCHAR" property="projectid"/>
+        <result column="PROJECTNAME" jdbcType="VARCHAR" property="projectname"/>
+        <result column="METROLINENAME" jdbcType="VARCHAR" property="metrolinename"/>
+        <result column="METROSTATIONNAMESTART" jdbcType="VARCHAR" property="metrostationnamestart"/>
+        <result column="METROSTATIONNAMEEND" jdbcType="VARCHAR" property="metrostationnameend"/>
+        <result column="PROJECTTYPE" jdbcType="DECIMAL" property="projecttype"/>
+        <result column="PROJECTLEVEL" jdbcType="VARCHAR" property="projectlevel"/>
+        <result column="PROJTASKLASTRESULTSTATUS" jdbcType="VARCHAR" property="projtasklastresultstatus"/>
+        <result column="WHETHERSUBSEQUENTPROCESSING" jdbcType="VARCHAR" property="whethersubsequentprocessing"/>
+        <result column="WHETHERKEYPROJECT" jdbcType="VARCHAR" property="whetherkeyproject"/>
+        <result column="PROJECTBUILDUNIT" jdbcType="VARCHAR" property="projectbuildunit"/>
+        <result column="PROJECTBUILDUNITCONTACT" jdbcType="VARCHAR" property="projectbuildunitcontact"/>
+        <result column="PROJECTCONSTRUCTIONUNIT" jdbcType="VARCHAR" property="projectconstructionunit"/>
+        <result column="PROJECTCONSTRUCTIONUNITCONTACT" jdbcType="VARCHAR" property="projectconstructionunitcontact"/>
+        <result column="PROJECTDESCRIPTION" jdbcType="VARCHAR" property="projectdescription"/>
+        <result column="PROJECTADDRESS" jdbcType="VARCHAR" property="projectaddress"/>
+        <result column="PROJECTAREA" jdbcType="VARCHAR" property="projectarea"/>
+        <result column="PROJECTLOCATIONWITHMETRO" jdbcType="VARCHAR" property="projectlocationwithmetro"/>
+        <result column="LAT" jdbcType="DECIMAL" property="lat"/>
+        <result column="LNG" jdbcType="DECIMAL" property="lng"/>
+        <result column="CLNG" jdbcType="DECIMAL" property="clng"/>
+        <result column="CLAT" jdbcType="DECIMAL" property="clat"/>
+        <result column="NO_UD_UUID" jdbcType="VARCHAR" property="noUdUuid"/>
+        <result column="U_START_DUCT" jdbcType="DECIMAL" property="uStartDuct"/>
+        <result column="D_START_DUCT" jdbcType="DECIMAL" property="dStartDuct"/>
+        <result column="U_END_DUCT" jdbcType="DECIMAL" property="uEndDuct"/>
+        <result column="D_END_DUCT" jdbcType="DECIMAL" property="dEndDuct"/>
+        <result column="INSERT_TIME" jdbcType="TIMESTAMP" property="insertTime"/>
+    </resultMap>
+
+    <resultMap id="AqbhqInfo" type="java.util.Map">
+        <id column="PROJECTID" jdbcType="VARCHAR" property="projectid"/>
+        <result column="PROJECTNAME" jdbcType="VARCHAR" property="projectname"/>
+        <result column="METROLINENAME" jdbcType="VARCHAR" property="metrolinename"/>
+        <result column="METROSTATIONNAMESTART" jdbcType="VARCHAR" property="metrostationnamestart"/>
+        <result column="METROSTATIONNAMEEND" jdbcType="VARCHAR" property="metrostationnameend"/>
+        <result column="PROJECTTYPE" jdbcType="DECIMAL" property="projecttype"/>
+        <result column="PROJECTLEVEL" jdbcType="VARCHAR" property="projectlevel"/>
+        <result column="PROJTASKLASTRESULTSTATUS" jdbcType="VARCHAR" property="projtasklastresultstatus"/>
+        <result column="WHETHERSUBSEQUENTPROCESSING" jdbcType="VARCHAR" property="whethersubsequentprocessing"/>
+        <result column="WHETHERKEYPROJECT" jdbcType="VARCHAR" property="whetherkeyproject"/>
+        <result column="PROJECTBUILDUNIT" jdbcType="VARCHAR" property="projectbuildunit"/>
+        <result column="PROJECTBUILDUNITCONTACT" jdbcType="VARCHAR" property="projectbuildunitcontact"/>
+        <result column="PROJECTCONSTRUCTIONUNIT" jdbcType="VARCHAR" property="projectconstructionunit"/>
+        <result column="PROJECTCONSTRUCTIONUNITCONTACT" jdbcType="VARCHAR" property="projectconstructionunitcontact"/>
+        <result column="PROJECTDESCRIPTION" jdbcType="VARCHAR" property="projectdescription"/>
+        <result column="PROJECTADDRESS" jdbcType="VARCHAR" property="projectaddress"/>
+        <result column="PROJECTAREA" jdbcType="VARCHAR" property="projectarea"/>
+        <result column="PROJECTLOCATIONWITHMETRO" jdbcType="VARCHAR" property="projectlocationwithmetro"/>
+        <result column="LAT" jdbcType="DECIMAL" property="lat"/>
+        <result column="LNG" jdbcType="DECIMAL" property="lng"/>
+        <result column="CLNG" jdbcType="DECIMAL" property="clng"/>
+        <result column="CLAT" jdbcType="DECIMAL" property="clat"/>
+        <result column="INSERT_TIME" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="NO_UD_UUID" jdbcType="VARCHAR" property="noUdUuid"/>
+        <result column="LINE_NAME" jdbcType="VARCHAR" property="lineName"/>
+        <result column="LINE_CODE" jdbcType="VARCHAR" property="lineCode"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="METROSTATIONNAMESTART2" jdbcType="VARCHAR" property="metrostationnamestart2"/>
+        <result column="METROSTATIONNAMEEND2" jdbcType="VARCHAR" property="metrostationnameend2"/>
+        <result column="U_START_DUCT" jdbcType="DECIMAL" property="uStartDuct"/>
+        <result column="D_START_DUCT" jdbcType="DECIMAL" property="dStartDuct"/>
+        <result column="U_END_DUCT" jdbcType="DECIMAL" property="uEndDuct"/>
+        <result column="D_END_DUCT" jdbcType="DECIMAL" property="dEndDuct"/>
+        <result column="INSERT_TIME" jdbcType="DECIMAL" property="insertTime"/>
+        <result column="SEGMENT_UUID" jdbcType="DECIMAL" property="segmentUuid"/>
+        <collection property="coordinatesList" ofType="java.util.Map" javaType="java.util.List">
+            <result column="RECORD_ID" jdbcType="VARCHAR" property="recordId"/>
+            <result column="PROJECT_COORDINATES_ORDER" jdbcType="VARCHAR" property="projectCoordinatesOrder"/>
+            <result column="PROJECT_CITY_COORDINATES_X" jdbcType="VARCHAR" property="projectCityCoordinatesX"/>
+            <result column="PROJECT_CITY_COORDINATES_Y" jdbcType="DECIMAL" property="projectCityCoordinatesY"/>
+            <result column="PROJECT_BAIDU_COORDINATES_X" jdbcType="DECIMAL" property="projectBaiduCoordinatesX"/>
+            <result column="PROJECT_BAIDU_COORDINATES_Y" jdbcType="VARCHAR" property="projectBaiduCoordinatesY"/>
+            <result column="DISTANCE_UPLINK" jdbcType="VARCHAR" property="distanceUplink"/>
+            <result column="DISTANCE_DOWNLINK" jdbcType="VARCHAR" property="distanceDownlink"/>
+            <result column="IS_DELETE" jdbcType="VARCHAR" property="isDelete"/>
+            <result column="NAME1" jdbcType="VARCHAR" property="name1"/>
+            <result column="NAME2" jdbcType="VARCHAR" property="name2"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="selectAqbhqInfo" resultMap="AqbhqInfo">
+        select jtav.*,jaac.RECORD_ID,jaac.PROJECT_COORDINATES_ORDER,jaac.PROJECT_CITY_COORDINATES_X,jaac.PROJECT_CITY_COORDINATES_Y,
+        jaac.PROJECT_BAIDU_COORDINATES_X,jaac.PROJECT_BAIDU_COORDINATES_Y,jaac.DISTANCE_UPLINK,jaac.DISTANCE_DOWNLINK,jaac.IS_DELETE
+        from  J302_TD_AQBHQ_V jtav left join J302_API_AQBHQ_COORDINATES jaac on jtav.PROJECTID = jaac.PROJECT_ID
+
+    </select>
+
+
+    <insert id="batchSaveProject" parameterType="java.util.List">
+        insert into J302_API_AQBHQ_PROJECT (projectid, projectname, metrolinename, metrostationnamestart, metrostationnameend, projecttype, projectlevel, projtasklastresultstatus,
+        whethersubsequentprocessing, whetherkeyproject, projectbuildunit, projectbuildunitcontact, projectconstructionunit, projectconstructionunitcontact, projectdescription,
+        projectaddress, projectarea, projectlocationwithmetro, lat, lng, clng, clat, no_ud_uuid, insert_date)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select
+            #{item.projectid,jdbcType = VARCHAR} projectid,
+            #{item.projectname,jdbcType = VARCHAR} projectname,
+            #{item.metrolinename,jdbcType = VARCHAR} metrolinename,
+            #{item.metrostationnamestart,jdbcType =VARCHAR} metrostationnamestart ,
+            #{item.metrostationnameend,jdbcType =VARCHAR} metrostationnameend ,
+            #{item.projecttype,jdbcType =VARCHAR} projecttype ,
+            #{item.projectlevel,jdbcType =VARCHAR} projectlevel ,
+            #{item.projtasklastresultstatus,jdbcType =VARCHAR} projtasklastresultstatus ,
+            #{item.whethersubsequentprocessing,jdbcType =VARCHAR} whethersubsequentprocessing ,
+            #{item.whetherkeyproject,jdbcType =VARCHAR} whetherkeyproject ,
+            #{item.projectbuildunit,jdbcType =VARCHAR} projectbuildunit ,
+            #{item.projectbuildunitcontact,jdbcType =VARCHAR} projectbuildunitcontact ,
+            #{item.projectconstructionunit,jdbcType =VARCHAR} projectconstructionunit ,
+            #{item.projectconstructionunitcontact,jdbcType =VARCHAR} projectconstructionunitcontact ,
+            #{item.projectdescription,jdbcType =VARCHAR} projectdescription ,
+            #{item.projectaddress,jdbcType =VARCHAR} projectaddress ,
+            #{item.projectarea,jdbcType =VARCHAR} projectarea ,
+            #{item.projectlocationwithmetro,jdbcType =VARCHAR} projectlocationwithmetro ,
+            #{item.lat,jdbcType =VARCHAR} lat ,
+            #{item.lng,jdbcType =VARCHAR} lng ,
+            #{item.clng,jdbcType =VARCHAR} clng ,
+            #{item.clat,jdbcType =VARCHAR} clat,
+            #{item.noUdUuid,jdbcType =VARCHAR} noUdUuid,
+            sysdate insert_date
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+    <update id="updateByApi" parameterType="com.company.project.module.api.model.AqbhqProject">
+        update J302_API_AQBHQ_PROJECT t set(t.projectname, t.metrolinename, t.metrostationnamestart, t.metrostationnameend, t.projecttype, t.projectlevel, t.projtasklastresultstatus,
+        t.whethersubsequentprocessing, t.whetherkeyproject, t.projectbuildunit, t.projectbuildunitcontact, t.projectconstructionunit, t.projectconstructionunitcontact,t.projectdescription,
+        t.projectaddress, t.projectarea, t.projectlocationwithmetro, t.lat, t.lng, t.clng, t.clat, no_ud_uuid, t.insert_date)=(
+            select
+            #{projectname,jdbcType = VARCHAR} ,
+            #{metrolinename,jdbcType = VARCHAR} ,
+            #{metrostationnamestart,jdbcType =VARCHAR}  ,
+            #{metrostationnameend,jdbcType =VARCHAR}  ,
+            #{projecttype,jdbcType =VARCHAR}  ,
+            #{projectlevel,jdbcType =VARCHAR}  ,
+            #{projtasklastresultstatus,jdbcType =VARCHAR}  ,
+            #{whethersubsequentprocessing,jdbcType =VARCHAR}  ,
+            #{whetherkeyproject,jdbcType =VARCHAR}  ,
+            #{projectbuildunit,jdbcType =VARCHAR}  ,
+            #{projectbuildunitcontact,jdbcType =VARCHAR}  ,
+            #{projectconstructionunit,jdbcType =VARCHAR}  ,
+            #{projectconstructionunitcontact,jdbcType =VARCHAR}  ,
+            #{projectdescription,jdbcType =VARCHAR}  ,
+            #{projectaddress,jdbcType =VARCHAR}  ,
+            #{projectarea,jdbcType =VARCHAR}  ,
+            #{projectlocationwithmetro,jdbcType =VARCHAR}  ,
+            #{lat,jdbcType =VARCHAR}  ,
+            #{lng,jdbcType =VARCHAR}  ,
+            #{clng,jdbcType =VARCHAR}  ,
+            #{clat,jdbcType =VARCHAR} ,
+            #{clat,jdbcType =VARCHAR} ,
+            #{noUdUuid,jdbcType =VARCHAR} ,
+            sysdate
+            from dual
+        ) where t.projectid=#{projectid,jdbcType = VARCHAR}
+    </update>
+
+    <select id="getProjectSegment" resultType="map" parameterType="java.util.Map">
+        select
+        PROJECTLEVEL "LEVEL"
+        <choose>
+            <when test="updown == '0'.toString()">
+                ,U_START_DUCT START_DUCT_CODE,U_END_DUCT END_DUCT_CODE
+            </when>
+            <when test="updown == '1'.toString()">
+                ,D_START_DUCT START_DUCT_CODE,D_END_DUCT END_DUCT_CODE
+            </when>
+        </choose>
+        from J302_API_AQBHQ_PROJECT where
+        SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+    </select>
+
+    <select id="getProjectInfoById" resultMap="BaseResultMap" parameterType="string">
+        select * from J302_API_AQBHQ_PROJECT where PROJECTID = #{id}
+    </select>
+
+    <select id="getProjectBySegment" resultMap="BaseResultMap" parameterType="string">
+        select project.* from
+        <include refid="Geshihuaproject"/>
+    </select>
+
+    <select id="getProjectIdBySegment" resultType="map" parameterType="string">
+        select project.PROJECTID,project.PROJECTLOCATIONWITHMETRO,project.LAT,project.LNG,project.CLNG,project.CLAT from
+        <include refid="Geshihuaproject"/>
+    </select>
+
+    <select id="getAqbhqMatk" resultType="java.lang.Integer" parameterType="java.util.Map">
+
+
+    </select>
+
+    <sql id="Geshihuaproject">
+      (
+        select PROJECTID,PROJECTNAME, METROLINENAME
+        ,
+        case
+        when substr(METROSTATIONNAMESTART, -1) &lt;&gt; '站' then
+        concat(METROSTATIONNAMESTART, '站')
+        else
+        METROSTATIONNAMESTART
+        end
+        METROSTATIONNAMESTART,
+        case
+        when substr(METROSTATIONNAMEEND, -1) &lt;&gt; '站' then
+        concat(METROSTATIONNAMEEND, '站')
+        else
+        METROSTATIONNAMEEND
+        end
+        METROSTATIONNAMEEND
+        ,PROJECTTYPE,PROJECTLEVEL,PROJTASKLASTRESULTSTATUS,WHETHERSUBSEQUENTPROCESSING,WHETHERKEYPROJECT,PROJECTBUILDUNIT,
+        PROJECTBUILDUNITCONTACT,PROJECTCONSTRUCTIONUNIT,PROJECTCONSTRUCTIONUNITCONTACT,PROJECTDESCRIPTION,PROJECTADDRESS
+        ,PROJECTAREA,PROJECTLOCATIONWITHMETRO,LAT,LNG,CLNG,CLAT,INSERT_DATE
+
+        from J302_API_AQBHQ_PROJECT
+        )
+        project
+        where  #{STARTSTATION} = project.METROSTATIONNAMESTART and #{ENDSTATION} = project.METROSTATIONNAMEEND and #{LINE} = project.METROLINENAME
+
+    </sql>
+
+    <select id="selectBySegmentName" resultType="map" parameterType="java.util.Map">
+        select distinct t.*
+        from J302_TD_AQBHQ_V t
+        where 1=1
+         <if test="_parameter.containsKey('group_segment')">
+            and t.SEGMENT_UUID in
+            <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                #{item_segment}
+            </foreach>
+         </if>
+
+        <if test="_parameter.containsKey('status') and status != ''">
+            and t.PROJTASKLASTRESULTSTATUS =#{status}
+        </if>
+        <if test="_parameter.containsKey('projectname') and projectname != ''">
+            and t.PROJECTNAME like '%' || #{projectname} || '%'
+        </if>
+        <if test="_parameter.containsKey('projectlevel') and projectlevel != ''">
+            and t.PROJECTLEVEL = #{projectlevel}
+        </if>
+        <if test="_parameter.containsKey('duct')">
+            <if test="updown == '0'.toString()">
+                and least(U_START_DUCT,U_END_DUCT) &lt;= #{duct} and greatest(U_START_DUCT,U_END_DUCT) &gt;= #{duct}
+            </if>
+            <if test="updown == '1'.toString()">
+                and least(D_START_DUCT,D_END_DUCT) &lt;= #{duct} and greatest(D_START_DUCT,D_END_DUCT) &gt;= #{duct}
+            </if>
+        </if>
+        <if test="_parameter.containsKey('startDuct') and _parameter.containsKey('endDuct')">
+            <if test="updown == '0'.toString()">
+                and least(U_START_DUCT,U_END_DUCT) &gt;= #{startDuct} and greatest(U_START_DUCT,U_END_DUCT) &lt;=
+                #{endDuct}
+            </if>
+            <if test="updown == '1'.toString()">
+                and least(D_START_DUCT,D_END_DUCT) &gt;= #{startDuct} and greatest(D_START_DUCT,D_END_DUCT) &lt;=
+                #{endDuct}
+            </if>
+            union All
+            (
+            select distinct t.*
+            from J302_TD_AQBHQ_V t
+            where t.SEGMENT_UUID in
+            <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                #{item_segment}
+            </foreach>
+            <if test="_parameter.containsKey('status') and status != null">
+                and t.PROJTASKLASTRESULTSTATUS =#{status}
+            </if>
+            <if test="_parameter.containsKey('projectname') and projectname != null">
+                and t.PROJECTNAME like '%' || #{projectname} || '%'
+            </if>
+            <if test="_parameter.containsKey('projectlevel') and projectlevel != null">
+                and t.PROJECTLEVEL = #{projectlevel}
+            </if>
+            <if test="updown == '0'.toString()">
+                and least(U_START_DUCT,U_END_DUCT) &lt;= #{startDuct} and greatest(U_START_DUCT,U_END_DUCT) &gt;=
+                #{endDuct}
+            </if>
+            <if test="updown == '1'.toString()">
+                and least(D_START_DUCT,D_END_DUCT) &lt;= #{startDuct} and greatest(D_START_DUCT,D_END_DUCT) &gt;=
+                #{endDuct}
+            </if>
+            )
+        </if>
+    </select>
+
+    <select id="findDataForMapByV" resultType="map" parameterType="java.util.Map">
+        select distinct t.* from J302_TD_AQBHQ_V t
+        <where>
+            <if test="LINE_UUID != null and LINE_UUID != ''">
+                t."LINE_UUID"= #{LINE_UUID}
+            </if>
+            and t."PROJTASKLASTRESULTSTATUS"='施工'
+        </where>
+    </select>
+
+    <insert id="saveAllPerson" parameterType="java.util.List">
+        insert into J302_API_AQBHQ_PERSON (PERSONID,PERSONNAME,PERSONSEX,PERSONCONTACT,PERSONDESCRIPTION,METROLINES,INSERT_DATE)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select
+            #{item.personid ,jdbcType = VARCHAR} PERSONID,
+            #{item.personname,jdbcType = VARCHAR} PERSONNAME,
+            #{item.personsex,jdbcType = VARCHAR} PERSONSEX
+            ,#{item.personcontact,jdbcType = VARCHAR} PERSONCONTACT
+            ,#{item.persondescription,jdbcType = VARCHAR} PERSONDESCRIPTION,
+            #{item.metrolines,jdbcType = VARCHAR} METROLINES,
+            sysdate INSERT_DATE
+            from dual
+        </foreach>
+        ) temp
+        )
+
+    </insert>
+
+    <select id="getAllPersonInfo" resultType="java.util.Map" parameterType="java.util.Map">
+      select * from J302_API_AQBHQ_PERSON where PERSONNAME like '%'||#{personname}||'%'
+    </select>
+
+
+    <delete id="deleteAllCoordinates">
+        delete from J302_API_AQBHQ_COORDINATES
+    </delete>
+
+
+    <insert id="batchSaveCoordinates" parameterType="java.util.List">
+        insert into J302_API_AQBHQ_COORDINATES (UUID, RECORD_ID, PROJECT_ID, PROJECT_COORDINATES_ORDER,
+        PROJECT_CITY_COORDINATES_X, PROJECT_CITY_COORDINATES_Y, PROJECT_BAIDU_COORDINATES_X,
+        PROJECT_BAIDU_COORDINATES_Y, DISTANCE_UPLINK, DISTANCE_DOWNLINK, IS_DELETE, CREATE_TIME,
+        INSERT_TIME) (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid(),
+            #{item.RecordID,jdbcType = VARCHAR} ,
+            #{item.ProjectID,jdbcType = VARCHAR},
+            #{item.ProjectCoordinatesOrder,jdbcType = DECIMAL},
+            #{item.ProjectCityCoordinatesX,jdbcType = DECIMAL},
+            #{item.ProjectCityCoordinatesY,jdbcType = DECIMAL},
+            #{item.ProjectBaiduCoordinatesX,jdbcType = DECIMAL},
+            #{item.ProjectBaiduCoordinatesY,jdbcType = DECIMAL},
+            #{item.DistanceUplink,jdbcType = DECIMAL},
+            #{item.DistanceDownlink,jdbcType = DECIMAL},
+            #{item.IsDelete,jdbcType = VARCHAR},
+            to_date(REPLACE(#{item.CreateTime,jdbcType = VARCHAR},'T',' '),'yyyy-mm-dd hh24:mi:ss'),
+            sysdate
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+</mapper>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdCjDataMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdCjData">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="DUCT" jdbcType="VARCHAR" property="duct"/>
+        <result column="METER" jdbcType="DECIMAL" property="meter"/>
+        <result column="CJ_YEAR" jdbcType="VARCHAR" property="cjYear"/>
+        <result column="CJ_VALUE" jdbcType="DECIMAL" property="cjValue"/>
+        <result column="POINT_CODE" jdbcType="VARCHAR" property="pointCode"/>
+        <result column="SEGMENT_ID" jdbcType="VARCHAR" property="segmentId"/>
+    </resultMap>
+    <insert id="saveAll" parameterType="java.util.List">
+        insert into J302_METRO_CJ_INFO (ID,DUCT,METER,CJ_YEAR,CJ_VALUE,POINT_CODE,SEGMENT_ID)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select
+            #{item.id ,jdbcType = VARCHAR} ID,
+            #{item.duct ,jdbcType = VARCHAR} DUCT,
+            #{item.meter,jdbcType = VARCHAR} METER,
+            #{item.cjYear,jdbcType = VARCHAR} CJ_YEAR,
+            #{item.cjValue,jdbcType = DECIMAL} CJ_VALUE,
+            #{item.pointCode,jdbcType = VARCHAR} POINT_CODE,
+            #{item.segmentId,jdbcType = VARCHAR} SEGMENT_ID
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+    <select id="selectSegment" resultType="java.util.Map">
+              select ss.METERS_CODE, concat(ss.DIRECTION,ss.END_STATION) idCode,qq.ID,qq.LINE_ID from
+    ( select m.METERS_CODE,d.START_STATION,d.END_STATION,d.DIRECTION from J302_METRO_METER_INFO m INNER join J302_METRO_DUCT_INFO d on m.DUCT_UID = d.id where  m.STATION_FLAG is not null ORDER BY d.START_STATION
+    ) ss ,
+    (
+    select * from J302_METRO_SEGMENT_INFO where LINE_ID = '07')
+    qq where  ss.START_STATION = qq.START_STATION and ss.END_STATION = qq.END_STATION and ss.DIRECTION=
+    qq.DIRECTION ORDER BY to_number(ss.METERS_CODE)
+  </select>
+
+    <update id="updateCj" parameterType="java.util.Map">
+        update J302_METRO_CJ_INFO set SEGMENT_ID in <foreach collection="group_segment" item="item_segment" open="("
+                                                             close=")" separator=",">
+        #{item_segment}
+    </foreach> where METER &gt;= #{minmeters} and METER &lt;= #{maxmeters} and POINT_CODE like #{upd} || '%'
+    </update>
+    <select id="getMeterBySegment" resultType="java.util.Map" parameterType="string">
+    select wm_concat(d.meter) meters
+     from (select t.meter
+             from J302_METRO_CJ_INFO t
+            where t.segment_id = #{id}
+            group by t.meter
+            order by t.meter) d
+  </select>
+
+
+    <select id="getDateByTime" resultType="java.util.Map" parameterType="java.util.Map">
+        with
+        pint as (
+        select mp.pointsname,mp.POINTSMILEAGE from (select DISTINCT(pointsname),updown,POINTSMILEAGE from
+        D0400_NEWPOINTS_WHB where linecode = #{line} and updown=#{updown} ) mp
+        where mp.POINTSMILEAGE
+        between
+        to_number(#{start_mileage})
+        and
+        to_number(#{end_mileage}) ORDER BY mp.POINTSMILEAGE
+        )
+        ,
+        mvp1
+        as ( select whb.pointsname,p.POINTSMILEAGE,whb.curhigh,whb.MONITORDATe from D0400_NEWSETTLMENT_CG_WHB
+        whb inner join pint p on whb.POINTSNAME = p.pointsname where whb.linecode = #{line} and whb.updown=#{updown}
+        AND whb.MONITORDATE
+        IN(to_date(concat(#{base_key}, '-01'),'yyyy-MM-dd') ,to_date(concat(#{show_key},
+        '-01'),'yyyy-MM-dd') )
+
+        )
+        select #{show_key} dtime,
+        <choose>
+            <when test="_parameter.containsKey('SULV')">
+                ROUND((aa.curhigh-bb.curhigh)*1000/(months_between(to_date(#{show_key},'yyyy-MM')
+                ,to_date(#{base_key},'yyyy-MM'))),2)
+            </when>
+            <when test="base_code == 'CJY'.toString()">
+                ROUND((aa.curhigh-bb.curhigh)*12000/(months_between(to_date(#{show_key},'yyyy-MM')
+                ,to_date(#{base_key},'yyyy-MM'))),2)
+            </when>
+            <otherwise>
+                ROUND((aa.curhigh-bb.curhigh)*1000,2)
+            </otherwise>
+        </choose>
+        cj_value,aa.POINTSNAME,aa.POINTSMILEAGE from
+        (
+        select pint.POINTSNAME,nvl(mvp2.curhigh,'') curhigh,pint.POINTSMILEAGE from (select * from mvp1 where
+        mvp1.monitordate =to_date(concat(#{show_key}, '-01'),'yyyy-MM-dd') )mvp2 right join pint
+        on mvp2.POINTSNAME = pint.pointsname
+        ORDER BY pint.POINTSMILEAGE
+        ) aa left join
+        (
+        select pint.POINTSNAME,nvl(mvp2.curhigh,'') curhigh,pint.POINTSMILEAGE from (select * from mvp1 where
+        mvp1.monitordate =to_date(
+        concat(
+        #{base_key}
+        , '-01'),'yyyy-MM-dd') )mvp2 right join pint on mvp2.POINTSNAME = pint.pointsname
+        ) bb
+        on bb.pointsname=aa.POINTSNAME
+    </select>
+
+    <select id="getPointData" resultType="java.util.Map" parameterType="java.util.Map">
+select  to_char(MONITORDATE,'YYYY-MM')  XAIX,nvl(CURHIGH,'') YAIX from   D0400_NEWSETTLMENT_CG_WHB where UPDOWN=#{updown} and POINTSNAME = #{point} and linecode = #{line} ORDER BY MONITORDATE
+
+    </select>
+    <select id="getCjDate" resultType="java.util.Map" parameterType="java.util.Map">
+        with
+        pint as (
+        select mp.pointsname,mp.POINTSMILEAGE from (select DISTINCT(pointsname),updown,POINTSMILEAGE from
+        D0400_NEWPOINTS_WHB where linecode = #{line} and updown=#{updown} ) mp
+        where mp.POINTSMILEAGE
+        between
+        to_number(#{start_mileage})
+        and
+        to_number(#{end_mileage}) ORDER BY mp.POINTSMILEAGE
+        <if test="desc == '1'.toString()">desc</if>
+        )
+        ,
+        mvp1
+        as ( select whb.pointsname,p.POINTSMILEAGE,whb.curhigh,whb.MONITORDATe from D0400_NEWSETTLMENT_CG_WHB
+        whb inner join pint p on whb.POINTSNAME = p.pointsname where whb.linecode = #{line} and whb.updown=#{updown} )
+
+        select rownum rn,
+        to_char(dd."MONITORDATE",'YYYY-MM') showkey,
+        lead(to_char(dd.monitordate,'YYYY-MM'), 1, null) over(order by dd.monitordate desc) CJN
+        from (select monitordate from mvp1 GROUP BY monitordate) dd
+    </select>
+
+    <select id="getMapDateByTime" parameterType="java.util.Map" resultType="java.util.Map">
+
+    </select>
+
+    <select id="getCjXDate" parameterType="java.util.Map" resultType="java.util.Map">
+        select mp.pointsname,mp.POINTSMILEAGE from (select DISTINCT(pointsname),updown,POINTSMILEAGE from
+        D0400_NEWPOINTS_WHB where linecode = #{line} and updown= #{updown} ) mp
+        where mp.POINTSMILEAGE
+        between
+        to_number(#{start_mileage})
+        and
+        to_number(#{end_mileage}) ORDER BY mp.POINTSMILEAGE
+        <if test="desc == '1'.toString()">desc</if>
+
+    </select>
+    <select id="getQlXdate" parameterType="java.util.Map" resultType="java.util.Map">
+
+
+        select mp.pointsname,mp.POINTSMILEAGE from (select DISTINCT(pointsname),updown,POINTSMILEAGE from
+        D0400_NEWPOINTS_HB where linecode = #{line} and updown= #{updown} ) mp
+        where mp.POINTSMILEAGE
+        between
+        to_number(#{start_mileage})
+        and
+        to_number(#{end_mileage}) ORDER BY mp.POINTSMILEAGE
+        <if test="desc == '1'.toString()">desc</if>
+
+
+    </select>
+
+    <select id="getQlByTime" parameterType="java.util.Map" resultType="java.util.Map">
+        with
+        pint as (
+        select mp.pointsname,mp.POINTSMILEAGE from (select DISTINCT(pointsname),updown,POINTSMILEAGE from
+        D0400_NEWPOINTS_HB where linecode = #{line} and updown=#{updown} ) mp
+        where mp.POINTSMILEAGE
+        between
+        to_number(#{start_mileage})
+        and
+        to_number(#{end_mileage}) ORDER BY mp.POINTSMILEAGE
+        <if test="desc == '1'.toString()">desc</if>
+        )
+        ,
+        mvp1
+        as (
+        select whb.pointsname,p.POINTSMILEAGE,whb.curhigh,whb.MONITORDATe from D0400_NEWSETTLMENT_CG_HB whb inner join
+        pint p on whb.POINTSNAME = p.pointsname where whb.linecode = #{line} and whb.updown=#{updown} AND
+        whb.MONITORDATE
+        IN(to_date(concat(#{base_key}, '-01'),'yyyy-MM-dd') ,to_date(concat(#{show_key}, '-01'),'yyyy-MM-dd') )
+
+        )
+        select #{show_key} dtime,(aa.curhigh-bb.curhigh) / 1000 cj_value,aa.POINTSNAME,aa.POINTSMILEAGE from
+        (
+        select pint.POINTSNAME,nvl(mvp2.curhigh,'') curhigh,pint.POINTSMILEAGE from (select * from mvp1 where
+        mvp1.monitordate =to_date(concat(#{show_key}, '-01'),'yyyy-MM-dd') )mvp2 right join pint
+        on mvp2.POINTSNAME = pint.pointsname
+        ORDER BY pint.POINTSMILEAGE
+        ) aa left join
+        (
+        select pint.POINTSNAME,nvl(mvp2.curhigh,'') curhigh,pint.POINTSMILEAGE from (select * from mvp1 where
+        mvp1.monitordate =to_date(
+
+        concat(
+        #{base_key}
+        , '-01'),'yyyy-MM-dd') )mvp2 right join pint on mvp2.POINTSNAME = pint.pointsname
+        ) bb
+        on bb.pointsname=aa.POINTSNAME
+
+    </select>
+
+    <select id="getCjPtd" resultType="java.util.Map" parameterType="java.util.Map">
+        select * from  (select * from   D0400_NEWPOINTS_WHB where linecode = #{line} and updown=#{updown} and POINTSDEMO = '旁通道') mp
+           where mp.POINTSMILEAGE
+        between
+         to_number(#{start_mileage})
+        and
+        to_number(#{end_mileage})
+    </select>
+    <select id="getQLPtd" resultType="java.util.Map" parameterType="java.util.Map">
+        select mp.pointsname,mp.POINTSMILEAGE from (select DISTINCT(pointsname),updown,POINTSMILEAGE from
+        D0400_NEWPOINTS_HB where linecode = #{line} and updown= #{updown} and POINTSDEMO = '旁通道') mp
+        where mp.POINTSMILEAGE
+        between
+        to_number(#{start_mileage})
+        and
+        to_number(#{end_mileage}) ORDER BY mp.POINTSMILEAGE
+        <if test="desc == '1'.toString()">desc</if>
+    </select>
+    <select id="initPtdCjXData" resultType="java.util.Map" parameterType="java.util.Map">
+        select mp.pointsname,mp.pointsmileage from
+        <if test="table == 'HB'.toString()">
+            D0400_NEWPOINTS_HB mp
+        </if>
+        <if test="table == 'WHB'.toString()">
+            D0400_NEWPOINTS_WHB mp
+        </if>
+        where mp.linecode = #{line} and mp.updown=#{updown}
+        and mp.POINTSMILEAGE
+        between
+        to_number(#{pointMeter})-to_number(#{marginMeter})
+        and
+        to_number(#{pointMeter})+to_number(#{marginMeter}) ORDER BY mp.POINTSMILEAGE
+        <if test="desc == '1'.toString()">desc</if>
+    </select>
+    <select id="getPtdCjData" resultType="java.util.Map" parameterType="java.util.Map">
+        with
+        pint as (
+        select mp.pointsname,mp.pointsmileage from
+        <if test="table == 'HB'.toString()">
+            D0400_NEWPOINTS_HB mp
+        </if>
+        <if test="table == 'WHB'.toString()">
+            D0400_NEWPOINTS_WHB mp
+        </if>
+        where mp.linecode = #{line} and mp.updown=#{updown}
+        and mp.POINTSMILEAGE
+        between
+        to_number(#{pointMeter})-to_number(#{marginMeter})
+        and
+        to_number(#{pointMeter})+to_number(#{marginMeter}) ORDER BY mp.POINTSMILEAGE
+        )
+        ,
+        mvp1
+        as ( select whb.pointsname,p.POINTSMILEAGE,whb.curhigh,whb.MONITORDATe from
+        <if test="table == 'HB'.toString()">
+            D0400_NEWSETTLMENT_CG_HB whb
+        </if>
+        <if test="table == 'WHB'.toString()">
+            D0400_NEWSETTLMENT_CG_WHB whb
+        </if>
+        inner join pint p on whb.POINTSNAME = p.pointsname where whb.linecode = #{line} and whb.updown=#{updown}
+        AND whb.MONITORDATE
+        IN(to_date(concat(#{init_date}, '-01'),'yyyy-MM-dd') ,to_date(concat(#{show_key},
+        '-01'),'yyyy-MM-dd') )
+
+        )
+
+        select #{show_key} dtime,ROUND((aa.curhigh-bb.curhigh)*1000,2)
+        <if test="base_code == 'CJY'.toString()">
+            /(months_between(to_date(#{show_key},'yyyy-MM') ,to_date(#{init_date},'yyyy-MM')))*12
+        </if>
+        cj_value,aa.POINTSNAME,aa.POINTSMILEAGE from
+        (
+        select pint.POINTSNAME,nvl(mvp2.curhigh,'') curhigh,pint.POINTSMILEAGE from (select * from mvp1 where
+        mvp1.monitordate =to_date(concat(#{show_key}, '-01'),'yyyy-MM-dd') )mvp2 right join pint
+        on mvp2.POINTSNAME = pint.pointsname
+        ORDER BY pint.POINTSMILEAGE
+        <if test="desc == '1'.toString()">desc</if>
+        ) aa left join
+        (
+        select pint.POINTSNAME,nvl(mvp2.curhigh,'') curhigh,pint.POINTSMILEAGE from (select * from mvp1 where
+        mvp1.monitordate =to_date(
+        concat(
+        #{init_date}
+        , '-01'),'yyyy-MM-dd') )mvp2 right join pint on mvp2.POINTSNAME = pint.pointsname
+        ) bb
+        on bb.pointsname=aa.POINTSNAME
+    </select>
+
+    <select id="getCjMark" parameterType="java.util.Map" resultType="java.lang.Double">
+       with
+        pint as (
+        select mp.pointsname,mp.POINTSMILEAGE from  (select DISTINCT(pointsname),updown,POINTSMILEAGE from  D0400_NEWPOINTS_WHB where linecode = #{LINE_CODE} and updown=#{UPDOWN} ) mp
+           where mp.POINTSMILEAGE
+        between
+         to_number(#{START_MILEAGE_CODE})
+        and
+        to_number(#{END_MILEAGE_CODE})
+        )
+        ,
+        mvp1
+        as (
+        select whb.pointsname,p.POINTSMILEAGE,whb.curhigh,whb.MONITORDATe from  D0400_NEWSETTLMENT_CG_WHB whb inner join pint p on whb.POINTSNAME = p.pointsname where whb.linecode = #{LINE_CODE} and whb.updown=#{UPDOWN} AND  whb.MONITORDATE
+        IN(to_date(concat(#{CJ_SHOW}, '-01'),'yyyy-MM-dd') ,to_date(concat(#{CJ_THIS}, '-01'),'yyyy-MM-dd') )
+
+        )
+
+
+				select max(abs(ROUND((aa.curhigh-bb.curhigh)*1000,2))) value from (
+					select pointsname,curhigh from mvp1 where mvp1.monitordate =to_date(concat(#{CJ_SHOW}, '-01'),'yyyy-MM-dd')
+				) aa inner join
+				(
+					select pointsname,curhigh from mvp1 where mvp1.monitordate =to_date(concat(#{CJ_THIS}, '-01'),'yyyy-MM-dd')
+				) bb on aa.pointsname= bb.pointsname
+
+    </select>
+    <select id="getZdjcCjYjData" resultType="java.util.Map">
+        select t.linecode || '号线-顾村公园站-祁华路站' "line",
+               '4' "max",
+               abs(t."CURSETTLMEMT") "value"
+          from J302_TD_ZDJC_CJ_POI_V t
+    </select>
+</mapper>

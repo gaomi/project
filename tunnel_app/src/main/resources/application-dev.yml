@@ -1,0 +1,81 @@
+# \u5F00\u53D1\u73AF\u5883\u914D\u7F6E
+# \u6570\u636E\u6E90\u914D\u7F6E\uFF0C\u8BF7\u4FEE\u6539\u4E3A\u4F60\u9879\u76EE\u7684\u5B9E\u9645\u914D\u7F6E
+server:
+  port: 9090
+  session:
+    timeout: 10000
+  context-path: /tunnel_app
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  datasource:
+    #      url: jdbc:oracle:thin:@172.17.200.198:1521:ORCL
+    #    url: jdbc:oracle:thin:@localhost:1521:XE
+#    url: jdbc:oracle:thin:@192.168.12.55:1521:ORCL
+    url: jdbc:oracle:thin:@192.168.18.39:1521:ORCL
+#    url: jdbc:oracle:thin:@10.0.19.123:1521:ORCL
+    #      url: jdbc:oracle:thin:@10.0.45.166:1522:ORCL
+    username: metro
+    password: metro_123
+    #      username: tunnel
+    #      password: tunnel
+    driver-class-name: oracle.jdbc.OracleDriver
+    validation-query: SELECT 1 FROM DUAL
+    initial-size: 10
+    min-idle: 10
+    max-active: 30
+    max-wait: 10000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    test-while-idle: true
+    test-on-return: false
+    test-on-borrow: true
+    pool-prepared-statements: true
+    max-pool-prepared-statement-per-connection-size: 20
+    filter:
+      stat:
+        merge-sql: true
+        slow-sql-millis: 5000
+    filters: stat,wall,slf4j
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 0
+    # Redis服务器地址
+    #host: 192.168.12.59
+    host: 192.168.12.90
+    # Redis服务器连接端口
+    port: 6379
+    # Redis 密码
+    password: 123456
+    jedis:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 8
+        # 连接池中的最大空闲连接
+        max-idle: 500
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 2000
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 10000
+    # 连接超时时间（毫秒）
+    timeout: 0
+
+uploadFile.path: D:\\upload\\  #文件上传路径
+
+# paoding 配置
+paoding:
+  # 是否在控制台打印 sql语句
+  showsql: true
+  # 时间类型参数在前端页面的展示格式，默认格式为 yyyy-MM-dd HH:mm:ss
+  timeFormat: yyyy-MM-dd HH:mm:ss
+  # 是否开启 AOP 日志，默认开启
+  openAopLog: true
+fault-image:
+  #  path: http://10.0.19.125:9080/upload/QC/
+  #  path: http://10.0.112.71/tunnel_file/images/fault/
+  path: /tunnel_file/images/fault/
+inspect-res:
+  path: D:\\log\\res\\

@@ -1,0 +1,71 @@
+# 测试环境配置
+server:
+  port: 9090
+  session:
+    timeout: 10000
+  context-path: /tunnel_app
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  datasource:
+    #      url: jdbc:oracle:thin:@172.17.200.198:1521:ORCL
+    url: jdbc:oracle:thin:@192.168.12.57:1521:XE
+    #      url: jdbc:oracle:thin:@192.168.12.57:1521:XE
+    #      url: jdbc:oracle:thin:@10.0.19.123:1521:ORCL
+    #      url: jdbc:oracle:thin:@10.0.45.166:1522:ORCL
+    username: metro
+    password: metro_123
+    #      username: tunnel
+    #      password: tunnel
+    driver-class-name: oracle.jdbc.OracleDriver
+    validation-query: SELECT 1 FROM DUAL
+    initial-size: 10
+    min-idle: 10
+    max-active: 30
+    max-wait: 10000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    test-while-idle: true
+    test-on-return: false
+    test-on-borrow: true
+    pool-prepared-statements: true
+    max-pool-prepared-statement-per-connection-size: 20
+    filter:
+      stat:
+        merge-sql: true
+        slow-sql-millis: 5000
+    filters: stat,wall,slf4j
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+    content-type: text/html
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 0
+    # Redis服务器地址
+    #host: 192.168.12.59
+    host: 127.0.0.1
+    # Redis服务器连接端口
+    port: 6379
+    # Redis 密码
+    password:
+    jedis:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 8
+        # 连接池中的最大空闲连接
+        max-idle: 500
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 2000
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 10000
+    # 连接超时时间（毫秒）
+    timeout: 0
+
+uploadFile.path: D:\\upload\\  #文件上传路径

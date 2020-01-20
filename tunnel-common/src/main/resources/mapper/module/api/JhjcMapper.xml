@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.api.dao.JhjcMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.api.model.JhjcProject">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="LINE" jdbcType="VARCHAR" property="line"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="CENTERJSON" jdbcType="VARCHAR" property="centerjson"/>
+        <result column="LEVEL" jdbcType="VARCHAR" property="level"/>
+        <result column="STATE" jdbcType="VARCHAR" property="state"/>
+        <result column="COMPANY" jdbcType="VARCHAR" property="company"/>
+        <result column="SUMMARY" jdbcType="CLOB" property="summary"/>
+        <result column="U_START_DUCT" jdbcType="DECIMAL" property="uStartDuct"/>
+        <result column="D_START_DUCT" jdbcType="DECIMAL" property="dStartDuct"/>
+        <result column="U_END_DUCT" jdbcType="DECIMAL" property="uEndDuct"/>
+        <result column="D_END_DUCT" jdbcType="DECIMAL" property="dEndDuct"/>
+        <result column="SEGMENT_UUID" jdbcType="VARCHAR" property="segmentUuid"/>
+    </resultMap>
+
+    <!--
+    出现错误：ORA-01461:仅能绑定要插入LONG列的LONG值
+    https://blog.csdn.net/couragehope/article/details/82221191
+    -->
+    <insert id="batchSaveProject" parameterType="java.util.List">
+        begin
+        <foreach collection="list" item="item" index="index" separator=";">
+            insert into J302_API_JHJC_PROJECT(ID, LINE, "NAME", CENTERJSON, "LEVEL", STATE, COMPANY, INSERT_DATE, SUMMARY)
+            values(
+            #{item.id,jdbcType = VARCHAR} ,
+            #{item.line,jdbcType = VARCHAR} ,
+            #{item.name,jdbcType = VARCHAR} ,
+            #{item.centerjson,jdbcType =VARCHAR} ,
+            #{item.level,jdbcType =VARCHAR} ,
+            #{item.state,jdbcType =VARCHAR} ,
+            #{item.company,jdbcType =VARCHAR} ,
+            sysdate,
+            #{item.summary,jdbcType =CLOB}
+            )
+        </foreach>
+        ;end;
+    </insert>
+
+
+    <insert id="batchSaveProject_v1" parameterType="java.util.List">
+        insert into J302_API_JHJC_PROJECT (ID, LINE, "NAME", CENTERJSON, "LEVEL", STATE, COMPANY, INSERT_DATE, SUMMARY)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select
+            #{item.id,jdbcType = VARCHAR} id,
+            #{item.line,jdbcType = VARCHAR} line,
+            #{item.name,jdbcType = VARCHAR} "NAME",
+            #{item.centerjson,jdbcType =VARCHAR} centerjson ,
+            #{item.level,jdbcType =VARCHAR} "LEVEL",
+            #{item.state,jdbcType =VARCHAR} state ,
+            #{item.company,jdbcType =VARCHAR} company ,
+            sysdate insert_date,
+            #{item.summary,jdbcType =VARCHAR} SUMMARY
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+    <select id="getProjectInfoById" resultMap="BaseResultMap" parameterType="string">
+        select * from J302_API_JHJC_PROJECT where ID = #{id}
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+       select * from  J302_API_JHJC_PROJECT
+    </select>
+    <select id="selectByKeyword" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from J302_API_JHJC_PROJECT t where 1=1
+        <if test="_parameter.containsKey('group_segment')">
+            and t.SEGMENT_UUID in
+            <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                #{item_segment}
+            </foreach>
+        </if>
+        <if test="_parameter.containsKey('name') and name != ''">
+            and t.NAME like '%' || #{name} || '%'
+        </if>
+        <if test="_parameter.containsKey('level') and level != ''">
+            AND t."LEVEL" = #{level}
+        </if>
+        <if test="_parameter.containsKey('duct')">
+            <if test="updown == '0'.toString()">
+                and least(t.U_START_DUCT,t.U_END_DUCT) &lt;= #{duct} and greatest(t.U_START_DUCT,t.U_END_DUCT) &gt;= #{duct}
+            </if>
+            <if test="updown == '1'.toString()">
+                and least(t.D_START_DUCT,t.D_END_DUCT) &lt;= #{duct} and greatest(t.D_START_DUCT,t.D_END_DUCT) &gt;= #{duct}
+            </if>
+        </if>
+        <if test="_parameter.containsKey('stats') and stats != ''">
+            AND t.STATE = #{stats}
+        </if>
+        <if test="_parameter.containsKey('startDuct') and _parameter.containsKey('endDuct')">
+            <if test="updown == '0'.toString()">
+                and least(t.U_START_DUCT,t.U_END_DUCT) &gt;= #{startDuct} and greatest(t.U_START_DUCT,t.U_END_DUCT) &lt;= #{endDuct}
+            </if>
+            <if test="updown == '1'.toString()">
+                and least(t.D_START_DUCT,t.D_END_DUCT) &gt;= #{startDuct} and greatest(t.D_START_DUCT,t.D_END_DUCT) &lt;= #{endDuct}
+            </if>
+            union All
+            (
+            select * from J302_API_JHJC_PROJECT t where
+            t.SEGMENT_UUID in
+            <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                #{item_segment}
+            </foreach>
+            <if test="_parameter.containsKey('name') and name != ''">
+                and t.NAME like '%' || #{name} || '%'
+            </if>
+            <if test="_parameter.containsKey('level') and level != ''">
+                AND t."LEVEL" = #{level}
+            </if>
+            <if test="_parameter.containsKey('stats') and stats != ''">
+                AND t.STATE = #{stats}
+            </if>
+            <if test="updown == '0'.toString()">
+                and least(t.U_START_DUCT,t.U_END_DUCT) &lt;= #{startDuct} and greatest(t.U_START_DUCT,t.U_END_DUCT) &gt;= #{endDuct}
+            </if>
+            <if test="updown == '1'.toString()">
+                and least(t.D_START_DUCT,t.D_END_DUCT) &lt;= #{startDuct} and greatest(t.D_START_DUCT,t.D_END_DUCT) &gt;= #{endDuct}
+            </if>
+            )
+        </if>
+    </select>
+    <select id="selectLimt" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        *
+        from (
+        select t.*,rownum r from J302_API_JHJC_PROJECT t where rownum &lt;= #{num}* #{size}
+        <if test="_parameter.containsKey('group_segment') and group_segment != ''">
+            and t.SEGMENT_UUID in
+            <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                #{item_segment}
+            </foreach>
+        </if>
+        <if test="_parameter.containsKey('name') and name != ''">
+            and t.NAME like '%' || #{name} || '%'
+        </if>
+        <if test="_parameter.containsKey('level') and level != ''">
+            AND t."LEVEL" = #{level}
+        </if>
+        <if test="_parameter.containsKey('line') and line != ''">
+            AND t.LINE = #{line}
+        </if>
+        <if test="_parameter.containsKey('stats') and stats != ''">
+            AND t.STATE = #{stats}
+        </if>
+        ) where r &gt; (#{num}-1)* #{size}
+
+    </select>
+
+    <select id="getTotal" resultType="int" parameterType="java.util.Map">
+        select count(0) from J302_API_JHJC_PROJECT t where 1=1
+        <if test="_parameter.containsKey('group_segment') and group_segment != ''">
+            and t.SEGMENT_UUID in
+            <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                #{item_segment}
+            </foreach>
+        </if>
+        <if test="_parameter.containsKey('name') and name != ''">
+            and t.NAME like '%' || #{name} || '%'
+        </if>
+        <if test="_parameter.containsKey('level') and level != ''">
+            AND t."LEVEL" = #{level}
+        </if>
+        <if test="_parameter.containsKey('line') and line != ''">
+            AND t.LINE = #{line}
+        </if>
+        <if test="_parameter.containsKey('stats') and stats != ''">
+            AND t.STATE = #{stats}
+        </if>
+    </select>
+
+    <select id="findByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+        select * from J302_API_JHJC_PROJECT where
+        <foreach collection="list" item="item" separator="or">
+            ID = #{item}
+        </foreach>
+    </select>
+
+    <sql id="jhjcMap">
+        ID,LINE,"NAME","LEVEL",CENTERJSON,STATE,COMPANY,INSERT_DATE,SUMMARY
+    </sql>
+
+    <select id="getProjectSegment" resultType="map" parameterType="java.util.Map">
+        select "LEVEL"
+        <choose>
+            <when test="updown == '0'.toString()">
+                ,U_START_DUCT START_DUCT_CODE,U_END_DUCT END_DUCT_CODE
+            </when>
+            <when test="updown == '1'.toString()">
+                ,D_START_DUCT START_DUCT_CODE,D_END_DUCT END_DUCT_CODE
+            </when>
+        </choose>
+        from J302_API_JHJC_PROJECT where SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        <if test="_parameter.containsKey('jhjcStatus') and jhjcStatus != ''">
+            and STATE = #{jhjcStatus}
+        </if>
+    </select>
+
+    <select id="findDataForMapByV" resultType="map" parameterType="java.util.Map">
+        select * from J302_TD_JHJC_V t
+        <where>
+            <if test="LINE_UUID != null and LINE_UUID != ''">
+                t."LINE_UUID"= #{LINE_UUID}
+            </if>
+            and t.state not in('已归档','已完成')
+        </where>
+    </select>
+</mapper>

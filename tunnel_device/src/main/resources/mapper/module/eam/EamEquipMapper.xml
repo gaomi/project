@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.eam.dao.EamEquipMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.module.eam.model.EamEquip">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="EQUIPNO" jdbcType="VARCHAR" property="equipno" />
+    <result column="EQUIPNAME" jdbcType="VARCHAR" property="equipname" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="INSERT_DATE" jdbcType="TIMESTAMP" property="insertDate" />
+    <result column="DUCT_CODE_START" jdbcType="VARCHAR" property="ductCodeStart" />
+    <result column="MILEAGE_CODE_START" jdbcType="DECIMAL" property="mileageCodeStart" />
+    <result column="UPDOWN" jdbcType="CHAR" property="updown" />
+    <result column="DUCT_CODE_END" jdbcType="VARCHAR" property="ductCodeEnd" />
+    <result column="MILEAGE_CODE_END" jdbcType="DECIMAL" property="mileageCodeEnd" />
+    <result column="MILEAGE_FLAG" jdbcType="VARCHAR" property="mileageFlag" />
+  </resultMap>
+</mapper>

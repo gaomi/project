@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdSandyMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdSandy">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="SANDY_ID" jdbcType="VARCHAR" property="sandyId"/>
+        <result column="SOIL_LEVEL" jdbcType="CHAR" property="soilLevel"/>
+        <result column="SANDY_TUNNEL_POSITION" jdbcType="CHAR" property="sandyTunnelPosition"/>
+        <result column="LINE_CODE" jdbcType="VARCHAR" property="lineCode"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="START_STATION_UUID" jdbcType="VARCHAR" property="startStationUuid"/>
+        <result column="START_STATION_CODE" jdbcType="VARCHAR" property="startStationCode"/>
+        <result column="START_DUCT_CODE" jdbcType="DECIMAL" property="startDuctCode"/>
+        <result column="END_STATION_UUID" jdbcType="VARCHAR" property="endStationUuid"/>
+        <result column="END_STATION_CODE" jdbcType="VARCHAR" property="endStationCode"/>
+        <result column="END_DUCT_CODE" jdbcType="DECIMAL" property="endDuctCode"/>
+        <result column="SEGMENT_NAME" jdbcType="VARCHAR" property="segmentName"/>
+        <result column="SEGMENT_UUID" jdbcType="VARCHAR" property="segmentUuid"/>
+        <result column="START_FLAG" jdbcType="VARCHAR" property="startFlag"/>
+        <result column="START_MILEAGE" jdbcType="DECIMAL" property="startMileage"/>
+        <result column="END_FLAG" jdbcType="VARCHAR" property="endFlag"/>
+        <result column="END_MILEAGE" jdbcType="DECIMAL" property="endMileage"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+
+    <insert id="batchSaveSandyByImport" parameterType="java.util.List">
+        insert into J302_TD_SANDY_INFO (UUID, SANDY_ID, SOIL_LEVEL, SANDY_TUNNEL_POSITION, LINE_CODE,LINE_UUID, UPDOWN,
+        SEGMENT_UUID, START_FLAG,
+        START_MILEAGE, END_FLAG, END_MILEAGE, REMARK)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select #{item.uuid,jdbcType = VARCHAR} uuid,
+            #{item.sandy_id,jdbcType = VARCHAR} sandy_id,
+            #{item.soil_level,jdbcType = VARCHAR} soil_level,
+            #{item.sandy_tunnel_position,jdbcType = VARCHAR} sandy_tunnel_position,
+            #{item.line_code,jdbcType = VARCHAR} line_code ,
+            #{item.line_uuid,jdbcType = VARCHAR} line_uuid ,
+            #{item.updown,jdbcType =VARCHAR} updown ,
+            #{item.segment_uuid,jdbcType =VARCHAR} segment_uuid ,
+            #{item.start_flag,jdbcType =VARCHAR} start_flag,
+            #{item.start_mileage,jdbcType =DECIMAL} start_mileage ,
+            #{item.end_flag,jdbcType =VARCHAR} end_flag ,
+            #{item.end_mileage,jdbcType =DECIMAL} end_mileage ,
+            #{item.remark,jdbcType =VARCHAR} remark
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+    <insert id="saveSandy" parameterType="com.company.project.module.data.model.TdSandy">
+        insert into J302_TD_SANDY_INFO (UUID, SANDY_ID, SOIL_LEVEL, SANDY_TUNNEL_POSITION, LINE_CODE,LINE_UUID, UPDOWN, SEGMENT_UUID,
+                                        START_FLAG,END_FLAG,
+        START_MILEAGE,END_MILEAGE, REMARK)
+        (select temp.* from (
+            select sys_guid() uuid,
+            sys_guid() sandy_id,
+            #{soilLevel,jdbcType = VARCHAR} soil_level,
+            #{sandyTunnelPosition,jdbcType = VARCHAR} sandy_tunnel_position,
+            #{lineCode,jdbcType = VARCHAR} line_code ,
+            #{lineUuid,jdbcType = VARCHAR} line_uuid ,
+            #{updown,jdbcType =VARCHAR} updown ,
+            #{segmentUuid,jdbcType =VARCHAR} segment_uuid ,
+            ( select START_MILEAGE_FLAG from J302_TD_SEGMENT_INFO where UUID =  #{segmentUuid}) start_flag,
+            ( select END_MILEAGE_FLAG from J302_TD_SEGMENT_INFO where UUID =  #{segmentUuid}) end_flag,
+            #{startMileage,jdbcType =VARCHAR} START_MILEAGE,
+            #{endMileage,jdbcType =VARCHAR} END_MILEAGE,
+            #{remark,jdbcType =VARCHAR} remark
+            from dual
+        ) temp
+        )
+    </insert>
+
+    <select id="getProjectSegment" resultType="java.util.Map" parameterType="java.util.Map">
+        select SEGMENT_UUID,START_DUCT_CODE,END_DUCT_CODE from J302_TD_SANDY_INFO where SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+    </select>
+
+
+    <select id="selectBySegment" resultType="java.util.Map" parameterType="java.util.Map">
+        select * from J302_TD_SANDY_V tsai
+        <where>
+            <if test="_parameter.containsKey('group_segment')">
+                and tsai.segment_uuid in
+                <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                    #{item_segment}
+                </foreach>
+            </if>
+            <if test="_parameter.containsKey('group_segment_item') and group_segment_item != ''">
+                and  tsai.segment_uuid=#{group_segment_item}
+            </if>
+            <if test="_parameter.containsKey('duct') and duct != ''">
+                and tsai.start_duct_code &lt;= #{duct} and tsai.end_duct_code &gt;= #{duct}
+            </if>
+            <if test="_parameter.containsKey('lineUuid') and lineUuid != ''">
+                and tsai.LINE_UUID =#{lineUuid}
+            </if>
+            <if test="_parameter.containsKey('updown') and updown != ''">
+                and tsai.UPDOWN=#{updown}
+            </if>
+            <if test="_parameter.containsKey('keyWord') and keyWord != ''">
+                and (tsai.SEG_SEGMENT_NAME like '%'|| #{keyWord} ||'%'  or  tsai.SANDY_TUNNEL_POSITION_VALUE like '%'|| #{keyWord} || '%' )
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="SelectResultMap" type="java.util.Map">
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="LINE_UUID"/>
+        <result column="LINE_NAME" jdbcType="VARCHAR" property="LINE_NAME"/>
+        <collection property="SEGMENT" ofType="java.util.Map" javaType="java.util.List">
+            <result column="UPDOWN" jdbcType="VARCHAR" property="UPDOWN"/>
+            <result column="ID" jdbcType="VARCHAR" property="ID"/>
+            <result column="SEGMENT_NAME" jdbcType="VARCHAR" property="SEGMENT_NAME"/>
+        </collection>
+    </resultMap>
+    <select id="getSandySelectSegment" resultMap="SelectResultMap">
+        select LINE_NAME,LINE_UUID,UPDOWN,SEGMENT_UUID ID,SEG_SEGMENT_NAME SEGMENT_NAME from J302_TD_SANDY_V where LINE_UUID is not null  GROUP BY LINE_NAME,LINE_UUID,UPDOWN,SEGMENT_UUID,SEG_SEGMENT_NAME
+    </select>
+</mapper>

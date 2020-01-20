@@ -1,0 +1,54 @@
+/* 显示当前坐标 */
+.map_scalebar_coordinates {
+    z-index: 29;
+    position: absolute;
+    left: 2px;
+    bottom: 2px;
+    width: 170px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 6px;
+    background-image: linear-gradient(to top, #DEE9FF, #fff);
+    border: 1px solid #B6CCF8;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
+    display: none;
+}
+
+.coordsInfo {
+    padding-top: 18px;
+    margin-left: 6px;
+    font-family: 微软雅黑;
+    font-size: 10px;
+    text-align: left;
+}
+
+.scalebarInfo {
+    padding-top: 7px;
+    margin-left: 8px;
+}
+
+/*重构esri气泡窗口标题样式*/
+.esriPopup .titlePane {
+    background-color: #30A4D5 !important;
+}
+
+.esriPopup .titleButton.maximize {
+    display: none;
+}
+
+/*重构esri比例尺样式*/
+.esriScalebarLabel {
+    font-size: 10px;
+    font-weight: normal;
+    color: #1825d7;
+}
+
+.esriScalebarSecondNumber {
+    right: 5px;
+    left: auto;
+}
+
+.scalebar_bottom-left {
+    bottom: 20px;
+    left: 12px !important;
+}

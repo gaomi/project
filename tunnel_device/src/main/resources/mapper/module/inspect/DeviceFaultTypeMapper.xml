@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.inspect.dao.DeviceFaultTypeMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.inspect.model.DeviceFaultType">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="LEVEL3" jdbcType="VARCHAR" property="level3"/>
+        <result column="LEVEL4" jdbcType="VARCHAR" property="level4"/>
+        <result column="DEVICE_TYPE" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="FAULT_TYPE1" jdbcType="VARCHAR" property="faultType1"/>
+        <result column="FAULT_TYPE2" jdbcType="VARCHAR" property="faultType2"/>
+        <result column="FAULT_TYPE3" jdbcType="VARCHAR" property="faultType3"/>
+        <result column="FAULT_GRADE" jdbcType="VARCHAR" property="faultGrade"/>
+        <result column="OPT_DESC" jdbcType="VARCHAR" property="optDesc"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="TYPE_DESC" jdbcType="VARCHAR" property="typeDesc"/>
+        <result column="STATUS" jdbcType="CHAR" property="status"/>
+        <result column="DEVICE_LEVEL_CODE" jdbcType="VARCHAR" property="deviceLevelCode"/>
+        <result column="DEVICE_TYPE_CODE" jdbcType="VARCHAR" property="deviceTypeCode"/>
+        <result column="FAULT_TYPE1_CODE" jdbcType="VARCHAR" property="faultType1Code"/>
+        <result column="FAULT_TYPE2_CODE" jdbcType="VARCHAR" property="faultType2Code"/>
+        <result column="FAULT_TYPE3_CODE" jdbcType="VARCHAR" property="faultType3Code"/>
+        <result column="DEVICE_LEVEL_UUID" jdbcType="VARCHAR" property="deviceLevelUuid"/>
+    </resultMap>
+    <select id="findDeviceFaultTypeByV" resultType="map" parameterType="java.util.Map">
+        select vt.* from J302_TD_DEVICE_FAULT_TYPE_V vt
+        <where>
+            <if test="big_type != null and big_type != ''">
+                and vt.DEVICE_LEVEL_CODE= #{big_type}
+            </if>
+            <if test="small_type != null and small_type != ''">
+                and (vt.DEVICE_LEVEL_CODE || vt.DEVICE_TYPE_CODE )= #{small_type}
+            </if>
+            <if test="fault_type != null and fault_type != ''">
+                and (vt.DEVICE_LEVEL_CODE || vt.DEVICE_TYPE_CODE || vt.FAULT_TYPE1_CODE)= #{fault_type}
+            </if>
+            <if test="keyWord != null and keyWord != ''">
+                and (vt.LEVEL4 like '%'|| #{keyWord} ||'%'
+                or vt.DEVICE_TYPE like '%'|| #{keyWord} ||'%'
+                or vt.FAULT_TYPE1 like '%'|| #{keyWord} ||'%'
+                or vt.FAULT_TYPE2 like '%'|| #{keyWord} ||'%'
+                )
+            </if>
+        </where>
+    </select>
+</mapper>

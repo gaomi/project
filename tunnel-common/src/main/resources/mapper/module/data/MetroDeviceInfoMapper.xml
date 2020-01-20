@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.MetroDeviceInfoMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.MetroDeviceInfo">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="NID" jdbcType="DECIMAL" property="nid"/>
+        <result column="DEVICE_ID" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="LINE_ID" jdbcType="VARCHAR" property="lineId"/>
+        <result column="START_STA" jdbcType="VARCHAR" property="startSta"/>
+        <result column="END_STA" jdbcType="VARCHAR" property="endSta"/>
+        <result column="DEVICE_TYPE" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="HIGH_LOW" jdbcType="VARCHAR" property="highLow"/>
+        <result column="DEPT_ID" jdbcType="VARCHAR" property="deptId"/>
+        <result column="DEVICE_NAME" jdbcType="VARCHAR" property="deviceName"/>
+        <result column="XH" jdbcType="VARCHAR" property="xh"/>
+        <result column="FACTORY" jdbcType="VARCHAR" property="factory"/>
+        <result column="FACTORY_NUM" jdbcType="VARCHAR" property="factoryNum"/>
+        <result column="FACTORY_TIME" jdbcType="VARCHAR" property="factoryTime"/>
+        <result column="CAPACITY" jdbcType="VARCHAR" property="capacity"/>
+        <result column="VOLTAGE" jdbcType="VARCHAR" property="voltage"/>
+        <result column="ELECTRICITY" jdbcType="VARCHAR" property="electricity"/>
+        <result column="IMPEDANCE" jdbcType="VARCHAR" property="impedance"/>
+        <result column="CONNECTION" jdbcType="VARCHAR" property="connection"/>
+        <result column="PLACE" jdbcType="VARCHAR" property="place"/>
+        <result column="ADJUSTING" jdbcType="VARCHAR" property="adjusting"/>
+        <result column="TH" jdbcType="VARCHAR" property="th"/>
+        <result column="TUNNEL_NUM" jdbcType="DECIMAL" property="tunnelNum"/>
+        <result column="DEVICE_START_DIRECTION" jdbcType="VARCHAR" property="deviceStartDirection"/>
+        <result column="DEVICE_START_KFLAG" jdbcType="VARCHAR" property="deviceStartKflag"/>
+        <result column="DEVICE_START_HFLAG" jdbcType="VARCHAR" property="deviceStartHflag"/>
+        <result column="DEVICE_END_DIRECTION" jdbcType="VARCHAR" property="deviceEndDirection"/>
+        <result column="DEVICE_END_KFLAG" jdbcType="VARCHAR" property="deviceEndKflag"/>
+        <result column="DEVICE_END_HFLAG" jdbcType="VARCHAR" property="deviceEndHflag"/>
+        <result column="DEVICE_LOC" jdbcType="VARCHAR" property="deviceLoc"/>
+        <result column="TRAIN_MODEL" jdbcType="VARCHAR" property="trainModel"/>
+        <result column="TRAIN_ID" jdbcType="VARCHAR" property="trainId"/>
+        <result column="PITCH_NUMBER" jdbcType="VARCHAR" property="pitchNumber"/>
+        <result column="TRAIN_GROUP" jdbcType="VARCHAR" property="trainGroup"/>
+        <result column="PITCH_NO" jdbcType="VARCHAR" property="pitchNo"/>
+        <result column="SPECIAL_TYPE" jdbcType="VARCHAR" property="specialType"/>
+        <result column="MAJOR" jdbcType="VARCHAR" property="major"/>
+        <result column="SEGMENT_UUID" jdbcType="VARCHAR" property="segmentUuid"/>
+    </resultMap>
+
+    <insert id="batchSaveProject" parameterType="java.util.List">
+        insert into J302_TD_DEVICE_SEGMENT (UUID, DEVICE_UUID, NO_GROUP_UUID)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select
+            #{item.UUID,jdbcType = VARCHAR} UUID,
+            #{item.DEVICE_UUID,jdbcType = VARCHAR} DEVICE_UUID,
+            #{item.NO_GROUP_UUID,jdbcType = VARCHAR} NO_GROUP_UUID
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+
+    <select id="getDeviceInfo" resultType="java.util.Map">
+    select * from J302_APP_DEVICE_INFO_V where segment_uuid = #{segment}
+    </select>
+    <select id="selectByConDian" resultMap="BaseResultMap" parameterType="java.util.Map">
+
+        select * from J302_TD_DEVICE_INFO_VIEW where start_sta in (
+        select start_station_code from J302_TD_SEGMENT_VIEW where NO_GROUP_UUID = #{segment} and SEG_CJ_TYPE = '1'
+        union all
+        select end_station_code from J302_TD_SEGMENT_VIEW where NO_GROUP_UUID = #{segment} and SEG_CJ_TYPE = '1'
+        ) and end_sta in (
+        select start_station_code from J302_TD_SEGMENT_VIEW where NO_GROUP_UUID = #{segment} and SEG_CJ_TYPE = '1'
+        union all
+        select end_station_code from J302_TD_SEGMENT_VIEW where NO_GROUP_UUID = #{segment} and SEG_CJ_TYPE = '1'
+        )
+        <if test="_parameter.containsKey('deviceName') and deviceName != ''">
+            and ( DEVICE_NAME like '%' || #{deviceName} || '%' or DEVICE_LOC like '%' || #{deviceName} || '%')
+        </if>
+        ORDER BY start_sta,end_sta
+    </select>
+
+    <select id="selectByCon" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from J302_TD_DEVICE_INFO_VIEW where DEVICE_ID in (
+        select DEVICE_UUID from J302_TD_DEVICE_SEGMENT where NO_GROUP_UUID = #{segment}
+        )
+        <if test="_parameter.containsKey('deviceName') and deviceName != ''">
+            and ( DEVICE_NAME like '%' || #{deviceName} || '%' or DEVICE_LOC like '%' || #{deviceName} || '%')
+        </if>
+        ORDER BY start_sta,end_sta
+    </select>
+    <select id="findDeviceInfoForApp" resultType="map">
+    select * from j302_app_device_info_v v
+  </select>
+
+    <select id="findAllDeviceForWeb" resultType="map" parameterType="java.util.Map">
+        select vt.*
+        from j302_app_device_info_v vt
+        <!--<where>-->
+        <!--<if test="bigType != null and bigType != ''">-->
+        <!--and vt.BIG_TYPE= #{bigType}-->
+        <!--</if>-->
+        <!--<if test="middleType != null and middleType != ''">-->
+        <!--and vt.MIDDLE_TYPE= #{middleType}-->
+        <!--</if>-->
+        <!--<if test="smallType != null and smallType != ''">-->
+        <!--and vt.SMALL_TYPE= #{smallType}-->
+        <!--</if>-->
+        <!--<if test="gradeType != null and gradeType != ''">-->
+        <!--and vt.GRADE_TYPE= #{gradeType}-->
+        <!--</if>-->
+        <!--<if test="optDesc != null and optDesc != ''">-->
+        <!--and vt.OPT_DESC like '%' || #{optDesc} || '%'-->
+        <!--</if>-->
+        <!--<if test="gradeDesc != null and gradeDesc != ''">-->
+        <!--and vt.GRADE_DESC like '%' || #{gradedesc} || '%'-->
+        <!--</if>-->
+        <!--<if test="keyWord != null and keyWord != ''">-->
+        <!--or vt.GRADE_DESC like '%' || #{keyWord} || '%'-->
+        <!--or vt.TYPE_DESC like '%' || #{keyWord} || '%'-->
+        <!--or vt.OPT_DESC like '%' || #{keyWord} || '%'-->
+        <!--</if>-->
+        <!--</where>-->
+    </select>
+</mapper>

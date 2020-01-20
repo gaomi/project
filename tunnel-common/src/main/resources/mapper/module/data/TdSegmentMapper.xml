@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdSegmentMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdSegment">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="LINE_CODE" jdbcType="VARCHAR" property="lineCode"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="SEGMENT_NAME" jdbcType="VARCHAR" property="segmentName"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="START_STATION_CODE" jdbcType="VARCHAR" property="startStationCode"/>
+        <result column="START_STATION_NAME" jdbcType="VARCHAR" property="startStationName"/>
+        <result column="START_STATION_UUID" jdbcType="VARCHAR" property="startStationUuid"/>
+        <result column="END_STATION_CODE" jdbcType="VARCHAR" property="endStationCode"/>
+        <result column="END_STATION_NAME" jdbcType="VARCHAR" property="endStationName"/>
+        <result column="END_STATION_UUID" jdbcType="VARCHAR" property="endStationUuid"/>
+        <result column="SEGMENT_LONG" jdbcType="VARCHAR" property="segmentLong"/>
+        <result column="TUNNEL_TYPE" jdbcType="CHAR" property="tunnelType"/>
+        <result column="DUCT_COUNT" jdbcType="DECIMAL" property="ductCount"/>
+        <result column="DUCT_SEQ" jdbcType="CHAR" property="ductSeq"/>
+        <result column="START_DUCT_CODE" jdbcType="DECIMAL" property="startDuctCode"/>
+        <result column="START_DUCT_UUID" jdbcType="VARCHAR" property="startDuctUuid"/>
+        <result column="START_POINTS_NAME" jdbcType="VARCHAR" property="startPointsName"/>
+        <result column="START_POINTS_UUID" jdbcType="VARCHAR" property="startPointsUuid"/>
+        <result column="START_MILEAGE_CODE" jdbcType="DECIMAL" property="startMileageCode"/>
+        <result column="START_MILEAGE_FLAG" jdbcType="VARCHAR" property="startMileageFlag"/>
+        <result column="END_DUCT_CODE" jdbcType="DECIMAL" property="endDuctCode"/>
+        <result column="END_DUCT_UUID" jdbcType="VARCHAR" property="endDuctUuid"/>
+        <result column="END_POINTS_NAME" jdbcType="VARCHAR" property="endPointsName"/>
+        <result column="END_POINTS_UUID" jdbcType="VARCHAR" property="endPointsUuid"/>
+        <result column="END_MILEAGE_CODE" jdbcType="DECIMAL" property="endMileageCode"/>
+        <result column="END_MILEAGE_FLAG" jdbcType="VARCHAR" property="endMileageFlag"/>
+        <result column="RUN_DATE" jdbcType="TIMESTAMP" property="runDate"/>
+        <result column="DATA_SOURCE" jdbcType="VARCHAR" property="dataSource"/>
+        <result column="NO_UD_UUID" jdbcType="VARCHAR" property="noUdUuid"/>
+        <result column="SL_SEGMENT_UUID" jdbcType="VARCHAR" property="slSegmentUuid"/>
+        <result column="SL_SEGMENT_NAME" jdbcType="VARCHAR" property="slSegmentName"/>
+        <result column="CJ_SEGMENT_UUID" jdbcType="VARCHAR" property="cjSegmentUuid"/>
+        <result column="CJ_SEGMENT_NAME" jdbcType="VARCHAR" property="cjSegmentName"/>
+        <result column="SEQ" jdbcType="CHAR" property="seq"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="IS_TUNNEL" jdbcType="CHAR" property="isTunnel"/>
+        <result column="SIGN_UUID_SL_A" jdbcType="VARCHAR" property="signUuidSlA"/>
+        <result column="SIGN_UUID_SL_B" jdbcType="VARCHAR" property="signUuidSlB"/>
+        <result column="NO_GROUP_UUID" jdbcType="VARCHAR" property="noGroupUuid"/>
+        <result column="SIGN_UUID_SL_AA" jdbcType="VARCHAR" property="signUuidSlAa"/>
+        <result column="SIGN_UUID_SL_BB" jdbcType="VARCHAR" property="signUuidSlBb"/>
+    </resultMap>
+
+    <resultMap id="ListUidMap" type="java.util.Map">
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="LINE_UUID"/>
+        <result column="LINE_COLOR" jdbcType="VARCHAR" property="LINE_COLOR"/>
+        <result column="LINE_CODE" jdbcType="VARCHAR" property="LINE_CODE"/>
+        <result column="LINE_NAME" jdbcType="VARCHAR" property="LINE_NAME"/>
+        <result column="IS_TUNNEL" jdbcType="VARCHAR" property="IS_TUNNEL"/>
+        <result column="START_MILEAGE_CODE" jdbcType="VARCHAR" property="START_MILEAGE_CODE"/>
+        <result column="END_MILEAGE_CODE" jdbcType="VARCHAR" property="END_MILEAGE_CODE"/>
+        <result column="ID" jdbcType="VARCHAR" property="ID"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="UPDOWN"/>
+        <result column="SEGMENT_NAME" jdbcType="VARCHAR" property="SEGMENT_NAME"/>
+        <result column="NO_UD_UUID" jdbcType="VARCHAR" property="NO_UD_UUID"/>
+        <result column="START_STATION_CODE" jdbcType="VARCHAR" property="START_STATION_CODE"/>
+        <result column="END_STATION_CODE" jdbcType="VARCHAR" property="END_STATION_CODE"/>
+        <collection property="UUID_LIST" ofType="java.lang.String" javaType="java.util.List">
+            <result column="UUID_LIST" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="getGroupSegment" resultType="java.util.Map" parameterType="java.util.Map">
+        select UUID ,(START_STATION_NAME || '-' || END_STATION_NAME) segment_name from J302_TD_SEGMENT_VIEW where NO_GROUP_UUID = #{segment}
+    </select>
+    <select id="findSegmentInfoForApp" resultMap="ListUidMap">
+select cc.UUID_LIST,aa.* from (
+	select
+				 NO_GROUP_UUID "ID",
+				 LINE_UUID,
+				 LINE_COLOR,
+				 case
+				 when max(START_MILEAGE_CODE) > max(END_MILEAGE_CODE) then
+       max(START_MILEAGE_CODE)
+         else
+          min(START_MILEAGE_CODE)
+        end START_MILEAGE_CODE,
+				 case
+				 when max(START_MILEAGE_CODE) > max(END_MILEAGE_CODE) then
+				min(END_MILEAGE_CODE)
+         else
+				max(END_MILEAGE_CODE)
+        end END_MILEAGE_CODE,
+				LINE_NAME,LINE_CODE,
+				NO_UD_UUID,UPDOWN,SEGMENT_START_CODE START_STATION_CODE,SEGMENT_END_CODE END_STATION_CODE,'1' IS_TUNNEL,
+				(SEGMENT_START_NAME || '-' || SEGMENT_END_NAME) SEGMENT_NAME
+				from  J302_TD_SEGMENT_VIEW where end_duct_code is not null
+				group by  NO_GROUP_UUID,LINE_NAME,LINE_COLOR,LINE_CODE,LINE_UUID,NO_UD_UUID,UPDOWN,SEGMENT_START_CODE,SEGMENT_END_CODE,SEGMENT_START_NAME,SEGMENT_END_NAME
+) aa
+left join
+				(select UUID "UUID_LIST",NO_GROUP_UUID from J302_TD_SEGMENT_INFO ) cc on aa.ID = cc.NO_GROUP_UUID
+				ORDER BY aa.START_STATION_CODE
+
+    </select>
+
+
+    <select id="findSegmentByLine2" resultMap="ListUidMap" parameterType="java.util.Map">
+        select
+        distinct
+        UUID UUID_LIST,
+        NO_GROUP_UUID ID,UPDOWN,START_STATION_CODE,
+        (START_STATION_NAME || '~' || END_STATION_NAME) SEGMENT_NAME
+        from J302_TD_SEGMENT_INFO
+        where LINE_CODE = #{line_id}
+        and IS_TUNNEL='1'
+        <if test="direction != null and direction != ''">
+            and UPDOWN=#{direction}
+        </if>
+        ORDER BY START_STATION_CODE
+    </select>
+
+    <select id="findSegmentByLine" resultType="java.util.Map" parameterType="java.util.Map">
+        select
+        distinct
+        NO_GROUP_UUID ID,UPDOWN,START_STATION_CODE,
+        (START_STATION_NAME || '~' || END_STATION_NAME) segment_name
+        from J302_TD_SEGMENT_INFO
+        where LINE_CODE = #{line_id}
+        and IS_TUNNEL='1'
+        <if test="direction != null and direction != ''">
+            and UPDOWN=#{direction}
+        </if>
+        ORDER BY START_STATION_CODE
+    </select>
+
+
+    <select id="findNoGroupSegment" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT T.*, CASE WHEN T.e_CLASS_TYPE ='1' AND T.s_CLASS_TYPE='1' THEN
+        '1'
+        ELSE
+        '2'
+        END IS_GROUP FROM (SELECT TSGI.UUID,TSGI.LINE_UUID,
+        TSGI.UPDOWN,
+        TSGI.START_STATION_CODE,
+        TSGI.START_STATION_NAME,
+        TSGI.START_STATION_UUID,
+        TSGI.END_STATION_CODE,
+        TSGI.END_STATION_NAME,
+        TSGI.END_STATION_UUID,
+        TSTAI.ORDERCODE S_ORDERCODE,
+        TSTAI.STATION_NAME S_STATION_NAME,
+        TSTAI.CLASS_TYPE S_CLASS_TYPE,
+        TSTAI2.ORDERCODE E_ORDERCODE,
+        TSTAI2.STATION_NAME E_STATION_NAME,
+        TSTAI2.CLASS_TYPE E_CLASS_TYPE,
+        TSGI.SIGN_UUID_SL_A,
+        TSGI.SIGN_UUID_SL_B
+        FROM J302_TD_SEGMENT_INFO TSGI
+        LEFT JOIN J302_TD_STATION_INFO TSTAI
+        ON TSGI.LINE_UUID = TSTAI.LINE_UUID
+        AND TSTAI.UUID = TSGI.SIGN_UUID_SL_A
+        LEFT JOIN J302_TD_STATION_INFO TSTAI2
+        ON TSGI.LINE_UUID = TSTAI2.LINE_UUID
+        AND TSTAI2.UUID = TSGI.SIGN_UUID_SL_B
+        WHERE TSGI.LINE_UUID =#{line_uuid}
+        <if test="group != null and group != ''">
+            and IS_GROUP = #{group}
+        </if>
+        <if test="direction != null and direction != ''">
+            and UPDOWN=#{direction}
+        </if>
+        ) T
+
+
+    </select>
+    <select id="findNoGroupSegmentV" resultType="java.util.Map" parameterType="java.util.Map">
+       select t1.*, seg.uuid seg_uuid
+          from (select gw.line_id line_code,
+                       li.uuid line_uuid,
+                       gw.updown,
+                       gw.STATION_FLAG,
+                       gw.START_ORDERCODE,
+                       sta1.uuid auuid,
+                       gw.END_ORDERCODE,
+                       sta2.uuid buuid,
+                       gw.DUCT_CODE,
+                       gw.MILEAGE,
+                       gw.GROUP_ID,
+                       gw.rgroup,
+                       (lead(gw.MILEAGE, 1, null)
+                        over(partition by gw.line_id,
+                             gw.updown,
+                             gw.STATION_FLAG order by to_number(gw.START_ORDERCODE),
+                             to_number(gw.MILEAGE)) - gw.mileage) sub
+                  from j302_td_segment_view_gw gw
+                  left join j302_td_line_info li
+                    on gw.LINE_ID = li.line_code
+                  left join j302_td_station_info sta1
+                    on gw.LINE_ID = sta1.line_code
+                   and gw.start_ordercode = sta1.ordercode
+                  left join j302_td_station_info sta2
+                    on gw.LINE_ID = sta2.line_code
+                   and gw.end_ordercode = sta2.ordercode) t1
+          left join j302_td_segment_info seg
+            on t1.line_uuid = seg.line_uuid
+           and t1.updown = seg.updown
+           and t1.auuid = seg.sign_uuid_sl_a
+           and t1.buuid = seg.sign_uuid_sl_b
+         where t1.updown !='2'
+            and t1.line_uuid = #{line_uuid}
+         order by t1.line_code, t1.updown, t1.START_ORDERCODE, t1.MILEAGE desc
+
+    </select>
+
+    <select id="findBaseDataByV" resultType="java.util.Map" parameterType="java.util.Map">
+      select * from J302_TD_SEGMENT_VIEW t
+    </select>
+    <select id="findNoUDIdByV" resultType="java.util.Map">
+     select t.line_uuid,
+           t.line_name,
+           t.NO_UD_UUID,
+           t.START_STATION_NAME,
+           t.end_STATION_NAME
+      from J302_TD_SEGMENT_VIEW t
+     where t.seg_cj_type = '1'
+     group by t.line_uuid,
+              t.line_name,
+              t.NO_UD_UUID,
+              t.START_STATION_NAME,
+              t.end_STATION_NAME
+    </select>
+
+    <select id="findAllSegmentByV" resultType="java.util.Map" parameterType="java.util.Map">
+        select t.* from j302_td_segment_view t
+        where
+            t.seg_cj_type='1'
+            <if test="line != null and line != ''">
+                and t.LINE_UUID = #{line}
+            </if>
+            <if test="updown != null and updown != ''">
+                and t.UPDOWN=#{updown}
+            </if>
+            <if test="keyWord != null and keyWord != ''">
+                and t.START_STATION_NAME like '%' || #{keyWord} || '%'
+                union all
+              select p.* from j302_td_segment_view p
+                where
+                    p.seg_cj_type='1'
+                    <if test="line != null and line != ''">
+                        and p.LINE_UUID = #{line}
+                    </if>
+                    <if test="updown != null and updown != ''">
+                        and p.UPDOWN=#{updown}
+                    </if>
+
+                and p.END_STATION_NAME like '%' || #{keyWord} || '%'
+            </if>
+    </select>
+
+    <select id="getScopeDuct" resultType="map" parameterType="java.util.Map">
+        select UUID,START_DUCT_CODE,END_DUCT_CODE from J302_TD_SEGMENT_INFO where NO_GROUP_UUID = #{segment}
+    </select>
+    <update id="updateSegmentFleage" parameterType="com.company.project.module.data.model.TdSegment">
+        update j302_td_segment_info set START_MILEAGE_CODE = #{startMileageCode},START_MILEAGE_FLAG = #{startMileageFlag},
+          END_MILEAGE_CODE=#{endMileageCode},END_MILEAGE_FLAG=#{endMileageFlag}
+          where UUID = #{uuid}
+    </update>
+    <select id="getSegmentByGroup" resultType="map" parameterType="map">
+    select UUID,NO_GROUP_UUID,(START_STATION_NAME || '-' || END_STATION_NAME) segment_name from J302_TD_SEGMENT_VIEW where NO_GROUP_UUID=(select NO_GROUP_UUID from  J302_TD_SEGMENT_VIEW where UUID=#{group_segment})
+    </select>
+<update id="updateSegment" parameterType="list">
+    begin
+    <foreach collection="list" item="item" index="index" separator=";">
+        update J302_TD_SEGMENT_INFO_07_CJ_V1 jtcv set START_DUCT_CODE=#{item.start_duct},END_DUCT_CODE=#{item.end_duct},
+        START_MILEAGE_FLAG=#{item.start_falg},END_MILEAGE_FLAG=#{item.end_falg}
+        ,START_MILEAGE_CODE=#{item.start_mileage},END_MILEAGE_CODE=#{item.end_mileage} where updown=#{item.updown} and
+        LINE_UUID ='0F8C4BB8E8764B478C3E0F85781B5DD9' and START_STATION_NAME = #{item.start_station}
+    </foreach>
+    ;end;
+</update>
+</mapper>

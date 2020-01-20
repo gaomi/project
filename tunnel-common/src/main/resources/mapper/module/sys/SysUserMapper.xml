@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.sys.dao.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.sys.model.SysUser">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+        <result column="TELEPHONE" jdbcType="VARCHAR" property="telephone"/>
+        <result column="TRUE_NAME" jdbcType="VARCHAR" property="trueName"/>
+        <result column="DEPT_ID" jdbcType="VARCHAR" property="deptId"/>
+        <result column="MAIL" jdbcType="VARCHAR" property="mail"/>
+        <result column="SEX" jdbcType="DECIMAL" property="sex"/>
+        <result column="AVATAR" jdbcType="VARCHAR" property="avatar"/>
+        <result column="PAGE_SIZE" jdbcType="DECIMAL" property="pageSize"/>
+        <result column="STATUS" jdbcType="DECIMAL" property="status"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="LAST_LOGIN_TIME" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="OPERATOR" jdbcType="VARCHAR" property="operator"/>
+        <result column="OPERATE_TIME" jdbcType="TIMESTAMP" property="operateTime"/>
+        <result column="OPERATE_IP" jdbcType="VARCHAR" property="operateIp"/>
+        <result column="THEME" jdbcType="VARCHAR" property="theme"/>
+    </resultMap>
+
+    <select id="findUserWithDept" resultType="map" parameterType="java.util.Map">
+        select u.id userid,u.user_name,u.true_name true_name,u.telephone mobile, u.mail,u.status,
+        u.sex,d.name deptname ,u.employee_no employee_no from j302_td_sys_user u
+        left join j302_td_sys_dept d on(u.dept_id = d.id)
+        where 1=1
+        <if test="keyWord != null and keyWord != ''">
+            AND u.user_name like '%' || #{keyWord} || '%'
+            or u.employee_no like '%' || #{keyWord} || '%'
+            or u.true_name like '%' || #{keyWord} || '%'
+            or d.name like '%' || #{keyWord} || '%'
+            or u.telephone like '%' || #{keyWord} || '%'
+            or u.mail like '%' || #{keyWord} || '%'
+        </if>
+        order by u.id
+    </select>
+    <!-- 禁用/启用 -->
+    <update id="updateDisabled" parameterType="com.company.project.module.sys.model.SysUser">
+ 		   update j302_td_sys_user t
+    		set t.status=#{status}
+    		where t.id=#{id}
+ 	</update>
+
+    <select id="findUserWithRole" resultType="com.company.project.module.sys.model.dto.SysUserRoleDto">
+		select u.id        id,
+               u.user_name userName,
+               u.true_name trueName,
+               u.dept_id   deptId,
+               u.mail,
+               u.telephone,
+               u.status,
+               u.sex,
+               ur.role_id  roleId,
+               u.password,
+               u.page_size,
+               u.remark
+          from j302_td_sys_user u
+          left join j302_td_sys_user_role ur
+            on (u.id = ur.user_id)
+         where u.id = #{id}
+  </select>
+    <update id="updateUserPassword" parameterType="java.util.Map">
+        update j302_td_sys_user u set u.PASSWORD = #{newPassword} where u.id =#{id}
+    </update>
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../tunnel_app" />
+    <file type="web" url="file://$PROJECT_DIR$" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../tunnel-common/pom.xml" />
+        <option value="$PROJECT_DIR$/../tunnel_app/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8.0_171" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/classes" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$/../tunnel-common">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="http://172.17.200.198:81/svn/tunnel/branches" />
+                  <option value="http://172.17.200.198:81/svn/tunnel/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="http://172.17.200.198:81/svn/tunnel/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../tunnel_app">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="http://172.17.200.198:81/svn/tunnel/branches" />
+                  <option value="http://172.17.200.198:81/svn/tunnel/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="http://172.17.200.198:81/svn/tunnel/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="http://172.17.200.198:81/svn/tunnel/branches" />
+                  <option value="http://172.17.200.198:81/svn/tunnel/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="http://172.17.200.198:81/svn/tunnel/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.a.a.a.g.d.f">
+    <domainId />
+    <mapperDomain />
+    <backquoteDomain />
+  </component>
+</project>

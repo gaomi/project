@@ -1,0 +1,171 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+}
+
+body, p, ul, a, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, input, form, textarea, table, td {
+    font-family: \5fae\8f6f\96c5\9ed1, webfont;
+    /*\5fae\8f6f\96c5\9ed1设置默认字体为微软雅黑*/
+    font-size: 14px;
+    color: #666;
+}
+
+body, ul, ol, p, h1, h2, h3, h4, h5, h6, form, dl, input, textarea {
+    margin: 0px;
+    padding: 0px;
+}
+
+/*p {line-height:170%;text-indent:2em;}*/
+a {
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+img {
+    display: block;
+    border: 0px;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/*end*/
+html, body {
+    min-width: 1376px;
+    width: 100%;
+    height: 100%;
+}
+
+/*login*/
+.login {
+    width: 100%;
+    height: 100%;
+    background: url(../images/bg_blue.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.login .login_title {
+    width: 100%;
+    height: 85px;
+    background: url(../images/top_bg.jpg) repeat;
+}
+
+.login .login_title .title {
+    position: absolute;
+    left: 100px;
+}
+
+.login .login_title .title p {
+    color: #0d4693;
+    font-size: 32px;
+    line-height: 85px;
+    font-family: "FangSong";
+}
+
+.login .login_box {
+    width: 1000px;
+    height: 580px;
+    background: url(../images/bg_pic.png) repeat;
+    margin: 0 auto;
+    background-size: 100% 100%;
+    padding-top: 1px;
+}
+
+.login .login_box .login-form {
+    min-width: 1000px;
+    width: 1000px;
+    height: 350px;
+    position: relative;
+}
+
+.login .login_box .login-form .form-left {
+    float: left;
+    position: absolute;
+    left: 150px;
+    top: 205px;
+}
+
+.login .login_box .login-form .form-right {
+    float: right;
+    position: absolute;
+    right: -40px;
+    top: 215px;
+}
+
+.login .login_box .login-form .login-input, .login .login_box .login-form .forget-pw {
+    margin-top: 25px;
+}
+
+.login .login_box .login-form .login-input input {
+    width: 350px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+}
+
+.login .login_box .login-form div.user_name input, .login .login_box .login-form div.password input {
+    line-height: 50px;
+}
+
+.login .login_box .login-form .textbox {
+    background-color: transparent;
+}
+
+.login .login_box .login-form div.forget-pw {
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+.login .login_box .login-form div.forget-pw span {
+    font-size: 14px;
+}
+
+.login .login_box .login-form div.forget-pw span input {
+    height: 14px;
+    width: 14px;
+    background: #fff;
+    border: #B3BAC4;
+    display: inline-block;
+}
+
+.login .login_box .login-form div.forget-pw span a {
+    color: #3ca6f8;
+    padding-left: 140px;
+}
+
+.login .login_box .login-form .submit .login-btn {
+    display: block;
+    background: url(../images/login_btn_bg.png) repeat;
+    width: 218px;
+    height: 218px;
+    line-height: 218px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+}
+
+.login-footer {
+    position: absolute;
+    bottom: 2%;
+    width: 100%;
+    text-align: center;
+}
+
+.login-footer p {
+    font-size: 12px;
+    color: #333;
+}

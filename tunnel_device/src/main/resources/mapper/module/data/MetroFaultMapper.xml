@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.MetroFaultMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.MetroFault">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="LINE_ID" jdbcType="VARCHAR" property="lineId"/>
+        <result column="INTERNAL_CODE" jdbcType="VARCHAR" property="internalCode"/>
+        <result column="START_STATION" jdbcType="VARCHAR" property="startStation"/>
+        <result column="START_STATIONNAME" jdbcType="VARCHAR" property="startStationname"/>
+        <result column="END_STATION" jdbcType="VARCHAR" property="endStation"/>
+        <result column="END_STATIONNAME" jdbcType="VARCHAR" property="endStationname"/>
+        <result column="DIRECTION" jdbcType="VARCHAR" property="direction"/>
+        <result column="DEVICE_ID" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="DEVICE_NAME" jdbcType="VARCHAR" property="deviceName"/>
+        <result column="DEVICE_TYPE" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="FAULT_NO" jdbcType="VARCHAR" property="faultNo"/>
+        <result column="BIG_TYPE_ID" jdbcType="VARCHAR" property="bigTypeId"/>
+        <result column="BIG_TYPE_NAME" jdbcType="VARCHAR" property="bigTypeName"/>
+        <result column="SMALL_TYPE_ID" jdbcType="VARCHAR" property="smallTypeId"/>
+        <result column="SMALL_TYPE_NAME" jdbcType="VARCHAR" property="smallTypeName"/>
+        <result column="FAULT_TYPE" jdbcType="VARCHAR" property="faultType"/>
+        <result column="EXCEPTION_TYPE_NAME" jdbcType="VARCHAR" property="exceptionTypeName"/>
+        <result column="FAULT_LEVEL" jdbcType="VARCHAR" property="faultLevel"/>
+        <result column="FAULT_DESC" jdbcType="VARCHAR" property="faultDesc"/>
+        <result column="REC_CREATE_ID" jdbcType="VARCHAR" property="recCreateId"/>
+        <result column="REC_CREATE_NAME" jdbcType="VARCHAR" property="recCreateName"/>
+        <result column="REC_CREATE_TIME" jdbcType="VARCHAR" property="recCreateTime"/>
+        <result column="REC_REVISE_ID" jdbcType="VARCHAR" property="recReviseId"/>
+        <result column="REC_REVISE_NAME" jdbcType="VARCHAR" property="recReviseName"/>
+        <result column="REC_REVISE_TIME" jdbcType="VARCHAR" property="recReviseTime"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="LEFT_RIGHT" jdbcType="VARCHAR" property="leftRight"/>
+        <result column="TRACK_NUM" jdbcType="VARCHAR" property="trackNum"/>
+        <result column="STATION_FLAG" jdbcType="VARCHAR" property="stationFlag"/>
+        <result column="STATION_KI_NUM" jdbcType="VARCHAR" property="stationKiNum"/>
+        <result column="STATION_HUN_NUM" jdbcType="VARCHAR" property="stationHunNum"/>
+        <result column="REPAIR_DESC" jdbcType="VARCHAR" property="repairDesc"/>
+        <result column="IS_FINISH" jdbcType="VARCHAR" property="isFinish"/>
+        <result column="MAJOR" jdbcType="VARCHAR" property="major"/>
+        <result column="DUCT_CODE" jdbcType="VARCHAR" property="ductCode"/>
+        <result column="DUCT_NUM" jdbcType="VARCHAR" property="ductNum"/>
+        <result column="AFFECTE_EQUIPMENT" jdbcType="VARCHAR" property="affecteEquipment"/>
+        <result column="DETAIL_LOC" jdbcType="VARCHAR" property="detailLoc"/>
+        <result column="FAULT_QUANTITY" jdbcType="VARCHAR" property="faultQuantity"/>
+        <result column="FAULT_UNIT" jdbcType="VARCHAR" property="faultUnit"/>
+        <result column="DUCT_CODE2" jdbcType="VARCHAR" property="ductCode2"/>
+        <result column="STATION_FLAG_END" jdbcType="VARCHAR" property="stationFlagEnd"/>
+        <result column="STATION_KI_NUM_END" jdbcType="VARCHAR" property="stationKiNumEnd"/>
+        <result column="STATION_HUN_NUM_END" jdbcType="VARCHAR" property="stationHunNumEnd"/>
+        <result column="MATERIAL_CONSUMPTION" jdbcType="VARCHAR" property="materialConsumption"/>
+        <result column="INSERT_TIME" jdbcType="VARCHAR" property="insertTime"/>
+        <result column="IMAGE_COUNT" jdbcType="VARCHAR" property="imageCount"/>
+        <result column="REMARKS" jdbcType="VARCHAR" property="remarks"/>
+        <result column="PLANNER" jdbcType="VARCHAR" property="planner"/>
+        <result column="SAFE_COMPANY" jdbcType="VARCHAR" property="safeCompany"/>
+        <result column="DEAL_NAME" jdbcType="VARCHAR" property="dealName"/>
+        <result column="DEAL_TIME" jdbcType="VARCHAR" property="dealTime"/>
+        <result column="BUILD_NUMBER" jdbcType="VARCHAR" property="buildNumber"/>
+        <result column="CORRECT_STEP" jdbcType="VARCHAR" property="correctStep"/>
+        <result column="DISE_FROM" jdbcType="VARCHAR" property="diseFrom"/>
+        <result column="DEVICE_LOC" jdbcType="VARCHAR" property="deviceLoc"/>
+        <result column="DEAL_ID" jdbcType="VARCHAR" property="dealId"/>
+        <result column="DEAL_POST" jdbcType="VARCHAR" property="dealPost"/>
+        <result column="REC_CREATE_POST" jdbcType="VARCHAR" property="recCreatePost"/>
+        <result column="REC_REVISE_POST" jdbcType="VARCHAR" property="recRevisePost"/>
+        <result column="AUDIT_OPINIONS" jdbcType="VARCHAR" property="auditOpinions"/>
+        <result column="AUDIT_RESUME" jdbcType="VARCHAR" property="auditResume"/>
+        <result column="DOC_ID" jdbcType="VARCHAR" property="docId"/>
+        <result column="WORK_EXAMPLE_ID" jdbcType="VARCHAR" property="workExampleId"/>
+        <result column="DISE_INPUT_TYPE" jdbcType="VARCHAR" property="diseInputType"/>
+        <result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName"/>
+        <result column="OPERATION_TYPE" jdbcType="VARCHAR" property="operationType"/>
+        <result column="MEDIA_DOC_LIST" jdbcType="VARCHAR" property="mediaDocList"/>
+        <result column="TASK_ID" jdbcType="VARCHAR" property="taskId"/>
+        <result column="CHECK_ID_LIST" jdbcType="VARCHAR" property="checkIdList"/>
+        <result column="LINE_NAME" jdbcType="VARCHAR" property="lineName"/>
+        <result column="TYPE_ID" jdbcType="VARCHAR" property="typeId"/>
+        <result column="PIER_NUMBER" jdbcType="VARCHAR" property="pierNumber"/>
+        <result column="CHECK_NAME_LIST" jdbcType="VARCHAR" property="checkNameList"/>
+        <result column="TRAIN_NUM" jdbcType="VARCHAR" property="trainNum"/>
+        <result column="CARRIAGE_NUM" jdbcType="VARCHAR" property="carriageNum"/>
+        <result column="MILEAGE_NUM" jdbcType="VARCHAR" property="mileageNum"/>
+        <result column="FIRST_DOC_ID" jdbcType="VARCHAR" property="firstDocId"/>
+        <result column="FIRST_DOC_NAME" jdbcType="VARCHAR" property="firstDocName"/>
+        <result column="SECOND_DOC_ID" jdbcType="VARCHAR" property="secondDocId"/>
+        <result column="SECOND_DOC_NAME" jdbcType="VARCHAR" property="secondDocName"/>
+        <result column="DOOR_NUM" jdbcType="VARCHAR" property="doorNum"/>
+        <result column="CARRIAGE_PART" jdbcType="VARCHAR" property="carriagePart"/>
+        <result column="CAR_ORDER" jdbcType="VARCHAR" property="carOrder"/>
+        <result column="LEFT_RIGHT_ENDS" jdbcType="VARCHAR" property="leftRightEnds"/>
+        <result column="BIT_END" jdbcType="VARCHAR" property="bitEnd"/>
+        <result column="OPERATOR_ID" jdbcType="VARCHAR" property="operatorId"/>
+        <result column="FAULT_ID" jdbcType="VARCHAR" property="faultId"/>
+        <result column="OPERATOR_NAME" jdbcType="VARCHAR" property="operatorName"/>
+        <result column="SEGMENT_UUID" jdbcType="VARCHAR" property="segmentUuid"/>
+        <result column="SNAG_ID" jdbcType="VARCHAR" property="snagId"/>
+        <collection property="imageList" ofType="java.lang.String">
+            <constructor>
+                <arg column="IMAGELIST"></arg>
+            </constructor>
+        </collection>
+    </resultMap>
+    <insert id="insertFalut" parameterType="com.company.project.module.data.model.MetroFault">
+        insert into J302_METRO_FAULT_INFO_GW(
+        ID,LINE_ID,INTERNAL_CODE,DIRECTION,BIG_TYPE_NAME,MAJOR,DUCT_CODE,DUCT_CODE2,DUCT_NUM,
+        SMALL_TYPE_NAME,DETAIL_LOC,FAULT_TYPE,FAULT_QUANTITY,FAULT_UNIT,FAULT_LEVEL,SEGMENT_UUID,
+        START_STATIONNAME,START_STATION,END_STATIONNAME,END_STATION,
+        AFFECTE_EQUIPMENT,REC_CREATE_TIME,STATUS,REMARKS,INSERT_TIME
+        ) values(
+        #{id},#{lineId},#{internalCode},#{direction},#{bigTypeName},#{major},#{ductCode},#{ductCode2},#{ductNum},
+        #{smallTypeName},#{detailLoc},#{faultType},#{faultQuantity},#{faultUnit},#{faultLevel},#{segmentUuid},
+        '顾村公园','05','祁华路','06',
+        #{affecteEquipment},#{recCreateTime},#{status},#{remarks},'20191203150000'
+        )
+    </insert>
+
+    <select id="selectByParam" resultType="java.util.Map" parameterType="java.util.Map">
+        select * from J302_METRO_FAULT_INFO_GW where MAJOR = 'WBGW04' and INSERT_TIME >= '201912'
+        <if test="_parameter.containsKey('segmentUuid')">
+            and SEGMENT_UUID in
+            <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                #{item_segment}
+            </foreach>
+        </if>
+        <if test="_parameter.containsKey('status') and status != null">
+            and STATUS = #{status}
+        </if>
+        <if test="_parameter.containsKey('duct')">
+            and least(to_number(trim(DUCT_CODE)),to_number(trim(DUCT_CODE2))) &lt;= #{duct} and greatest(to_number(trim(DUCT_CODE)),to_number(trim(DUCT_CODE2))) &gt;= #{duct}
+        </if>
+        <if test="_parameter.containsKey('diseKey') and diseKey != ''">
+            and ( DEVICE_NAME like '%' || #{diseKey} || '%' or FAULT_TYPE like '%' || #{diseKey}|| '%' or DETAIL_LOC like '%' || #{diseKey}|| '%' )
+        </if>
+        <if test="_parameter.containsKey('startDuct') and _parameter.containsKey('endDuct')">
+            and least(to_number(trim(DUCT_CODE)),to_number(trim(DUCT_CODE2))) &gt;= #{startDuct}
+            and greatest(to_number(trim(DUCT_CODE)),to_number(trim(DUCT_CODE2))) &lt;= #{endDuct}
+            union All
+            (
+            select * from J302_METRO_FAULT_INFO_GW where MAJOR = 'WBGW04' and INSERT_TIME >= '201912'
+            <if test="_parameter.containsKey('segmentUuid')">
+                and SEGMENT_UUID in
+                <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+                    #{item_segment}
+                </foreach>
+            </if>
+            <if test="_parameter.containsKey('status') and status != null">
+                and STATUS = #{status}
+            </if>
+            and least(to_number(trim(DUCT_CODE)),to_number(trim(DUCT_CODE2))) &lt;= #{startDuct}
+            and greatest(to_number(trim(DUCT_CODE)),to_number(trim(DUCT_CODE2))) &gt;= #{endDuct}
+            <if test="_parameter.containsKey('diseKey') and diseKey != ''">
+                and ( DEVICE_NAME like '%' || #{diseKey}|| '%' or FAULT_TYPE like '%' || #{diseKey}|| '%' or DETAIL_LOC like '%' || #{diseKey}|| '%' )
+            </if>
+            )
+        </if>
+    </select>
+
+    <!--  <select id="getDiseTop" resultType="java.util.Map" parameterType="java.util.Map">
+     &#45;&#45; select * from( rownum &lt; 10 and
+      select aa.LINE_ID,aa.FAULT_TYPE,aa.START_STATIONNAME,aa.END_STATIONNAME,bb.IMAGE_URL from (
+   select LINE_ID,INTERNAL_CODE,START_STATIONNAME,FAULT_TYPE,END_STATIONNAME from J302_METRO_FAULT_INFO_GW where  FAULT_LEVEL = #{level} and STATUS ='20' and
+   REC_CREATE_TIME &gt; #{time}
+   )aa left join
+   J302_TD_FAULT_IMG  bb on aa.INTERNAL_CODE=bb.INTERNAL_CODE
+    </select>   -->
+    <select id="getDiseTop" resultType="java.util.Map" parameterType="java.util.Map">
+     select aa.LINE_ID,
+            aa.FAULT_TYPE,
+            aa.START_STATIONNAME,
+            aa.END_STATIONNAME,
+            bb.IMAGE_URL
+       from (select t.LINE_ID,
+                    t.INTERNAL_CODE,
+                    t.START_STATIONNAME,
+                    t.FAULT_TYPE,
+                    t.END_STATIONNAME
+               from J302_METRO_FAULT_INFO_GW t
+              where t.FAULT_LEVEL = #{level}
+                and t.STATUS = '20'
+                and t.INSERT_TIME &gt; #{time}) aa
+       left join J302_TD_FAULT_IMG bb
+         on aa.INTERNAL_CODE = bb.INTERNAL_CODE
+  </select>
+    <select id="findDiseDuct" resultType="java.util.Map" parameterType="java.util.Map">
+     select duct_code,duct_num,duct_code2,SEGMENT_UUID,FAULT_LEVEL from J302_METRO_FAULT_INFO_GW where LINE_ID = #{line} and STATUS =#{status}
+  </select>
+    <select id="getDiseStatis" resultType="java.util.Map">
+        select aa.*,nvl(bb.count,0) D_COUNT from (
+        select line_code,line_name from J302_TD_LINE_INFO where line_name is not null ORDER BY LINE_CODE
+        )aa left join
+        (
+        select line_id,count(1) count from J302_METRO_FAULT_INFO_GW
+        <if test="_parameter != null and _parameter != ''">
+            where REC_CREATE_TIME &gt; #{data}
+        </if>
+        GROUP BY line_id
+        ) bb on aa.line_code=bb.line_id
+    </select>
+
+    <select id="getSegmentStatis" resultType="java.util.Map" parameterType="java.util.Map">
+        select fault_level "LEVEL",count(1) BH_COUNT from J302_METRO_FAULT_INFO_GW where INSERT_TIME >='201912' and segment_uuid in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        and STATUS = #{status} GROUP BY fault_level
+    </select>
+
+    <select id="getDiseAnalyze" resultType="java.util.Map" parameterType="java.util.Map">
+        select
+        A.fault_level,count(1) BH_COUNT
+        from J302_METRO_FAULT_INFO_GW A,(
+        <if test="_parameter.containsKey('statis') and statis == 'week'">
+            select to_char(trunc(sysdate,'iw')-200,'yyyymmdd') startTime,to_char(trunc(sysdate,'iw')-1,'yyyymmdd') endTime from dual
+        </if>
+        <if test="_parameter.containsKey('statis') and statis == 'month'">
+            select to_char(add_months(trunc(sysdate,'MM'),-8),'yyyymmdd') startTime, to_char(trunc(sysdate,'MM')-1,'yyyymmdd') endTime from dual
+        </if>
+        <if test="_parameter.containsKey('statis') and statis == 'year'">
+            select to_char(add_months(trunc(sysdate,'YYYY'),-12),'yyyymmdd') startTime, to_char(trunc(sysdate,'YYYY')-1,'yyyymmdd') endTime from dual
+        </if>
+        <if test="_parameter.containsKey('statis') and statis == 'all'">
+            select 1 from dual
+        </if>
+        ) B
+        where A.fault_level is not null and A.status = #{status} and MAJOR = 'WBGW04'
+        <if test="_parameter.containsKey('statis') and statis != 'all' and status == '20'">
+            and A.REC_CREATE_TIME BETWEEN B.startTime and B.endTime
+        </if>
+        <if test="_parameter.containsKey('statis') and statis != 'all' and status == '60'">
+            and A.DEAL_TIME BETWEEN B.startTime and B.endTime
+        </if>
+        group by A.fault_level
+    </select>
+
+    <select id="newFault" resultType="java.util.Map" parameterType="java.util.Map">
+        select A.*,
+        (select IMAGE_URL from J302_TD_FAULT_IMG where INTERNAL_CODE =A.INTERNAL_CODE and rownum=1) IMAGE_URL,
+        B.NO_GROUP_UUID,
+        least(B.START_MILEAGE_CODE,B.END_MILEAGE_CODE) START_MILEAGE,
+        greatest(B.END_MILEAGE_CODE,B.START_MILEAGE_CODE) END_MILEAGE
+        from (
+        select aa.*,( SELECT dict_value FROM J302_TD_DICT jtd WHERE jtd.dict_key = aa.direction AND jtd.pid = '6' ) UPDOWN from J302_METRO_FAULT_INFO_GW aa,(
+        <if test="_parameter.containsKey('statis') and statis == 'week'">
+            select to_char(trunc(sysdate,'iw')-200,'yyyymmdd') startTime,to_char(trunc(sysdate,'iw')-1,'yyyymmdd') endTime from dual
+        </if>
+        <if test="_parameter.containsKey('statis') and statis == 'month'">
+            select to_char(add_months(trunc(sysdate,'MM'),-8),'yyyymmdd') startTime, to_char(trunc(sysdate,'MM')-1,'yyyymmdd') endTime from dual
+        </if>
+        <if test="_parameter.containsKey('statis') and statis == 'year'">
+            select to_char(add_months(trunc(sysdate,'YYYY'),-12),'yyyymmdd') startTime, to_char(trunc(sysdate,'YYYY')-1,'yyyymmdd') endTime from dual
+        </if>
+        <if test="_parameter.containsKey('statis') and statis == 'all'">
+            select 1 from dual
+        </if>
+        ) bb where aa.MAJOR = 'WBGW04' and aa.fault_level = 'AA' and aa.status = '20'
+        <if test="_parameter.containsKey('statis') and statis != 'all' and status == '20'">
+            and aa.REC_CREATE_TIME BETWEEN bb.startTime and bb.endTime
+        </if>
+        <if test="_parameter.containsKey('statis') and statis != 'all' and status == '60'">
+            and aa.DEAL_TIME BETWEEN bb.startTime and bb.endTime
+        </if>
+        ) A,J302_TD_SEGMENT_INFO B where B.UUID = A.segment_uuid
+    </select>
+
+    <select id="selectTest" resultType="java.util.Map" parameterType="java.util.Map">
+        		select A.*,B.MILEAGE_CODE startt,C.MILEAGE_CODE endd from
+			(
+			select
+			ID,DUCT_CODE,DUCT_CODE2,STATION_HUN_NUM_END,STATION_KI_NUM_END,STATION_KI_NUM,STATION_HUN_NUM,segment_uuid
+			from J302_METRO_FAULT_INFO_GW where trim(Duct_code) is not null and segment_uuid is not null and( STATION_HUN_NUM_END is null or STATION_KI_NUM_END is null or STATION_KI_NUM is null or STATION_HUN_NUM is null)
+			) A left join
+			J302_TD_DUCT_INFO B
+			on A.SEGMENT_UUID = B.SEGMENT_UUID and B.DUCT_CODE=A.DUCT_CODE
+			left join
+			J302_TD_DUCT_INFO C
+			on A.SEGMENT_UUID = C.SEGMENT_UUID and B.DUCT_CODE=C.DUCT_CODE
+    </select>
+
+    <update id="updateTest" parameterType="java.util.Map">
+      update J302_METRO_FAULT_INFO_GW set STATION_HUN_NUM_END=#{STATION_HUN_NUM_END},STATION_KI_NUM_END=#{STATION_KI_NUM_END},STATION_KI_NUM=#{STATION_KI_NUM},STATION_HUN_NUM=#{STATION_HUN_NUM} where ID = #{ID}
+    </update>
+    <select id="getFaultLoc" resultType="String">
+        select detail_loc from J302_METRO_FAULT_INFO_GW group by detail_loc
+    </select>
+
+    <select id="getFaultMark" resultType="java.util.Map" parameterType="java.util.Map">
+        select DUCT_CODE,DUCT_NUM from J302_METRO_FAULT_INFO_GW where status = '20' and MAJOR = 'WBGW04' and fault_level like 'A%' and segment_uuid in
+        <foreach collection="UUID_LIST" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+    </select>
+
+    <select id="getFaultByStaus" resultType="java.util.Map" parameterType="java.util.Map">
+        select A.* from (select * from J302_METRO_FAULT_INFO_GW where status = #{status} and MAJOR = 'WBGW04' and  LINE_ID = #{lineId}) A
+left join J302_TD_FAULT_IMG B on A.INTERNAL_CODE = B.INTERNAL_CODE where IMAGE_URL is not null
+    </select>
+    <select id="getProjectSegment" resultType="java.util.Map" parameterType="java.util.Map">
+        select SEGMENT_UUID,substr(FAULT_LEVEL, 0,1) FAULT_LEVLE,DUCT_CODE START_DUCT_CODE,DUCT_CODE2 END_DUCT_CODE from J302_METRO_FAULT_INFO_GW where SEGMENT_UUID in <foreach
+            collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+        #{item_segment}
+    </foreach>  and STATUS = '20'and DUCT_CODE is not null and DUCT_CODE2 is not null
+        and INSERT_TIME >= '201912'
+    </select>
+</mapper>

@@ -1,0 +1,455 @@
+/*.title {*/
+/*height: 315px;*/
+/*margin: 0 auto;*/
+/*}*/
+
+.title .tit-left {
+    float: left;
+    overflow: hidden;
+}
+
+.title .tit-right-parent {
+    background-color: #303342;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.title .tit-right {
+    /*height: 360px;*/
+    /*min-width: 800px;*/
+    /*overflow-x: auto;*/
+    /*overflow-y: hidden;*/
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.title .jiao1, .title .jiao2 {
+    width: 100%;
+    height: 30px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.title .jiao1 p, .title .jiao2 p {
+    margin: 0 auto;
+}
+
+.title .jiao-top, .title .jiao-bottom {
+    width: 12px;
+    height: 12px;
+}
+
+.title .jiao-bottom {
+    padding-top: 20px;
+}
+
+.title .page_line {
+    width: 165px;
+    height: 300px;
+    overflow: hidden;
+    background-color: rgba(85, 70, 70, 0.03);
+    overflow-y: auto;
+    margin: 0 auto;
+}
+
+.title .page_line .line {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.title .page_line .line-font {
+    height: 30px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.title .page_line .line-col {
+    width: 60%;
+    height: 5px;
+    margin: 0 auto;
+}
+
+.title .page_line .line-col1 {
+    background-color: #ee3229;
+}
+
+.title .page_line .line-col2 {
+    background-color: #36b854;
+}
+
+.title .page_line .line-col3 {
+    background-color: #ffd723;
+}
+
+.title .page_line .line-col4 {
+    background-color: #320177;
+}
+
+.title .page_line .line-col5 {
+    background-color: #823094;
+}
+
+.title .page_line .line-col6 {
+    background-color: #ce047a;
+}
+
+.line-across2 .line-bottom, .line-across2 .line-top {
+    /*margin: 0 0 0 5px;*/
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+/*!* 第一行结尾旋转 *!
+.line-across1 .line-station:last-child > p {
+    transform: rotate(90deg);
+    transform-origin: 8px 11px;
+}*/
+/* 右边线路图 */
+.tit-right .line-across1 {
+    height: 108px;
+    margin-top: 20px;
+}
+
+.tit-right .table-bordered > tbody > tr:hover {
+    background-color: #d3e4f4 !important;
+}
+
+.tit-right .line-across2 {
+    height: 100px;
+}
+
+.tit-right .line-across3 {
+    height: 70px;
+}
+
+.tit-right .dot-station {
+    width: 26px;
+    position: absolute;
+    left: -5px;
+    top: 0px;
+}
+
+.tit-right .dot-station-last {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    right: -5px;
+    top: 0px;
+    z-index: 2;
+}
+
+.tit-right .dot-station-last img, .tit-right .dot-station img {
+    width: 30px;
+}
+
+.tit-right .line-across3 .line-station,
+.tit-right .line-across1 .line-station,
+.tit-right .line-across2 .line-station {
+    width: 75px;
+    height: 20px;
+    padding-top: 2px;
+    float: left;
+    position: relative;
+}
+
+.tit-right .line-station > p {
+    cursor: pointer;
+    margin: 0 0 5px 0px;
+}
+
+.tit-right .page_chLine > div, .count-tit > div {
+    cursor: pointer;
+}
+
+.tit-right .station-name {
+    width: 75px;
+    /* height: 20px; */
+    position: absolute;
+    left: -26px;
+    /* bottom: -20px; */
+    font-size: 14px;
+    color: #fff;
+}
+
+/* -30 26 */
+.tit-right .station-nameTen {
+    width: 50px;
+    height: 20px;
+    position: absolute;
+    left: -30px;
+    bottom: 26px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.tit-right .line-station .line-img {
+    display: block;
+    width: 60px;
+    height: 10px;
+    margin-left: 16px;
+}
+
+.tit-right .line-station p:last-child, .tit-right .line-ze-img {
+    margin-top: 2px;
+}
+
+/* 第一行结尾旋转 */
+.tit-right .line-across1 .line-station:last-child {
+    transform: rotate(90deg);
+    transform-origin: 8px 11px;
+}
+
+/* 站点平移 */
+.tit-right .line-across1 .line-station:last-child .station-name {
+    transform: translate(0, -75px) rotate(-90deg);
+}
+
+/* 第二行结尾旋转 */
+.tit-right .line-across2 .line-station:last-child {
+    transform: rotate(-90deg);
+    transform-origin: -6px 14px;
+}
+
+/* 站点平移 */
+.tit-right .line-across2 .line-station:last-child .station-name {
+    transform: translate(0px, 20px) rotate(90deg);
+}
+
+/* 第二行开头旋转 */
+.tit-right .line-across2 .line-station:first-child {
+    transform: rotate(-90deg);
+    transform-origin: 68px 15px;
+    z-index: 3;
+}
+
+/* 站点平移 */
+.tit-right .line-across2 .line-station:first-child .station-name {
+    transform: translate(0px, -80px) rotate(90deg);
+}
+
+.tit-right .line-across3 .line-station {
+    z-index: 5;
+}
+
+/* 第三行开头 */
+.line-across3 .line-station:first-child {
+    transform: rotate(90deg);
+    transform-origin: 78px 21px;
+    z-index: 4;
+}
+
+.tit-right .line-across3 .line-station:first-child .station-name {
+    transform: translate(0, 34px) rotate(-90deg);
+    text-align: right;
+}
+
+/*****************************/
+/*右边线路图*/
+.tit-right .title .tit-right .line-across1, .title .tit-right .line-across2, .title .tit-right .line-across3 {
+    margin-top: 40px;
+}
+
+.tit-right .line-across2 .line-station .line-img {
+    margin-left: 0px;
+}
+
+/*.title .line-across1 {*/
+/*padding-left: 25px;*/
+/*}*/
+
+.count {
+    padding: 20px 20px;
+}
+
+.count .bao-wrapper {
+    height: 43px;
+    background-color: rgb(217, 221, 235);
+}
+
+.count .count-tit {
+    height: 43px;
+    border: 1px solid #c4cdb1;
+    float: left;
+}
+
+.count .count-tit div {
+    width: 110px;
+    height: 41px;
+    float: left;
+    border-right: 1px solid #fff;
+    line-height: 41px;
+    padding-left: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #000;
+}
+
+.count-tit .bao-t {
+    background-color: #c4cbd1;
+}
+
+.count-tit .bao-t > p {
+    color: #fff;
+}
+
+.count-tit .bao-bgweek, .count-tit .bao-bgmonth, .count-tit .bao-bgyear, .count-tit .bao-bgyear-t, .count-tit .bao-bgweek-t, .count-tit .bao-bgmonth-t {
+    width: 22px;
+    height: 22px;
+    float: left;
+    margin: 10px 8px 0 0;
+
+}
+
+.count-tit .bao-font {
+    float: left;
+    font-size: 16px;
+}
+
+.count-tit .bao-bgweek {
+    background: url(../../images/home/report/zb_ss.png) no-repeat;
+    /*background: url(./线路统计页/周报-深色.png)no-repeat;*/
+    background-size: 22px;
+}
+
+.count-tit .bao-bgmonth {
+    background: url(../../images/home/report/yb.png) no-repeat;
+    /*background: url(./线路统计页/月报.png)no-repeat;*/
+    background-size: 22px;
+}
+
+.count-tit .bao-bgyear {
+    background: url(../../images/home/report/nb.png) no-repeat;
+    /*background: url(./线路统计页/年报.png)no-repeat;*/
+    background-size: 22px;
+}
+
+.count-tit .bao-bgmonth-t {
+    background: url(../../images/home/report/yb_bs.png) no-repeat;
+    /*background: url(./线路统计页/月报_白色.png)no-repeat;*/
+    background-size: 22px;
+}
+
+.count-tit .bao-bgweek-t {
+    background: url(../../images/home/report/zb.png) no-repeat;
+    /*background: url(./线路统计页/周报.png)no-repeat;*/
+    background-size: 22px;
+}
+
+.count-tit .bao-bgyear-t {
+    background: url(../../images/home/report/nb_bs.png) no-repeat;
+    /*background: url(./线路统计页/年报_白色.png)no-repeat;*/
+    background-size: 22px;
+}
+
+/*导出按钮*/
+.count .export {
+    width: 110px;
+    height: 41px;
+    cursor: pointer;
+    background: #91c7ae;
+    text-align: center;
+    line-height: 41px;
+    float: right;
+    font-size: 16px;
+    border-left: 1px solid #fff;
+}
+
+/*.count .count-bane {*/
+
+/*display: flex;*/
+/*justify-content: space-between;*/
+/*}*/
+
+.count-bane thead th {
+    background-color: #303342;
+    color: #fff;
+}
+
+.count-bane .bane-ti1 {
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 0 10px 10px;
+    line-height: 1;
+}
+
+.count-bane .bane-menu .table td, .count-bane .bane-menu .table th, .bane-menu .table {
+    text-align: center;
+    vertical-align: middle;
+    /* border: 1px solid #666; */
+}
+
+.count-bane .menu-tit2 {
+    width: 470px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    margin: 4px 0;
+}
+
+.count-bane .menu-tit1, .count-bane .menu-btm1 {
+    width: 470px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    background-color: #303342;
+    color: #fff;
+}
+
+.count-bane .bane-menu2 {
+    width: 470px;
+}
+
+.count-bane .bane-rig {
+    width: 550px;
+    padding-top: 50px;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+.count-bane #echarts-pie-week, .count-bane #echarts-bar-week, .count-bane #echarts-pie-month, .count-bane #echarts-bar-month, .count-bane #echarts-pie-year, .count-bane #echarts-bar-year {
+    width: 550px;
+    height: 240px;
+    float: left;
+}
+
+.tit-right .position-p {
+    position: absolute;
+    left: 30px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.tit-right .position-p1 {
+    top: 16px;
+}
+
+.tit-right .position-p2 {
+    top: 164px;
+}
+
+.tit-right .position-p3 {
+    top: 304px;
+}
+
+.tit-right .position-p p {
+    height: 16px;
+}
+
+.tit-right .position-right {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.tit-right .position-right .grade {
+    height: 20px;
+    margin-bottom: 5px;
+}

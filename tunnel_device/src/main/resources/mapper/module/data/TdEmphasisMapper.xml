@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdEmphasisMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdEmphasis">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="DUCT_CODE" jdbcType="DECIMAL" property="ductCode"/>
+        <result column="MILEAGE_CODE" jdbcType="DECIMAL" property="mileageCode"/>
+        <result column="SEGMENT_UUID" jdbcType="VARCHAR" property="segmentUuid"/>
+        <result column="SEGMENT_NAME" jdbcType="VARCHAR" property="segmentName"/>
+        <result column="OPERATE_COMPANY" jdbcType="VARCHAR" property="operateCompany"/>
+        <result column="OPERATE_TIME" jdbcType="VARCHAR" property="operateTime"/>
+        <result column="INSERT_TIME" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="MAINTAIN_TECH" jdbcType="VARCHAR" property="maintainTech"/>
+    </resultMap>
+    <select id="getEmphasisForMainCharts" parameterType="java.util.List" resultType="java.util.Map">
+        select wm_concat(t.duct_code) emphasis_duct
+        from J302_TD_EMPHASIS_INFO t
+        where t.segment_uuid in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        order by duct_code desc
+    </select>
+    <resultMap id="SelectResultMap" type="java.util.Map">
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="LINE_UUID"/>
+        <result column="LINE_NAME" jdbcType="VARCHAR" property="LINE_NAME"/>
+        <collection property="SEGMENT" ofType="java.util.Map" javaType="java.util.List">
+            <result column="UPDOWN" jdbcType="VARCHAR" property="UPDOWN"/>
+            <result column="ID" jdbcType="VARCHAR" property="ID"/>
+            <result column="SEGMENT_NAME" jdbcType="VARCHAR" property="SEGMENT_NAME"/>
+        </collection>
+    </resultMap>
+    <select id="getEmphasisSelect" resultMap="SelectResultMap">
+         select jte.LINE_UUID,(select LINE_NAME from J302_TD_LINE_INFO where UUID = jte.LINE_UUID) LINE_NAME,jte.UPDOWN,jte.SEGMENT_UUID ID,jte.SEGMENT_NAME from J302_TD_EMPHASIS_INFO jte group by jte.LINE_UUID,jte.UPDOWN,jte.SEGMENT_UUID,jte.SEGMENT_NAME
+    </select>
+</mapper>

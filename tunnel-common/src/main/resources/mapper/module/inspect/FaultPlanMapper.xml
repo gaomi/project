@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.inspect.dao.FaultPlanMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.inspect.model.FaultPlan">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="PLAN_NO" jdbcType="VARCHAR" property="planNo"/>
+        <result column="STATUS" jdbcType="CHAR" property="status"/>
+        <result column="PLAN_TYPE" jdbcType="CHAR" property="planType"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="WORK_TYPE" jdbcType="CHAR" property="workType"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="MAJOR" jdbcType="CHAR" property="major"/>
+        <result column="START_STATION_UUID" jdbcType="VARCHAR" property="startStationUuid"/>
+        <result column="END_STATION_UUID" jdbcType="VARCHAR" property="endStationUuid"/>
+        <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="LEADER_UUID" jdbcType="VARCHAR" property="leaderUuid"/>
+        <result column="EXECUTIVES" jdbcType="VARCHAR" property="executives"/>
+        <result column="INFLUENCE" jdbcType="VARCHAR" property="influence"/>
+        <result column="PREVENTION" jdbcType="VARCHAR" property="prevention"/>
+        <result column="DETAIL_DESC" jdbcType="VARCHAR" property="detailDesc"/>
+        <result column="STATION_TYPE" jdbcType="CHAR" property="stationType"/>
+        <result column="ENTER_STATION_UUID" jdbcType="VARCHAR" property="enterStationUuid"/>
+        <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName"/>
+        <result column="LEADER_TEL" jdbcType="VARCHAR" property="leaderTel"/>
+        <result column="IS_OUTAGE" jdbcType="CHAR" property="isOutage"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+
+    <resultMap id="DeviceListResultMap" type="java.util.Map">
+        <result column="TASK_NAME" jdbcType="VARCHAR" property="taskName"/>
+        <result column="SEGMENT_NAME" jdbcType="VARCHAR" property="segmentName"/>
+        <result column="PLAN_UUID" jdbcType="VARCHAR" property="workOrderId"/>
+        <result column="UPDOWN" jdbcType="VARCHAR" property="upDown"/>
+        <result column="START_STATION" jdbcType="VARCHAR" property="startStation"/>
+        <result column="END_STATION" jdbcType="VARCHAR" property="endStation"/>
+        <result column="START_STATION_NAME" jdbcType="VARCHAR" property="startStationName"/>
+        <result column="END_STATION_NAME" jdbcType="VARCHAR" property="endStationName"/>
+        <result column="TASKID" jdbcType="VARCHAR" property="taskId"/>
+        <result column="START_MILEAGE_FLAG" jdbcType="VARCHAR" property="START_MILEAGE_FLAG"/>
+        <result column="END_MILEAGE_FLAG" jdbcType="VARCHAR" property="END_MILEAGE_FLAG"/>
+        <result column="START_MILEAGE_CODE" jdbcType="VARCHAR" property="START_MILEAGE_CODE"/>
+        <result column="END_MILEAGE_CODE" jdbcType="VARCHAR" property="END_MILEAGE_CODE"/>
+        <collection property="DEVICE_LIST" ofType="java.util.Map" javaType="java.util.List">
+            <result column="UUID" jdbcType="VARCHAR" property="UUID"/>
+            <result column="START_KI_MILEAGE" jdbcType="VARCHAR" property="START_KI_MILEAGE"/>
+            <result column="START_HUN_MILEAGE" jdbcType="VARCHAR" property="START_HUN_MILEAGE"/>
+            <result column="END_KI_MILEAGE" jdbcType="VARCHAR" property="END_KI_MILEAGE"/>
+            <result column="END_HUN_MILEAGE" jdbcType="VARCHAR" property="END_HUN_MILEAGE"/>
+            <result column="DEVICE_UUID" jdbcType="VARCHAR" property="DEVICE_UUID"/>
+            <result column="EQUIPNAME" jdbcType="VARCHAR" property="DEVICE_NAME"/>
+            <result column="LEVEL_NAME" jdbcType="VARCHAR" property="LEVEL_NAME"/>
+            <result column="START_MILEAGE" jdbcType="DECIMAL" property="START_MILEAGE"/>
+            <result column="END_MILEAGE" jdbcType="DECIMAL" property="END_MILEAGE"/>
+            <result column="DUCT_CODE_START" jdbcType="VARCHAR" property="START_DUCT_CODE"/>
+            <result column="DUCT_CODE_END" jdbcType="VARCHAR" property="END_DUCT_CODE"/>
+        </collection>
+    </resultMap>
+
+    <select id="getDoorListForApp" resultType="java.util.Map" parameterType="java.lang.String">
+        select *
+        from (select substr(device_uuid, 0, 10) segment
+        from j302_si_plan_device
+        where plan_uuid = #{uuid}
+        group by substr(device_uuid, 0, 10)) aa
+        left join (select equipno device_uuid,
+        equipname device_name,
+        floor(mileage_code_start / 1000) start_ki_mileage,
+        (mileage_code_start -
+        FLOOR(mileage_code_start / 1000) * 1000) start_hun_mileage,
+        floor(mileage_code_end / 1000) end_ki_mileage,
+        (mileage_code_end -
+        FLOOR(mileage_code_end / 1000) * 1000) end_hun_mileage,
+        start_mileage_flag,
+        end_mileage_flag,
+        substr(equipno, 7, 8) device_type,
+        'is_device' type_f,
+        substr(equipno, 7, 8) level4,
+        substr(equipno, 7, 8) level3
+        from j302_eam_equip_v1
+        where status = '1'
+        and substr(equipno, 7, 8) in
+        <foreach collection="doorType" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>) bb
+        on aa.segment = substr(bb.device_uuid, 0, 10)
+    </select>
+    <select id="getFaultListForApp" resultType="java.util.Map" parameterType="java.lang.String">
+        select aa.segment,bb.* from
+        (select substr(DEVICE_UUID,0,10) segment from J302_SI_PLAN_DEVICE where PLAN_UUID = #{uuid} GROUP BY  substr(DEVICE_UUID,0,10))
+        aa left join (select v.* from J302_APP_FAULT_INFO_V v where v.FAULT_STATUS in ('10','20','35')) bb on aa.segment = substr(bb.DEVICE_UUID,0,10)
+    </select>
+
+
+<!--    <select id="findDeviceListByPlanID" resultMap="DeviceListResultMap" parameterType="java.lang.String">
+    select aa.UUID,aa.PLAN_UUID,aa.DEVICE_UUID,bb.EQUIPNAME,bb.LEVEL_NAME,bb.START_MILEAGE,bb.END_MILEAGE,
+    substr(aa.DEVICE_UUID,0,10) TASKID,bb.START_STATION,bb.END_STATION,bb.START_MILEAGE_FLAG,bb.END_MILEAGE_FLAG,
+bb.DUCT_CODE_START,bb.DUCT_CODE_END,bb.UPDOWN,bb.START_MILEAGE_CODE,bb.END_MILEAGE_CODE,bb.END_KI_MILEAGE,bb.END_HUN_MILEAGE
+,bb.START_KI_MILEAGE,bb.START_HUN_MILEAGE,bb.START_STATION_NAME,bb.END_STATION_NAME,
+case when bb.UPDOWN='1' then
+(bb.START_STATION_NAME || '-' || bb.END_STATION_NAME ||' 上行')
+else
+(bb.START_STATION_NAME || '-' || bb.END_STATION_NAME ||' 下行')
+end TASK_NAME,
+(bb.START_STATION_NAME || '-' || bb.END_STATION_NAME) SEGMENT_NAME
+    from (
+    select * from J302_SI_PLAN_DEVICE where PLAN_UUID = #{uuid}
+    ) aa inner join
+    J302_APP_DEVICE_INFO_VTEST_V1 bb on aa.DEVICE_UUID  =  bb.EQUIPNO
+
+</select>-->
+ <!--   /*20200115修改*/-->
+    <select id="findDeviceListByPlanID" resultMap="DeviceListResultMap" parameterType="java.lang.String">
+     select aa.uuid,
+            aa.plan_uuid,
+            aa.device_uuid,
+            bb.equipname,
+            (select t1.level_name
+               from J302_TD_DEVICE_LEVEL_V1 t1
+              where t1.uuid = bb.equip_type) level_name,
+            bb.start_mileage,
+            bb.end_mileage,
+            substr(aa.device_uuid, 0, 10) taskid,
+            bb.start_station,
+            bb.end_station,
+            t2.start_mileage_flag,
+            t2.end_mileage_flag,
+            bb.duct_code_start,
+            bb.duct_code_end,
+            bb.updown,
+            t2.start_mileage_code,
+            t2.end_mileage_code,
+            floor(bb.mileage_code_start / 1000) start_ki_mileage,
+            (bb.mileage_code_start - floor(bb.mileage_code_start / 1000) * 1000) start_hun_mileage,
+            floor(bb.mileage_code_end / 1000) end_ki_mileage,
+            (bb.mileage_code_end - floor(bb.mileage_code_end / 1000) * 1000) end_hun_mileage,
+            case
+              when bb.updown = '0' then
+               (bb.start_station_name || '-' || bb.end_station_name || ' 上行')
+              else
+               (bb.start_station_name || '-' || bb.end_station_name || ' 下行')
+            end task_name,
+            (bb.start_station_name || '-' || bb.end_station_name) segment_name
+       from (select *
+               from j302_si_plan_device
+              where plan_uuid = #{uuid}) aa
+      inner join (select distinct ee.equipno,
+                                  ee.equipname,
+                                  ee.equip_type,
+                                  ee.updown,
+                                  ee.mileage_code_start,
+                                  ee.mileage_code_end,
+                                  ee.start_station,
+                                  ee.end_station,
+                                  ee.duct_code_start,
+                                  ee.duct_code_end,
+                                  ee.mileage_code_start start_mileage,
+                                  ee.mileage_code_end end_mileage,
+                                  (select etsi1.station_name
+                                     from j302_td_station_info etsi1
+                                    where substr(ee.equipno, 0, 2) =
+                                          etsi1.line_code
+                                      and ee.start_station = etsi1.station_code) start_station_name,
+                                  (select etsi2.station_name
+                                     from j302_td_station_info etsi2
+                                    where substr(ee.equipno, 0, 2) =
+                                          etsi2.line_code
+                                      and ee.end_station = etsi2.station_code) end_station_name
+                    from j302_eam_equip_v1 ee
+                   where ee.status = '1') bb
+         on aa.device_uuid = bb.equipno
+       left join j302_td_segment_eam_ref_v t2
+         on t2.eam_segment = substr(aa.device_uuid, 0, 6)
+    </select>
+
+    <select id="findCompany" resultType="map" parameterType="java.util.Map">
+        select * from j302_si_planuser_v t
+    </select>
+    <select id="findAllPlan" resultType="map" parameterType="java.util.Map">
+        select * from j302_si_fault_plan_v t
+    </select>
+    <select id="findAllFaultPlanForWeb" resultType="map" parameterType="java.util.Map">
+        select vt.*
+        from j302_si_fault_plan_v vt, j302_si_plan_operator po
+        <where>
+            vt.uuid = po.plan_uuid
+            <if test="deptId != null and deptId != ''">
+                and vt.COMPANY_NAME= #{deptId}
+            </if>
+            <if test="MAJOR != null and MAJOR != ''">
+                and vt.MAJOR= #{MAJOR}
+            </if>
+            <if test="STATUS != null and STATUS != ''">
+                and vt.STATUS= #{STATUS}
+            </if>
+            <if test="WORK_TYPE != null and WORK_TYPE != ''">
+                and vt.WORK_TYPE= #{WORK_TYPE}
+            </if>
+            <if test="LINE_UUID != null and LINE_UUID != ''">
+                and vt.LINE_UUID= #{LINE_UUID}
+            </if>
+            <if test="START_STATION_UUID != null and START_STATION_UUID != ''">
+                and vt.START_STATION_UUID= #{START_STATION_UUID}
+            </if>
+            <if test="END_STATION_UUID != null and END_STATION_UUID != ''">
+                and vt.END_STATION_UUID= #{END_STATION_UUID}
+            </if>
+            <if test="LINE_UUID != null and LINE_UUID != ''">
+                and vt.LINE_UUID= #{LINE_UUID}
+            </if>
+            <if test="keyWord != null and keyWord != ''">
+                or vt.keyWord like '%' || #{keyWord} || '%'
+            </if>
+        </where>
+    </select>
+    <!--<select id="findFaultByPlan" resultType="map" parameterType="com.company.project.module.inspect.model.FaultPlan">
+        with tt as
+         (select * from j302_si_fault_info_v t where t.line_uuid = #{lineUuid })
+        select *
+          from tt
+         where tt.start_sta_uuid = #{startStationUuid }
+           and tt.end_sta_uuid = #{endStationUuid }
+        union all
+        select *
+          from tt
+         where tt.start_sta_uuid = #{endStationUuid } and tt.end_sta_uuid = #{startStationUuid }
+        union all
+        select *
+          from tt
+         where tt.start_sta_uuid = #{startStationUuid } and tt.end_sta_uuid = #{startStationUuid }
+        union all
+        select * from tt where tt.start_sta_uuid = #{endStationUuid } and tt.end_sta_uuid = #{endStationUuid }
+    </select>-->
+    <select id="findFaultByPlan" resultType="map">
+       select *
+          from j302_si_fault_info_v v
+         where   v.device_id in
+               (select pd.device_uuid
+                  from j302_si_plan_device pd
+                 where pd.plan_uuid =  #{uuid})
+    </select>
+    <select id="findDeviceListByPlan" resultType="map">
+        select mdi.device_id device_uuid,mdi.device_name ,'检查项1'  check_item
+          from j302_si_plan_device pd left join j302_metro_device_info_gw mdi
+          on pd.device_uuid=mdi.device_id
+         where pd.plan_uuid =  #{uuid}
+        union all
+        select mdi.device_id device_uuid,mdi.device_name ,'检查项2'  check_item
+          from j302_si_plan_device pd left join j302_metro_device_info_gw mdi
+          on pd.device_uuid=mdi.device_id
+         where pd.plan_uuid =  #{uuid}
+        union all
+        select mdi.device_id device_uuid,mdi.device_name ,'检查项3'  check_item
+          from j302_si_plan_device pd left join j302_metro_device_info_gw mdi
+          on pd.device_uuid=mdi.device_id
+         where pd.plan_uuid =  #{uuid}
+
+    </select>
+    <select id="findVPlanDetailById" resultType="map">
+        select
+        fp.uuid,fp.plan_no,fp.line_name,
+               fp.UPDOWN2 updown,
+               fp.START_STATION_NAME,
+               fp.END_STATION_NAME,
+               'DK 28+100' start_mileage,
+               'DK 31+100' end_mileage
+          from j302_si_fault_plan_v fp
+         where fp.uuid = #{uuid}
+    </select>
+
+    <insert id="saveOperatorByPlan" parameterType="map" useGeneratedKeys="false">
+        insert into j302_si_plan_operator (PLAN_UUID,UUID,OPERATOR_UUID,STATUS,CREATE_TIME,P_TYPE)
+        select #{planUuid ,jdbcType = VARCHAR} PLAN_UUID,temp.* from (
+        <foreach collection="operators" item="item" separator="union all">
+            select
+            sys_guid() UUID,
+            #{item,jdbcType = VARCHAR} OPERATOR_UUID,
+            '1' STATUS,
+            sysdate CREATE_TIME,
+            '1' P_TYPE
+            from dual
+        </foreach>
+        ) temp
+
+    </insert>
+    <insert id="saveDeviceByPlan" parameterType="map" useGeneratedKeys="false">
+        insert into j302_si_plan_device (PLAN_UUID,UUID,DEVICE_UUID,STATUS,CREATE_TIME,P_TYPE)
+        select #{planUuid ,jdbcType = VARCHAR} PLAN_UUID,temp.* from (
+        <foreach collection="devices" item="item" separator="union all">
+            select
+            sys_guid() UUID,
+            #{item,jdbcType = VARCHAR} DEVICE_UUID,
+            '1' STATUS,
+            sysdate CREATE_TIME,
+            '1' P_TYPE
+            from dual
+        </foreach>
+        ) temp
+
+    </insert>
+    <delete id="deleteOperatorByPlan">
+     delete from j302_si_plan_operator
+        where plan_uuid = #{uuid}
+  </delete>
+    <delete id="deleteDeviceByPlan">
+     delete from j302_si_plan_device
+        where plan_uuid = #{uuid}
+  </delete>
+    <!--app端-->
+    <select id="findAllPlanForApp" resultType="map" parameterType="java.util.Map">
+        select vt.*
+        from j302_app_fault_plan_v vt, j302_si_plan_operator po
+        /*--and vt.status = '20'*/
+        <where>
+            vt.uuid = po.plan_uuid
+            <if test="COMPANY_NAME != null and COMPANY_NAME != ''">
+                and vt.COMPANY_NAME= #{COMPANY_NAME}
+            </if>
+            <if test="MAJOR != null and MAJOR != ''">
+                and vt.MAJOR= #{MAJOR}
+            </if>
+            <if test="STATUS != null and STATUS != ''">
+                and vt.STATUS= #{STATUS}
+            </if>
+            <if test="WORK_TYPE != null and WORK_TYPE != ''">
+                and vt.WORK_TYPE= #{WORK_TYPE}
+            </if>
+            <if test="LINE_UUID != null and LINE_UUID != ''">
+                and vt.LINE_UUID= #{LINE_UUID}
+            </if>
+            <if test="START_STATION_UUID != null and START_STATION_UUID != ''">
+                and vt.START_STATION_UUID= #{START_STATION_UUID}
+            </if>
+            <if test="END_STATION_UUID != null and END_STATION_UUID != ''">
+                and vt.END_STATION_UUID= #{END_STATION_UUID}
+            </if>
+            <if test="LINE_UUID != null and LINE_UUID != ''">
+                and vt.LINE_UUID= #{LINE_UUID}
+            </if>
+            <if test="keyWord != null and keyWord != ''">
+                or vt.keyWord like '%' || #{keyWord} || '%'
+            </if>
+            and po.operator_uuid = #{employeeId}
+        </where>
+    </select>
+    <!-- 20191212修改
+    <select id="findFaultByPlanForApp" resultType="map">
+        select *
+           from j302_app_fault_info_v v
+          where   v.device_id in
+                (select pd.device_uuid
+                   from j302_si_plan_device pd
+                  where pd.plan_uuid =  #{uuid})
+     </select>-->
+    <select id="findFaultByPlanForApp" resultType="map">
+        select *
+        from j302_app_fault_info_v t
+        <where>
+            t.plan_uuid= #{uuid}
+        </where>
+    </select>
+    <select id="findDeviceListByPlanForApp" resultType="map">
+        <!--select t1.device_uuid, t1.device_name, t1.check_item
+        from (select mdi.device_id device_uuid,
+        mdi.device_name,
+        '检查项1' check_item,
+        pd.plan_uuid
+        from j302_si_plan_device pd
+        left join j302_metro_device_info_gw mdi
+        on pd.device_uuid = mdi.device_id
+        union all
+        select mdi.device_id device_uuid,
+        mdi.device_name,
+        '检查项2' check_item,
+        pd.plan_uuid
+        from j302_si_plan_device pd
+        left join j302_metro_device_info_gw mdi
+        on pd.device_uuid = mdi.device_id
+        union all
+        select mdi.device_id device_uuid,
+        mdi.device_name,
+        '检查项3' check_item,
+        pd.plan_uuid
+        from j302_si_plan_device pd
+        left join j302_metro_device_info_gw mdi
+        on pd.device_uuid = mdi.device_id) t1
+        <where>t1.plan_uuid = #{uuid}</where>
+
+        'CDBD9337BF434ECD862FB8E3ABFA3C48'
+        -->
+        select t3.*
+        from ((select t1.device_id device_uuid,
+        t1."DEVICE_NAME" device_name,
+        nvl(t2.device_type, '无') check_item,
+        t1."LINE_UUID",
+        t1."START_STATION_UUID",
+        t1."END_STATION_UUID",
+        t1."HIGH_LOW",
+        nvl(t2.device_level_code, '无') device_level_code,
+        nvl(t2.device_check_code, '无') device_check_code,
+        '1' is_door
+        from (select adiv.*,
+        substr(adiv."DEVICE_TYPE_ID", 0, 8) device_type_code
+        from j302_app_device_info_v1 adiv
+        where adiv."DEVICE_ID" in
+        (select t.device_uuid
+        from j302_si_plan_device t
+        where t.plan_uuid =
+        #{uuid})
+        and adiv.device_type_id != '010300000000') t1
+        left join (select sdtf.level3,
+        sdtf.level4,
+        sdtf.device_level_code,
+        (sdtf.device_level_code || sdtf.device_type_code) device_check_code,
+        sdtf.device_type
+        from j302_si_device_fault_type sdtf
+        group by sdtf.level3,
+        sdtf.level4,
+        sdtf.device_level_code,
+        sdtf.device_type,
+        sdtf.device_type_code) t2
+        on t1.device_type_code = t2.device_level_code)
+
+        union all
+        (select '0' || to_char(to_number(t1.device_id) +
+        to_number(substr(t2.device_level_code, 5, 4)) *
+        100000000) device_uuid,
+        -- t1."DEVICE_NAME" || '-' || t2.level4 || '(' || t2.level3 || ')' device_name,
+        -- nvl(t2.device_type, '无') check_item,
+        t1."DEVICE_NAME" || '-' || t2.level3 device_name,
+        nvl( t2.level4 || '-' || t2.device_type, '无') check_item,
+        t1."LINE_UUID",
+        t1."START_STATION_UUID",
+        t1."END_STATION_UUID",
+        t1."HIGH_LOW",
+        nvl(t2.device_level_code, '无') device_level_code,
+        nvl(t2.device_check_code, '无') device_check_code,
+        '0' is_door
+        from (select adiv.*,
+        substr(adiv."DEVICE_TYPE_ID", 0, 8) device_type_code
+        from j302_app_device_info_v1 adiv
+        where adiv."DEVICE_ID" in
+        (select t.device_uuid
+        from j302_si_plan_device t
+        where t.plan_uuid =
+        #{uuid})
+        and adiv.device_type_id = '010300000000') t1
+        left join (select sdtf.level3,
+        sdtf.level4,
+        sdtf.device_level_code,
+        (sdtf.device_level_code || sdtf.device_type_code) device_check_code,
+        sdtf.device_type
+        from j302_si_device_fault_type sdtf
+        where sdtf.device_level_code not in
+        ('01030501', '01030502', '01030503')
+        group by sdtf.level3,
+        sdtf.level4,
+        sdtf.device_level_code,
+        sdtf.device_type,
+        sdtf.device_type_code) t2
+        on substr(t1.device_type_code, 0, 4) =
+        substr(t2.device_level_code, 0, 4))) t3
+        order by to_number(t3.device_uuid), t3.device_check_code
+
+    </select>
+
+    <select id="findVPlanDetailByIdForApp" resultType="map">
+        select
+        fp.uuid,fp.plan_no,fp.line_name,
+        fp.UPDOWN2 updown,
+        fp.LINE_UUID,
+        fp.START_STATION_NAME,
+        fp.END_STATION_NAME,
+        'DK 28+100' start_mileage,
+        'DK 31+100' end_mileage,
+        '3000' total_mileage,
+        fp.start_time,fp.end_time
+        from j302_app_fault_plan_v fp
+        <where>fp.uuid = #{uuid}</where>
+    </select>
+    <select id="findXfPlanForApp" resultType="map">
+        select vt.*
+        from j302_app_fault_plan_v vt, j302_si_plan_operator po
+        <where>
+            vt.uuid = po.plan_uuid
+            and vt.status = '20'
+            and po.operator_uuid = #{employeeNo}
+        </where>
+    </select>
+    <select id="findDictForApp" resultType="map">
+        select t.*,'p' d_type
+        from J302_TD_DICT t
+        <where>t.for_module = 'FAULT_APP'
+            and t.pid = '0'
+        </where>
+        union all
+        select t.*,'p' d_type
+        from J302_TD_DICT t
+        <where>t.for_module = 'FAULT_APP'
+            and t.pid = '200000'
+        </where>
+        union all
+        select t.*,'c' d_type
+        from J302_TD_DICT t
+        <where>t.for_module = 'FAULT_APP'
+            and t.pid != '200000' and t.pid != '0'
+        </where>
+
+
+    </select>
+    <select id="findPlanStationByPlanID" resultType="java.util.Map" parameterType="java.lang.String">
+        select tsi.station_name, tp.station_code
+          from (select distinct substr(t.DEVICE_UUID, 3, 2) station_code,
+                                (select tew.line_uuid
+                                   from j302_app_fault_plan_v tew
+                                  where tew.uuid = t.plan_uuid) line_uuid
+                  from J302_SI_PLAN_DEVICE t
+                 where t.PLAN_UUID = #{uuid}) tp
+          left join J302_Td_Station_Info tsi
+            on tsi.line_uuid = tp.line_uuid
+           and tsi.station_code = tp.station_code
+
+    </select>
+</mapper>

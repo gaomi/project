@@ -1,0 +1,793 @@
+09:05:22.011 logback [main] INFO  com.conpany.project.DemoTest - Starting DemoTest on java01 with PID 2124 (started by Administrator in D:\workspace\ddy_tunnel\trunk\demo\tunnel_app)
+09:05:22.012 logback [main] INFO  com.conpany.project.DemoTest - The following profiles are active: dev
+09:05:22.056 logback [main] INFO  o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:05:22 CST 2019]; root of context hierarchy
+09:05:22.678 logback [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.6.Final
+09:05:24.070 logback [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:05:24.314 logback [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'mybatisConfigurer' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+09:05:24.730 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c30eb587] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:05:25.054 logback [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+09:05:25.819 logback [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+09:05:27.707 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/list],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.list(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.709 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getPlanDetailByUuid],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getPlanDetailByUuid(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.709 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.710 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getXfPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getXfPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.710 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.711 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.712 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.712 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/receivePlanStatus],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.receivePlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.714 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/base64Upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.base64Upload(java.util.Map)
+09:05:27.715 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.Fileupload(org.springframework.web.multipart.MultipartFile,java.lang.String)
+09:05:27.715 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/downfile],methods=[GET]}" onto public void com.company.project.module.app.web.AppFileController.downFile(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException,java.net.MalformedURLException
+09:05:27.717 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getVersion],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getVersion(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:05:27.719 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getBaseInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getBaseInfo(com.company.project.core.model.QueryRequest)
+09:05:27.720 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getDeviceInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDeviceInfo()
+09:05:27.721 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/dict],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDict(com.company.project.core.model.QueryRequest)
+09:05:27.723 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/logout],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.logout(javax.servlet.http.HttpSession)
+09:05:27.725 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/loginVerify],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.isLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+09:05:27.728 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+09:05:27.729 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+09:05:27.729 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+09:05:27.732 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+09:05:27.733 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+09:05:27.961 logback [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+09:05:28.481 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:05:22 CST 2019]; root of context hierarchy
+09:05:28.551 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:05:28.551 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:05:28.552 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:05:28.587 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:05:29.350 logback [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09:05:29.351 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:05:29.379 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+09:05:29.413 logback [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:05:29.672 logback [main] INFO  com.conpany.project.DemoTest - Started DemoTest in 8.531 seconds (JVM running for 10.122)
+09:05:50.799 logback [Druid-ConnectionPool-Create-1638335699] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:oracle:thin:@192.168.12.57:1521:XE, errorCode 17002, state 08006
+java.sql.SQLRecoverableException: IO 错误: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:458)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:546)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:236)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:521)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:156)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:150)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1560)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:392)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:434)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:687)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:247)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1102)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:320)
+	... 10 common frames omitted
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:150)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:370)
+	... 15 common frames omitted
+09:06:11.816 logback [Druid-ConnectionPool-Create-1638335699] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:oracle:thin:@192.168.12.57:1521:XE, errorCode 17002, state 08006
+java.sql.SQLRecoverableException: IO 错误: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:458)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:546)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:236)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:521)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:156)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:150)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1560)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:392)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:434)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:687)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:247)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1102)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:320)
+	... 10 common frames omitted
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:150)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:370)
+	... 15 common frames omitted
+09:06:33.330 logback [Druid-ConnectionPool-Create-1638335699] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:oracle:thin:@192.168.12.57:1521:XE, errorCode 17002, state 08006
+java.sql.SQLRecoverableException: IO 错误: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:458)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:546)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:236)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:521)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:156)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:150)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1560)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:392)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:434)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:687)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:247)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1102)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:320)
+	... 10 common frames omitted
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:150)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:370)
+	... 15 common frames omitted
+09:06:54.844 logback [Druid-ConnectionPool-Create-1638335699] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:oracle:thin:@192.168.12.57:1521:XE, errorCode 17002, state 08006
+java.sql.SQLRecoverableException: IO 错误: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:458)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:546)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:236)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:521)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:156)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:150)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1560)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:392)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:434)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:687)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:247)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1102)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:320)
+	... 10 common frames omitted
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:150)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:370)
+	... 15 common frames omitted
+09:07:16.359 logback [Druid-ConnectionPool-Create-1638335699] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:oracle:thin:@192.168.12.57:1521:XE, errorCode 17002, state 08006
+java.sql.SQLRecoverableException: IO 错误: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:458)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:546)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:236)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:521)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:156)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:150)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1560)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:392)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:434)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:687)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:247)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1102)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:320)
+	... 10 common frames omitted
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:150)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:370)
+	... 15 common frames omitted
+09:07:37.875 logback [Druid-ConnectionPool-Create-1638335699] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:oracle:thin:@192.168.12.57:1521:XE, errorCode 17002, state 08006
+java.sql.SQLRecoverableException: IO 错误: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:458)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:546)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:236)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:521)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:156)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:150)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1560)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:392)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:434)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:687)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:247)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1102)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:320)
+	... 10 common frames omitted
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:150)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:370)
+	... 15 common frames omitted
+09:07:59.388 logback [Druid-ConnectionPool-Create-1638335699] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:oracle:thin:@192.168.12.57:1521:XE, errorCode 17002, state 08006
+java.sql.SQLRecoverableException: IO 错误: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:458)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:546)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:236)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:521)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:156)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:150)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1560)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:392)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:434)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:687)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:247)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1102)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:320)
+	... 10 common frames omitted
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:150)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:370)
+	... 15 common frames omitted
+09:08:20.902 logback [Druid-ConnectionPool-Create-1638335699] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:oracle:thin:@192.168.12.57:1521:XE, errorCode 17002, state 08006
+java.sql.SQLRecoverableException: IO 错误: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:458)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:546)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:236)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:521)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:156)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:150)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1560)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:392)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:434)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:687)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:247)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1102)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:320)
+	... 10 common frames omitted
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:150)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:133)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:370)
+	... 15 common frames omitted
+09:10:08.419 logback [main] INFO  com.conpany.project.DemoTest - Starting DemoTest on java01 with PID 8908 (started by Administrator in D:\workspace\ddy_tunnel\trunk\demo\tunnel_app)
+09:10:08.421 logback [main] INFO  com.conpany.project.DemoTest - The following profiles are active: dev
+09:10:08.464 logback [main] INFO  o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:10:08 CST 2019]; root of context hierarchy
+09:10:08.821 logback [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.6.Final
+09:10:09.994 logback [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:10:10.204 logback [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'mybatisConfigurer' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+09:10:10.598 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c30eb587] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:10:10.901 logback [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+09:10:11.505 logback [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+09:10:13.232 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/list],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.list(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.233 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.234 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.235 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getXfPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getXfPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.236 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.236 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.236 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/receivePlanStatus],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.receivePlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.237 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getPlanDetailByUuid],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getPlanDetailByUuid(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.239 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/downfile],methods=[GET]}" onto public void com.company.project.module.app.web.AppFileController.downFile(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException,java.net.MalformedURLException
+09:10:13.240 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.Fileupload(org.springframework.web.multipart.MultipartFile,java.lang.String)
+09:10:13.241 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/base64Upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.base64Upload(java.util.Map)
+09:10:13.242 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getVersion],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getVersion(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:10:13.243 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getBaseInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getBaseInfo(com.company.project.core.model.QueryRequest)
+09:10:13.244 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/dict],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDict(com.company.project.core.model.QueryRequest)
+09:10:13.244 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getDeviceInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDeviceInfo()
+09:10:13.247 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/logout],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.logout(javax.servlet.http.HttpSession)
+09:10:13.248 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/loginVerify],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.isLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+09:10:13.252 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+09:10:13.252 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+09:10:13.252 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+09:10:13.256 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+09:10:13.257 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+09:10:13.525 logback [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+09:10:13.991 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:10:08 CST 2019]; root of context hierarchy
+09:10:14.054 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:10:14.055 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:10:14.055 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:10:14.088 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:10:14.725 logback [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09:10:14.725 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:10:14.753 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+09:10:14.785 logback [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:10:15.060 logback [main] INFO  com.conpany.project.DemoTest - Started DemoTest in 7.614 seconds (JVM running for 8.447)
+09:10:15.667 logback [main] INFO  o.s.t.c.t.TransactionContext - Began transaction (1) for test context [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@504c415c, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@6c9e74f3]; rollback [false]
+09:10:17.155 logback [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+09:10:17.204 logback [main] INFO  o.s.j.support.SQLErrorCodesFactory - SQLErrorCodes loaded: [DB2, Derby, H2, HDB, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+09:10:17.224 logback [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener@727803de] to process 'after' execution for test: method [public void com.conpany.project.DemoTest.fun1()], instance [com.conpany.project.DemoTest@504c415c], exception [org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06550: 第 3 行, 第 7 列: 
+PLS-00103: 出现符号 "END"在需要下列之一时：
+ ( begin case
+   declare exit for goto if loop mod null pragma raise return
+   select update while with <an identifier>
+   <a double-quoted delimited-identifier> <a bind variable> <<
+   continue close current delete fetch lock insert open rollback
+   savepoint set sql execute commit forall merge pipe purge
+
+### The error may involve com.company.project.module.inspect.dao.FaultMapper.updateDeviceItem-Inline
+### The error occurred while setting parameters
+### SQL: begin               end;
+### Cause: java.sql.SQLException: ORA-06550: 第 3 行, 第 7 列: 
+PLS-00103: 出现符号 "END"在需要下列之一时：
+ ( begin case
+   declare exit for goto if loop mod null pragma raise return
+   select update while with <an identifier>
+   <a double-quoted delimited-identifier> <a bind variable> <<
+   continue close current delete fetch lock insert open rollback
+   savepoint set sql execute commit forall merge pipe purge
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06550: 第 3 行, 第 7 列: 
+PLS-00103: 出现符号 "END"在需要下列之一时：
+ ( begin case
+   declare exit for goto if loop mod null pragma raise return
+   select update while with <an identifier>
+   <a double-quoted delimited-identifier> <a bind variable> <<
+   continue close current delete fetch lock insert open rollback
+   savepoint set sql execute commit forall merge pipe purge
+]
+org.springframework.transaction.UnexpectedRollbackException: Transaction rolled back because it has been marked as rollback-only
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:728)
+	at org.springframework.test.context.transaction.TransactionContext.endTransaction(TransactionContext.java:132)
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.afterTestMethod(TransactionalTestExecutionListener.java:224)
+	at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:94)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+09:10:17.235 logback [Thread-2] INFO  o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:10:08 CST 2019]; root of context hierarchy
+09:10:17.237 logback [Thread-2] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+09:10:17.259 logback [Thread-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+09:11:24.200 logback [main] INFO  com.conpany.project.DemoTest - Starting DemoTest on java01 with PID 6344 (started by Administrator in D:\workspace\ddy_tunnel\trunk\demo\tunnel_app)
+09:11:24.201 logback [main] INFO  com.conpany.project.DemoTest - The following profiles are active: dev
+09:11:24.258 logback [main] INFO  o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@700fb871: startup date [Mon Dec 02 09:11:24 CST 2019]; root of context hierarchy
+09:11:24.611 logback [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.6.Final
+09:11:25.944 logback [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:11:26.358 logback [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'mybatisConfigurer' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+09:11:27.344 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$23db04f7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:11:27.606 logback [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+09:11:28.257 logback [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+09:11:30.105 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/list],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.list(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.106 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/receivePlanStatus],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.receivePlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.106 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.107 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.107 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.108 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getXfPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getXfPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.109 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.109 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getPlanDetailByUuid],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getPlanDetailByUuid(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.111 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/downfile],methods=[GET]}" onto public void com.company.project.module.app.web.AppFileController.downFile(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException,java.net.MalformedURLException
+09:11:30.112 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/base64Upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.base64Upload(java.util.Map)
+09:11:30.112 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.Fileupload(org.springframework.web.multipart.MultipartFile,java.lang.String)
+09:11:30.114 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getVersion],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getVersion(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:11:30.115 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/dict],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDict(com.company.project.core.model.QueryRequest)
+09:11:30.115 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getBaseInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getBaseInfo(com.company.project.core.model.QueryRequest)
+09:11:30.116 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getDeviceInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDeviceInfo()
+09:11:30.118 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/logout],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.logout(javax.servlet.http.HttpSession)
+09:11:30.120 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/loginVerify],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.isLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+09:11:30.123 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+09:11:30.124 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+09:11:30.124 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+09:11:30.127 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+09:11:30.129 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+09:11:30.368 logback [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+09:11:30.791 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@700fb871: startup date [Mon Dec 02 09:11:24 CST 2019]; root of context hierarchy
+09:11:30.849 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:11:30.849 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:11:30.849 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:11:30.884 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:11:31.567 logback [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09:11:31.567 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:11:31.597 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+09:11:31.630 logback [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:11:31.867 logback [main] INFO  com.conpany.project.DemoTest - Started DemoTest in 8.232 seconds (JVM running for 9.944)
+09:11:32.442 logback [main] INFO  o.s.t.c.t.TransactionContext - Began transaction (1) for test context [DefaultTestContext@15bfd87 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@666b91db, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@543e710e testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@18eed359, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f1fba17, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@335eadca, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3cef309d], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@11a67420]; rollback [false]
+09:11:33.267 logback [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+09:11:33.294 logback [main] INFO  o.s.j.support.SQLErrorCodesFactory - SQLErrorCodes loaded: [DB2, Derby, H2, HDB, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+09:11:33.319 logback [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener@548ad73b] to process 'after' execution for test: method [public void com.conpany.project.DemoTest.fun1()], instance [com.conpany.project.DemoTest@666b91db], exception [org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00942: 表或视图不存在
+
+### The error may involve com.company.project.module.inspect.dao.FaultMapper.updateFaultPlan-Inline
+### The error occurred while setting parameters
+### SQL: update updateFaultPlan ufp set ufp.status ='10',ufp.RE_START_DATE = to_date(extract(year from sysdate)||?,'yyyyMM/dd HH24:mi'),ufp.RE_END_DATE = to_date(extract(year from sysdate)||?,'yyyyMM/dd HH24:mi'),ufp.COMMIN_DATE = sysdate  where ufp.PLAN_UUID = ?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00942: 表或视图不存在
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00942: 表或视图不存在
+]
+org.springframework.transaction.UnexpectedRollbackException: Transaction rolled back because it has been marked as rollback-only
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:728)
+	at org.springframework.test.context.transaction.TransactionContext.endTransaction(TransactionContext.java:132)
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.afterTestMethod(TransactionalTestExecutionListener.java:224)
+	at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:94)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+09:11:33.332 logback [Thread-2] INFO  o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@700fb871: startup date [Mon Dec 02 09:11:24 CST 2019]; root of context hierarchy
+09:11:33.334 logback [Thread-2] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+09:11:33.353 logback [Thread-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+09:15:52.790 logback [main] INFO  com.conpany.project.DemoTest - Starting DemoTest on java01 with PID 6656 (started by Administrator in D:\workspace\ddy_tunnel\trunk\demo\tunnel_app)
+09:15:52.792 logback [main] INFO  com.conpany.project.DemoTest - The following profiles are active: dev
+09:15:52.857 logback [main] INFO  o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:15:52 CST 2019]; root of context hierarchy
+09:15:53.772 logback [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.6.Final
+09:15:55.169 logback [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:15:55.582 logback [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'mybatisConfigurer' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+09:15:56.483 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c30eb587] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:15:57.010 logback [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+09:15:58.272 logback [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+09:16:00.511 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/list],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.list(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.512 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.513 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/receivePlanStatus],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.receivePlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.514 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.515 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.515 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.516 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getXfPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getXfPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.516 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getPlanDetailByUuid],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getPlanDetailByUuid(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.518 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.Fileupload(org.springframework.web.multipart.MultipartFile,java.lang.String)
+09:16:00.519 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/downfile],methods=[GET]}" onto public void com.company.project.module.app.web.AppFileController.downFile(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException,java.net.MalformedURLException
+09:16:00.520 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/base64Upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.base64Upload(java.util.Map)
+09:16:00.522 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getVersion],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getVersion(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:16:00.523 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/dict],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDict(com.company.project.core.model.QueryRequest)
+09:16:00.524 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getDeviceInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDeviceInfo()
+09:16:00.524 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getBaseInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getBaseInfo(com.company.project.core.model.QueryRequest)
+09:16:00.527 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/logout],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.logout(javax.servlet.http.HttpSession)
+09:16:00.528 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/loginVerify],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.isLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+09:16:00.532 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+09:16:00.532 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+09:16:00.533 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+09:16:00.536 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+09:16:00.537 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+09:16:00.792 logback [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+09:16:02.434 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:15:52 CST 2019]; root of context hierarchy
+09:16:02.576 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:16:02.577 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:16:02.577 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:16:03.308 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:16:06.877 logback [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09:16:06.878 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:16:06.969 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+09:16:07.233 logback [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:16:08.858 logback [main] INFO  com.conpany.project.DemoTest - Started DemoTest in 17.441 seconds (JVM running for 19.084)
+09:16:11.119 logback [main] INFO  o.s.t.c.t.TransactionContext - Began transaction (1) for test context [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@58e5fbe5, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@335896bd]; rollback [false]
+09:16:11.947 logback [main] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+09:16:12.013 logback [main] INFO  o.s.j.support.SQLErrorCodesFactory - SQLErrorCodes loaded: [DB2, Derby, H2, HDB, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+09:16:12.048 logback [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener@727803de] to process 'after' execution for test: method [public void com.conpany.project.DemoTest.fun1()], instance [com.conpany.project.DemoTest@58e5fbe5], exception [org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "UFP"."PLAN_UUID": 标识符无效
+
+### The error may involve com.company.project.module.inspect.dao.FaultMapper.updateFaultPlan-Inline
+### The error occurred while setting parameters
+### SQL: update J302_SI_FAULT_PLAN ufp set ufp.status ='10',ufp.RE_START_DATE = to_date(extract(year from sysdate)||?,'yyyyMM/dd HH24:mi'),ufp.RE_END_DATE = to_date(extract(year from sysdate)||?,'yyyyMM/dd HH24:mi'),ufp.COMMIN_DATE = sysdate  where ufp.PLAN_UUID = ?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "UFP"."PLAN_UUID": 标识符无效
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "UFP"."PLAN_UUID": 标识符无效
+]
+org.springframework.transaction.UnexpectedRollbackException: Transaction rolled back because it has been marked as rollback-only
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:728)
+	at org.springframework.test.context.transaction.TransactionContext.endTransaction(TransactionContext.java:132)
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.afterTestMethod(TransactionalTestExecutionListener.java:224)
+	at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:94)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+09:16:12.068 logback [Thread-2] INFO  o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:15:52 CST 2019]; root of context hierarchy
+09:16:12.076 logback [Thread-2] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+09:16:12.098 logback [Thread-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+09:22:55.691 logback [main] INFO  com.conpany.project.DemoTest - Starting DemoTest on java01 with PID 1480 (started by Administrator in D:\workspace\ddy_tunnel\trunk\demo\tunnel_app)
+09:22:55.694 logback [main] INFO  com.conpany.project.DemoTest - The following profiles are active: dev
+09:22:55.802 logback [main] INFO  o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:22:55 CST 2019]; root of context hierarchy
+09:22:56.157 logback [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.6.Final
+09:22:57.543 logback [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:22:57.929 logback [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'mybatisConfigurer' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+09:22:58.548 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c30eb587] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:22:58.894 logback [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+09:22:59.870 logback [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+09:23:01.881 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/list],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.list(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.882 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getXfPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getXfPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.883 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/receivePlanStatus],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.receivePlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.883 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.884 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.884 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.885 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.885 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getPlanDetailByUuid],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getPlanDetailByUuid(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.887 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.Fileupload(org.springframework.web.multipart.MultipartFile,java.lang.String)
+09:23:01.889 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/base64Upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.base64Upload(java.util.Map)
+09:23:01.889 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/downfile],methods=[GET]}" onto public void com.company.project.module.app.web.AppFileController.downFile(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException,java.net.MalformedURLException
+09:23:01.891 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getVersion],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getVersion(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:23:01.892 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getBaseInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getBaseInfo(com.company.project.core.model.QueryRequest)
+09:23:01.892 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getDeviceInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDeviceInfo()
+09:23:01.893 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/dict],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDict(com.company.project.core.model.QueryRequest)
+09:23:01.896 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/loginVerify],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.isLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+09:23:01.897 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/logout],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.logout(javax.servlet.http.HttpSession)
+09:23:01.900 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+09:23:01.901 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+09:23:01.901 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+09:23:01.905 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+09:23:01.905 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+09:23:02.183 logback [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+09:23:02.691 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:22:55 CST 2019]; root of context hierarchy
+09:23:02.758 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:23:02.758 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:23:02.758 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:23:02.795 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:23:03.505 logback [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09:23:03.506 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:23:03.538 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+09:23:03.572 logback [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:23:03.942 logback [main] INFO  com.conpany.project.DemoTest - Started DemoTest in 9.164 seconds (JVM running for 10.447)
+09:23:05.150 logback [main] INFO  o.s.t.c.t.TransactionContext - Began transaction (1) for test context [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@66456506, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@69944a90]; rollback [false]
+09:23:06.043 logback [main] INFO  o.s.t.c.t.TransactionContext - Committed transaction for test: [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@66456506, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]
+09:23:06.050 logback [Thread-2] INFO  o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:22:55 CST 2019]; root of context hierarchy
+09:23:06.053 logback [Thread-2] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+09:23:06.068 logback [Thread-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+09:32:03.519 logback [main] INFO  com.conpany.project.DemoTest - Starting DemoTest on java01 with PID 11548 (started by Administrator in D:\workspace\ddy_tunnel\trunk\demo\tunnel_app)
+09:32:03.520 logback [main] INFO  com.conpany.project.DemoTest - The following profiles are active: dev
+09:32:03.561 logback [main] INFO  o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:32:03 CST 2019]; root of context hierarchy
+09:32:03.980 logback [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.6.Final
+09:32:04.726 logback [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:32:04.937 logback [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'mybatisConfigurer' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+09:32:05.361 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ec4a1f33] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:32:05.847 logback [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+09:32:06.713 logback [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+09:32:08.479 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/list],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.list(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.480 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getXfPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getXfPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.481 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.482 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.483 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.483 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/receivePlanStatus],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.receivePlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.483 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.484 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getPlanDetailByUuid],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getPlanDetailByUuid(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.486 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.Fileupload(org.springframework.web.multipart.MultipartFile,java.lang.String)
+09:32:08.487 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/base64Upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.base64Upload(java.util.Map)
+09:32:08.487 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/downfile],methods=[GET]}" onto public void com.company.project.module.app.web.AppFileController.downFile(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException,java.net.MalformedURLException
+09:32:08.489 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getVersion],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getVersion(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:32:08.492 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getDeviceInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDeviceInfo()
+09:32:08.493 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getBaseInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getBaseInfo(com.company.project.core.model.QueryRequest)
+09:32:08.493 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/dict],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDict(com.company.project.core.model.QueryRequest)
+09:32:08.496 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/logout],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.logout(javax.servlet.http.HttpSession)
+09:32:08.497 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/loginVerify],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.isLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+09:32:08.501 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+09:32:08.502 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+09:32:08.502 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+09:32:08.505 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+09:32:08.505 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+09:32:08.753 logback [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+09:32:09.223 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:32:03 CST 2019]; root of context hierarchy
+09:32:09.290 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:32:09.292 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:32:09.292 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:32:09.345 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:32:10.153 logback [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09:32:10.153 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:32:10.183 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+09:32:10.218 logback [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:32:10.484 logback [main] INFO  com.conpany.project.DemoTest - Started DemoTest in 7.933 seconds (JVM running for 8.774)
+09:32:14.073 logback [main] INFO  o.s.t.c.t.TransactionContext - Began transaction (1) for test context [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@7db06c50, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@1554eaa4]; rollback [false]
+09:32:14.292 logback [main] INFO  o.s.t.c.t.TransactionContext - Committed transaction for test: [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@7db06c50, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]
+09:32:14.296 logback [Thread-2] INFO  o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:32:03 CST 2019]; root of context hierarchy
+09:32:14.297 logback [Thread-2] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+09:32:14.317 logback [Thread-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+09:54:17.520 logback [main] INFO  com.conpany.project.DemoTest - Starting DemoTest on java01 with PID 10036 (started by Administrator in D:\workspace\ddy_tunnel\trunk\demo\tunnel_app)
+09:54:17.521 logback [main] INFO  com.conpany.project.DemoTest - The following profiles are active: dev
+09:54:17.605 logback [main] INFO  o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:54:17 CST 2019]; root of context hierarchy
+09:54:18.150 logback [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.6.Final
+09:54:19.548 logback [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:54:19.870 logback [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'mybatisConfigurer' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+09:54:20.440 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d9b096c7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:54:20.897 logback [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+09:54:21.745 logback [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+09:54:24.345 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/list],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.list(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.346 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getPlanDetailByUuid],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getPlanDetailByUuid(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.346 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.347 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getXfPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getXfPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.348 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.348 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.348 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.349 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/receivePlanStatus],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.receivePlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.351 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/downfile],methods=[GET]}" onto public void com.company.project.module.app.web.AppFileController.downFile(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException,java.net.MalformedURLException
+09:54:24.352 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.Fileupload(org.springframework.web.multipart.MultipartFile,java.lang.String)
+09:54:24.353 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/base64Upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.base64Upload(java.util.Map)
+09:54:24.354 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getVersion],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getVersion(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:54:24.355 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getBaseInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getBaseInfo(com.company.project.core.model.QueryRequest)
+09:54:24.355 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getDeviceInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDeviceInfo()
+09:54:24.356 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/dict],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDict(com.company.project.core.model.QueryRequest)
+09:54:24.359 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/logout],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.logout(javax.servlet.http.HttpSession)
+09:54:24.362 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/loginVerify],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.isLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+09:54:24.366 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+09:54:24.368 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+09:54:24.368 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+09:54:24.374 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+09:54:24.375 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+09:54:24.799 logback [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+09:54:25.483 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:54:17 CST 2019]; root of context hierarchy
+09:54:25.848 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:54:25.850 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:54:25.850 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:54:25.980 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:54:27.771 logback [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09:54:27.772 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:54:27.804 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+09:54:27.840 logback [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:54:28.094 logback [main] INFO  com.conpany.project.DemoTest - Started DemoTest in 11.399 seconds (JVM running for 12.353)
+09:54:29.110 logback [main] INFO  o.s.t.c.t.TransactionContext - Began transaction (1) for test context [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@2b6ee447, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@9cb927e]; rollback [false]
+09:54:29.324 logback [main] INFO  o.s.t.c.t.TransactionContext - Committed transaction for test: [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@2b6ee447, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]
+09:54:29.328 logback [Thread-2] INFO  o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:54:17 CST 2019]; root of context hierarchy
+09:54:29.329 logback [Thread-2] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+09:54:29.345 logback [Thread-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+09:57:34.609 logback [main] INFO  com.conpany.project.DemoTest - Starting DemoTest on java01 with PID 7892 (started by Administrator in D:\workspace\ddy_tunnel\trunk\demo\tunnel_app)
+09:57:34.610 logback [main] INFO  com.conpany.project.DemoTest - The following profiles are active: dev
+09:57:34.662 logback [main] INFO  o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:57:34 CST 2019]; root of context hierarchy
+09:57:35.379 logback [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.6.Final
+09:57:36.373 logback [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+09:57:36.637 logback [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'mybatisConfigurer' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+09:57:37.138 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$69130d14] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+09:57:37.505 logback [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+09:57:39.623 logback [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+09:57:41.323 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/list],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.list(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.324 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getPlanDetailByUuid],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getPlanDetailByUuid(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.325 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.325 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.326 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/uploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.uploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.326 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/oldUploadByFault],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.oldUploadByFault(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.327 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/getXfPlan],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.getXfPlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.327 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/fault/plan/receivePlanStatus],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFaultController.receivePlan(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.330 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/base64Upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.base64Upload(java.util.Map)
+09:57:41.330 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/upload],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppFileController.Fileupload(org.springframework.web.multipart.MultipartFile,java.lang.String)
+09:57:41.331 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/module/app/file/downfile],methods=[GET]}" onto public void com.company.project.module.app.web.AppFileController.downFile(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException,java.net.MalformedURLException
+09:57:41.332 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getVersion],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getVersion(com.company.project.core.model.QueryRequest,javax.servlet.http.HttpSession)
+09:57:41.333 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getBaseInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getBaseInfo(com.company.project.core.model.QueryRequest)
+09:57:41.333 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/getDeviceInfo],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDeviceInfo()
+09:57:41.334 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/info/dict],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppInfoController.getDict(com.company.project.core.model.QueryRequest)
+09:57:41.336 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/logout],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.logout(javax.servlet.http.HttpSession)
+09:57:41.338 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/app/loginVerify],methods=[POST]}" onto public com.company.project.core.Result com.company.project.module.app.web.AppLoginController.isLogin(java.lang.String,java.lang.String,java.lang.String,javax.servlet.http.HttpSession)
+09:57:41.341 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+09:57:41.342 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+09:57:41.342 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+09:57:41.346 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+09:57:41.346 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+09:57:41.580 logback [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+09:57:42.056 logback [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:57:34 CST 2019]; root of context hierarchy
+09:57:42.120 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:57:42.120 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:57:42.120 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:57:42.158 logback [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+09:57:42.795 logback [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+09:57:42.795 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+09:57:42.823 logback [main] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+09:57:42.853 logback [main] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+09:57:43.102 logback [main] INFO  com.conpany.project.DemoTest - Started DemoTest in 9.345 seconds (JVM running for 10.273)
+09:57:43.661 logback [main] INFO  o.s.t.c.t.TransactionContext - Began transaction (1) for test context [DefaultTestContext@3d0f8e03 testClass = DemoTest, testInstance = com.conpany.project.DemoTest@813ab53, testMethod = fun1@DemoTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6366ebe0 testClass = DemoTest, locations = '{}', classes = '{class com.company.project.TunnelAppApplication, class com.company.project.TunnelAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.SpringBootTestContextCustomizer@6f1fba17, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@335eadca, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2b2948e2, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@49fc609f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]]]; transaction manager [org.springframework.jdbc.datasource.DataSourceTransactionManager@5030997b]; rollback [false]
+09:57:44.502 logback [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener@727803de] to process 'after' execution for test: method [public void com.conpany.project.DemoTest.fun1()], instance [com.conpany.project.DemoTest@813ab53], exception [java.lang.NullPointerException]
+org.springframework.transaction.UnexpectedRollbackException: Transaction rolled back because it has been marked as rollback-only
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:728)
+	at org.springframework.test.context.transaction.TransactionContext.endTransaction(TransactionContext.java:132)
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.afterTestMethod(TransactionalTestExecutionListener.java:224)
+	at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:94)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+09:57:44.511 logback [Thread-2] INFO  o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@1e16c0aa: startup date [Mon Dec 02 09:57:34 CST 2019]; root of context hierarchy
+09:57:44.513 logback [Thread-2] INFO  o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+09:57:44.531 logback [Thread-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed

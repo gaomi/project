@@ -1,0 +1,372 @@
+#faultCheckDialog .checkBlock {
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 100px;
+    margin-top: 10px;
+}
+.opinion, .Jxcopinion {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    width: 100px;
+    height: 90px;
+    margin-top: -45px;
+    text-align: center;
+    z-index: 99;
+}
+.off_vHide{
+    width: 180px;
+    height: 300px;
+    margin-top: -120px;
+}
+.opinion button:first-child, .Jxcopinion button:first-child {
+    margin-bottom: 22px;
+}
+.opinion button:nth-child(2){
+    display: block;
+    margin:90px 0 22px 65px;
+
+}
+.opinion button:nth-child(3){
+    float: left;
+}
+.opinion select{
+    width: 120px;
+    height: 32px;
+    margin-left:5px;
+    float: right;
+}
+.opinion p {
+    cursor: pointer;
+}
+
+.smallimage {
+    position: absolute;
+    top: 5px;
+    width: 100%;
+    height: 80px;
+    /*overflow: hidden;*/
+}
+
+.smallimage ul {
+    height: 80px;
+}
+
+.smallimage li {
+    float: left;
+    list-style: none;
+    width: 96px;
+    height: 80px;
+    box-shadow: 0 0 1px gray;
+    margin: 0 9px;
+    cursor: pointer;
+}
+
+.smallimage img {
+    width: 96px;
+    height: 80px;
+    display: block;
+}
+.menulist{
+    padding-left: 20px;
+}
+.menulist li {
+    overflow: hidden;
+}
+
+.menulist li:first-child {
+    box-shadow: 0 0 4px #000;
+}
+
+#faultCheckDialog .swiper-container {
+    margin: 0 0;
+}
+
+/*大图片展示*/
+#faultCheckDialog .big {
+    width: 450px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+#faultCheckDialog .big_next {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    background-color: gray;
+    cursor: pointer;
+}
+
+#faultCheckDialog .big_pver {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    background-color: gray;
+    cursor: pointer;
+}
+
+#faultCheckDialog .big ul {
+    height: 400px;
+}
+
+#faultCheckDialog .big li {
+    float: left;
+}
+
+#faultCheckDialog .big img,.work_right img ,.device_check_swiper img{
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+/*头部导航*/
+
+#faultCheckDialog .next, #faultCheckDialog .prve {
+    cursor: pointer;
+    display: none;
+}
+
+#faultCheckDialog .prve .fa {
+    left: 0;
+}
+
+.next > .carousel-control, .prve > .carousel-control {
+    color: #000;
+    background: #fff;
+    width: 24px;
+    text-align: center;
+    opacity: 1;
+    height: 88px;
+    top: -4px;
+}
+.carousel-control>.fa-angle-right{
+    left: 10px;
+}
+/* img存储内容表格 */
+#faultCheckDialog .table-photo {
+    width: 600px;
+    margin: 0 auto;
+}
+#fault_check_table tr, #fault_door_table tr {
+    cursor: pointer;
+}
+#fault_check_table thead{
+    background-color: #e4f0f7;
+    opacity: 0.8;
+    color: #333;
+    font-weight: bold;
+}
+#fault_check_table>thead>tr>th{
+    border: 1px solid #a3becc;
+}#fault_check_table>tbody>tr>td{
+    border: 1px solid #c9e1ee;
+}
+#faultCheckDialog .row {
+    margin: 0;
+}
+
+/*页面加载时的状态*/
+.NoTimeLine, .NoTime {
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.outer-ceng,.gdshShuYin{
+    position: absolute;
+    top: 0;
+}
+
+.swiper-slide {
+    position: relative;
+}
+
+/*door，check，list，css*/
+.work-timeline {
+    width: 740px;
+    margin: 0 auto;
+}
+
+.timeline {
+    min-height: 434px;
+}
+
+.work_left {
+    height: 100%;
+    width: 200px;
+    float: left;
+    border: 1px solid #ddd;
+}
+
+.work_statue {
+    width: 100%;
+    height: 60px;
+    padding-left: 20px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+.work_scroll_box {
+    width: 100%;
+    height: 430px;
+    overflow: hidden;
+}
+
+.work_scroll {
+    width: 215px;
+    height: 430px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.timeline {
+    margin-bottom: 0;
+}
+
+/* 大图片 */
+
+.work_right {
+    width: 500px;
+    height: 400px;
+    float: left;
+    margin: 0 10px;
+}
+.groupBtnAll{
+    height: 34px;
+    width:370px;
+    margin: 10px 0 0 50px;
+}
+.groupBtnAll button{
+    float: left;
+    margin-left: 10px;
+}
+.groupBtnAll .reason{
+    width: 115px;
+    height: 34px;
+    border: 1px solid #3c8dbc;
+    float: left;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.groupBtnAll .notPass{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+/* 检查内容的表格 */
+.table-time {
+    margin-top: 10px;
+    width: 400px;
+}
+
+.timeline > li > .timeline-item {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 0px 3px gray;
+    -webkit-box-shadow: 0px 0px 3px gray;
+    cursor: pointer;
+}
+
+.menulist p{
+    text-align: center;
+}
+.box-max-height{
+    max-height: 600px;
+    overflow-y: auto;
+}
+.gdshHeader,.sbshHeader{
+    width: 100%;
+    background-color: #f7f7f7;
+    border-top: 1px solid  #dad9d9;
+    border-bottom: 1px solid  #dad9d9;
+    color: #063b59;
+    font-weight: bold;
+    overflow: hidden;
+}
+.sbshHeader{
+    border-top: 0;
+    height: 30px;
+    line-height: 30px;
+}
+.box-body{
+    padding-top:0;
+    padding-bottom: 0;
+}
+/* 进行中的图片样式 */
+
+.row-style{
+    border: 1px solid #c2d1e8 ;
+    height: 40px;
+    line-height: 40px;
+}
+.col-label{
+    text-align: right;
+}
+.sbshBtnCha{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.form-inline .form_timeGd{
+    margin-bottom: 0;
+}
+.xqMenuLeft ul{
+    padding-left: 0;
+}
+.xqMenuLeft .MenuBuWei{
+    display: inline-block;
+    width: 240px;
+    padding-left: 10px;
+}
+.xqBottomAll{
+    height: 338px;
+    border-top:1px solid #5eb0d7 ;
+    border-bottom:1px solid #5eb0d7 ;
+}
+.xqMiddleAll{
+    margin-bottom: 20px;
+    border-bottom: 1px solid #5eb0d7;
+}
+.xqMenuLeft li{
+    cursor: pointer;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #5eb0d7 ;
+    border-top:0;
+    background-color: rgba(94,176,215,0.1);
+}
+.xqMenuLeft li:last-child {
+    border-bottom: 1px solid #c9e1ee;
+}
+.xqMenuLeft .MenuChildHead{
+    margin-bottom: 0;
+    border: 1px solid #5eb0d7 ;
+    border-top:0;
+    padding-left:10px ;
+    background-color: rgba(56,171,225,0.03);
+}
+.xqMenuLeft .MenuChildHead span{
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    font-size:14px;
+    font-weight: bold;
+}
+.xqMenuLeft .MenuChildHead span:first-child{
+    width: 240px;
+}
+.device_check_swiper{
+    height: 336px;
+    margin-bottom: 10px;
+    position: relative;
+}
+/*展开全部select按钮*/
+.device_change_height{
+    height: 49px;
+    overflow: hidden;
+}

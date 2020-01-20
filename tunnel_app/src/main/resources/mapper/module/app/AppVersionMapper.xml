@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.app.dao.AppVersionMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.module.app.model.AppVersion">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="VERSION_NO" jdbcType="VARCHAR" property="versionNo" />
+    <result column="DOWNLOAD_URL" jdbcType="VARCHAR" property="downloadUrl" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="APP_TYPE" jdbcType="CHAR" property="appType" />
+  </resultMap>
+</mapper>

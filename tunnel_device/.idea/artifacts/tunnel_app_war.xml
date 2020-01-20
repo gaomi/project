@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tunnel_app:war">
+    <output-path>$PROJECT_DIR$/../tunnel_app/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>tunnel_app</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="tunnel_app.war">
+      <element id="artifact" artifact-name="tunnel_app:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdMaintainInfoMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdMaintainInfo">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="LINE_NAME" jdbcType="VARCHAR" property="lineName"/>
+        <result column="SEGMENT_RANGE" jdbcType="VARCHAR" property="segmentRange"/>
+        <result column="FAULT_DESC" jdbcType="VARCHAR" property="faultDesc"/>
+        <result column="DIRECTION" jdbcType="VARCHAR" property="direction"/>
+        <result column="DUCT_LOC" jdbcType="VARCHAR" property="ductLoc"/>
+        <result column="DISE_DESC" jdbcType="VARCHAR" property="diseDesc"/>
+        <result column="DEAL_TYPE" jdbcType="VARCHAR" property="dealType"/>
+        <result column="CLASSIFY" jdbcType="VARCHAR" property="classify"/>
+        <result column="TUNNEL" jdbcType="VARCHAR" property="tunnel"/>
+        <result column="BOSS_NAME" jdbcType="VARCHAR" property="bossName"/>
+        <result column="FOLLOW_WORK" jdbcType="VARCHAR" property="followWork"/>
+        <result column="MATERIAL_CONSUMPTION" jdbcType="VARCHAR" property="materialConsumption"/>
+        <result column="AFTER_LEVEL" jdbcType="DECIMAL" property="afterLevel"/>
+        <result column="CHA_LEVEL" jdbcType="DECIMAL" property="chaLevel"/>
+        <result column="WORK_ORDER_ID" jdbcType="VARCHAR" property="workOrderId"/>
+        <result column="DATA_TIME" jdbcType="VARCHAR" property="dataTime"/>
+        <result column="BEFOR_LEVEL" jdbcType="DECIMAL" property="beforLevel"/>
+        <result column="PEOPLE_COUNT" jdbcType="VARCHAR" property="peopleCount"/>
+        <result column="DEAL_CONDITION" jdbcType="VARCHAR" property="dealCondition"/>
+        <result column="PARTICIPANT" jdbcType="VARCHAR" property="participant"/>
+    </resultMap>
+
+    <insert id="insertSeg" parameterType="java.util.Map">
+    insert  into J302_TD_MAINTAIN_SEGMENT values (#{UUID},#{MAIN},#{SEG})
+  </insert>
+
+    <select id="selectByCon" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from J302_TD_MAINTAIN_INFO where uuid in (
+        <choose>
+            <when test="_parameter.containsKey('startDuct') and startDuct != ''">
+                select UUID from J302_TD_MAINTAIN_FAULT where 1 = 1
+                <choose>
+                    <when test="_parameter.containsKey('endDuct') and endDuct !=''">
+                        and (to_number(trim(duct_code)) >= #{startDuct} and to_number(trim(duct_code)) &lt;= #{endDuct})
+                        or (to_number(trim(duct_code2)) &lt;= #{endDuct} and to_number(trim(duct_code2)) >= #{startDuct})
+                        or(to_number(trim(duct_code)) >= #{startDuct} and to_number(trim(duct_code2)) &lt;= #{endDuct})
+                    </when>
+                    <otherwise>
+                        and to_number(trim(duct_code)) &lt;=#{startDuct} and to_number(trim(duct_code2)) >= #{startDuct}
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                select MAINTAIN_UUID from J302_TD_MAINTAIN_SEGMENT where NO_GROUP_UUID = #{segment}
+            </otherwise>
+        </choose>
+        )
+        <if test="_parameter.containsKey('faultDesc') and faultDesc != ''">
+            and ( DEAL_CONDITION like '%' || #{faultDesc}|| '%' or DISE_DESC like '%' || #{faultDesc}|| '%' or DEAL_TYPE like '%' || #{faultDesc}|| '%' )
+        </if>
+        and FAULT_UUID is not null
+        order by DATA_TIME desc
+    </select>
+    <select id="selectByDevice" resultMap="BaseResultMap" parameterType="java.util.Map">
+--         select * from J302_TD_MAINTAIN_INFO where UUID in (
+--         select DISTINCT(MAINTAIN_UUID) from J302_TD_DEVICE_MAINTAIN where DEVICE_UUID=#{deviceId}
+--         )  order by DATA_TIME desc
+
+        select * from J302_METRO_FAULT_INFO_GW where DEVICE_ID = #{deviceId}
+        order by DATA_TIME desc
+    </select>
+
+    <select id="findSegment" resultType="java.util.Map">
+    select aa.*,bb.*,cc.UUID ID from (
+        select * from J302_TD_MAINTAIN_INFO where TUNNEL like '%隧道%'
+        )aa inner join
+        (
+             select MAINTAIN_UUID,
+             <![CDATA[  max(NO_GROUP_UUID)  NO_GROUP_UUID ]]>
+             from J302_TD_MAINTAIN_SEGMENT GROUP BY MAINTAIN_UUID
+    )bb on aa.UUID = bb.MAINTAIN_UUID
+    left join
+		J302_TD_SEGMENT_VIEW cc
+		on cc.NO_GROUP_UUID = bb.NO_GROUP_UUID
+  </select>
+
+    <select id="getDevice" resultType="java.util.Map" parameterType="java.util.Map">
+    select
+    aa.DEVICE_ID,aa.NID,aa.DEVICE_NAME,aa.HIGH_LOW,dd.NO_GROUP_UUID
+    from (
+    select DEVICE_ID,NID,LINE_ID,DEVICE_NAME,START_STA,END_STA,HIGH_LOW from J302_METRO_DEVICE_INFO_GW where MAJOR like '%04%' and line_id = #{line_code}
+    ) aa inner join
+    (
+        select DEVICE_UUID,max(NO_GROUP_UUID) NO_GROUP_UUID from J302_TD_DEVICE_SEGMENT  group by  DEVICE_UUID
+        )
+	 dd
+	on dd.DEVICE_UUID = aa.DEVICE_ID
+
+    </select>
+    <insert id="saveDeviceMainTain" parameterType="java.util.Map">
+        insert into J302_TD_DEVICE_MAINTAIN(UUID,DEVICE_UUID,MAINTAIN_UUID) values (#{UUID},#{DEVICE_UUID},#{MAINTAIN_UUID})
+    </insert>
+    <update id="updateFault" parameterType="java.util.Map">
+        update J302_TD_MAINTAIN_INFO set FAULT_UUID = #{ID}  where UUID = #{MAINTAIN_UUID}
+    </update>
+
+</mapper>

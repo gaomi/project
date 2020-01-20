@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- quartz -->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+        <!--这里使用的是spring中已经配置好的数据源；当然如果不配置则使用quartz.properties中的数据库配置。-->
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="startupDelay" value="100"/>
+        <property name="schedulerName" value="MyScheduler"/>
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+        <!--启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了-->
+        <property name="overwriteExistingJobs" value="true"/>
+        <property name="autoStartup" value="true"/>
+        <property name="configLocation" value="classpath:quartz.properties"/>
+    </bean>
+
+</beans>

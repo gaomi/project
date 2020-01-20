@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.sys.dao.SysMenuMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.sys.model.SysMenu">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="MENU_TYPE" jdbcType="DECIMAL" property="menuType"/>
+        <result column="ICON" jdbcType="VARCHAR" property="icon"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="STATE" jdbcType="DECIMAL" property="state"/>
+        <result column="URL" jdbcType="VARCHAR" property="url"/>
+        <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId"/>
+        <result column="TYPE" jdbcType="DECIMAL" property="type"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="STATUS" jdbcType="DECIMAL" property="status"/>
+        <result column="PERMISSION" jdbcType="VARCHAR" property="permission"/>
+        <result column="SEQ" jdbcType="DECIMAL" property="seq"/>
+        <result column="MENU_LEVEL" jdbcType="VARCHAR" property="menuLevel"/>
+        <result column="OPERATOR" jdbcType="VARCHAR" property="operator"/>
+        <result column="OPERATE_TIME" jdbcType="TIMESTAMP" property="operateTime"/>
+        <result column="OPERATE_IP" jdbcType="VARCHAR" property="operateIp"/>
+    </resultMap>
+    <select id="findUserPermissions" resultMap="BaseResultMap">
+  	select m.permission from J302_TD_SYS_role r
+        left join J302_TD_SYS_user_role ur on(r.id = ur.role_id)
+        left join J302_TD_SYS_user u on(u.id = ur.user_id)
+        left join J302_TD_SYS_role_menu rm on(rm.role_id = r.id)
+        left join J302_TD_SYS_menu m on(m.id = rm.menu_id )
+        where u.user_name = #{userName} and m.permission is not null
+  </select>
+
+    <!-- 根据用户ID查询权限 -->
+    <select id="findPermissionByUserId" parameterType="string" resultType="String">
+      SELECT DISTINCT p.permission FROM J302_TD_SYS_menu p
+    WHERE p.id IN
+      (SELECT r.MENU_ID FROM J302_TD_SYS_role_menu r
+        WHERE EXISTS
+        (SELECT a.role_id FROM J302_TD_SYS_user_role a
+            WHERE a.user_id = #{userId}))
+ 	</select>
+
+    <select id="findUserMenuByUserId" resultType="com.company.project.module.sys.model.SysMenu">
+         select distinct m.*
+           from j302_td_sys_user u
+           left join j302_td_sys_user_role ur
+             on ur.user_id = u.id
+           left join j302_td_sys_role_menu rm
+             on rm.role_id = ur.role_id
+           inner join j302_td_sys_menu m
+             on m.id = rm.menu_id
+          where u.id = #{id}
+    </select>
+
+    <update id="changeToTop" parameterType="java.util.List">
+        update j302_td_sys_menu set parent_id = 0 where id in ( select a.id from (
+        (select id from j302_td_sys_menu where parent_id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{menuIds}
+        </foreach>
+        ) ) a )
+    </update>
+
+    <select id="selectMaxId" resultType="Integer">
+      select max(to_number(t.id)) maxid from J302_TD_SYS_MENU t
+    </select>
+    <select id="getHeadMenu" resultType="map">
+        select distinct m.*
+           from j302_td_sys_user u
+           left join j302_td_sys_user_role ur
+             on ur.user_id = u.id
+           left join j302_td_sys_role_menu rm
+             on rm.role_id = ur.role_id
+           inner join j302_td_sys_menu m
+             on m.id = rm.menu_id
+          where u.id = #{id} and m.parent_id = '0' order by m.seq
+    </select>
+
+    <resultMap id="AsideResultMap" type="java.util.Map">
+        <id column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="URL" jdbcType="DECIMAL" property="url"/>
+        <result column="PAR_NAME" jdbcType="DECIMAL" property="par_name"/>
+        <collection property="item" ofType="java.util.Map" javaType="java.util.List">
+            <result column="NAME_V" jdbcType="VARCHAR" property="name"/>
+            <result column="URL_V" jdbcType="VARCHAR" property="url"/>
+        </collection>
+    </resultMap>
+    <select id="getAsideMenu" resultMap="AsideResultMap" parameterType="map">
+        with user_menu as (select distinct m.*
+           from j302_td_sys_user u
+           left join j302_td_sys_user_role ur
+             on ur.user_id = u.id
+           left join j302_td_sys_role_menu rm
+             on rm.role_id = ur.role_id
+           inner join j302_td_sys_menu m
+             on m.id = rm.menu_id
+          where u.id = #{id} and m.type='1' and m.status = '1'
+          )
+         select d1.name,d1.url,d1.par_name,d2.name_v,d2.url_v from (select um.id,umer.name par_name,um.name,um.url,um.seq,um.menu_level from user_menu um right join
+				 (select * from user_menu where url=#{path} and parent_id = '0') umer on um.parent_id = umer.id
+					)
+          d1 left join (select parent_id,name name_v,url url_v,seq seq_v,menu_level menu_level_v
+          from user_menu) d2 on d1.id = d2.parent_id
+        ORDER BY d1.seq,d2.seq_v
+    </select>
+</mapper>

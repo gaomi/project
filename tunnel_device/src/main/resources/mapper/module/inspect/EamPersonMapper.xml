@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.inspect.dao.EamPersonMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.inspect.model.EamPerson">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="PERSONID" jdbcType="VARCHAR" property="personId"/>
+        <result column="PERSONNAME" jdbcType="VARCHAR" property="personName"/>
+        <result column="STATUS" jdbcType="CHAR" property="status"/>
+        <result column="INSPECT_PASSWORD" jdbcType="VARCHAR" property="inspectPassword"/>
+        <result column="INSERT_DATE" jdbcType="TIMESTAMP" property="insertDate"/>
+    </resultMap>
+
+    <update id="updatePassWord" parameterType="java.util.Map">
+    update J302_EAM_PERSON set INSEPCT_PASSWORD =#{newPassword} where PERSONID=#{personId}
+  </update>
+
+    <select id="selectPersonAll" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select UUID,PERSONID,PERSONNAME,STATUS,INSERT_DATE from J302_EAM_PERSON where 1=1
+        <if test="_parameter.containsKey('keyWord') and keyWord != ''">
+            and PERSONNAME like '%'||#{keyWord}||'%' or PERSONID like '%'||#{keyWord}||'%'
+        </if>
+    </select>
+
+    <insert id="batchSaveEamPerson" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into J302_EAM_PERSON (UUID, PERSONID,PERSONNAME,INSPECT_PASSWORD,STATUS,INSERT_DATE)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() UUID,
+            #{item.personId,jdbcType = DECIMAL} PERSONID ,
+            #{item.personName,jdbcType =VARCHAR} PERSONNAME,
+            #{item.inspectPassword,jdbcType =VARCHAR} INSPECT_PASSWORD ,
+            #{item.status,jdbcType =VARCHAR} STATUS ,
+            sysdate INSERT_DATE
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+    <update id="batchUpdateEamPerson" parameterType="java.util.List">
+        begin
+        <foreach collection="list" item="item">
+            update J302_EAM_PERSON set STATUS =#{item.status} where PERSONID=#{item.personId};
+        </foreach>
+        end;
+    </update>
+
+</mapper>

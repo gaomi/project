@@ -1,0 +1,37 @@
+package com.company.project.core.util.poi.pojo;
+
+
+import java.io.File;
+import java.util.List;
+
+/**
+ * 封装解析Excel完成后的内容
+ */
+public class ExcelSet {
+
+    /**
+     * 工作表列表
+     */
+    private List<ExcelSheet> sheets;
+
+    /**
+     * excel文件信息
+     */
+    private File excelFile;
+
+    public List<ExcelSheet> getSheets() {
+        return sheets;
+    }
+
+    public void setSheets(List<ExcelSheet> sheets) {
+        this.sheets = sheets;
+    }
+
+    public File getExcelFile() {
+        return excelFile;
+    }
+
+    public void setExcelFile(File excelFile) {
+        this.excelFile = excelFile;
+    }
+}

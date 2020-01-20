@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdDuctDetailMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdDuctDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="SEGMENT_UUID" jdbcType="VARCHAR" property="segmentUuid" />
+    <result column="DUCT" jdbcType="DECIMAL" property="duct" />
+    <result column="JH_COUNT" jdbcType="DECIMAL" property="jhCount" />
+    <result column="BJ_COUNT" jdbcType="DECIMAL" property="bjCount" />
+    <result column="WG_COUNT" jdbcType="DECIMAL" property="wgCount" />
+    <result column="TC_COUNT" jdbcType="DECIMAL" property="tcCount" />
+    <result column="WX_COUNT" jdbcType="DECIMAL" property="wxCount" />
+    <result column="BH_COUNT" jdbcType="DECIMAL" property="bhCount" />
+    <result column="BH_LEVEL" jdbcType="VARCHAR" property="bhLevel" />
+    <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+  </resultMap>
+
+  <insert id="batchSaveProject" parameterType="java.util.List">
+    insert into J302_TD_DUCT_DETAIL (UUID, SEGMENT_UUID, DUCT)
+    (select temp.* from (
+    <foreach collection="list" item="item" separator="union all">
+      select
+      #{item.uuid,jdbcType = VARCHAR} UUID,
+      #{item.segmentUuid,jdbcType = VARCHAR} SEGMENT_UUID,
+      #{item.duct,jdbcType = DECIMAL} DUCT
+      from dual
+    </foreach>
+    ) temp
+    )
+  </insert>
+
+  <update id="batchUpdateProject" parameterType="java.util.List">
+
+    <foreach collection="list" item="item" separator="">
+     update  J302_TD_DUCT_DETAIL set BH_COUNT=#{item.bhCount},BH_LEVEL=#{item.bhLevel}
+     where DUCT=#{item.duct}  and SEGMENT_UUID=#{item.segmentUuid};
+    </foreach>
+  </update>
+
+
+  <update id="updateByCon" parameterType="com.company.project.module.data.model.TdDuctDetail">
+    update  J302_TD_DUCT_DETAIL set BH_LEVEL = #{bhLevel},BH_COUNT =#{bhCount} where SEGMENT_UUID=#{segmentUuid} and DUCT = #{duct}
+  </update>
+
+  <select id="getDiseBySegment" parameterType="java.util.Map" resultType="java.util.Map">
+
+	    select aa.JH,aa.BJ,aa.WG,aa.TC,aa.WX,aa.BH,aa.BH_LEVEL,bb.DUCT_CODE,bb.MILEAGE_CODE from
+(select  JH_COUNT JH,BJ_COUNT BJ,WG_COUNT WG,TC_COUNT TC,WX_COUNT WX,BH_COUNT BH,BH_LEVEL,duct from  J302_TD_DUCT_DETAIL where SEGMENT_UUID in <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>) aa
+right join (
+select DUCT_CODE,seq,MILEAGE_CODE from J302_TD_DUCT_INFO where SEGMENT_UUID in
+    <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+    #{item_segment}
+  </foreach>
+) bb on aa.duct = bb.duct_code ORDER BY bb.seq
+
+  </select>
+
+  <select id="getSegmentStatis" parameterType="java.lang.String" resultType="java.util.Map">
+  select FAULT_LEVEL from J302_METRO_FAULT_INFO_GW where  SEGMENT_UUID in <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>  and status = '20'
+</select>
+
+  <update id="updateWeixiu" parameterType="java.util.List">
+    begin
+    <foreach collection="list" item="item">
+      update  J302_TD_DUCT_DETAIL set WX_COUNT = #{item.COUNT} where SEGMENT_UUID=#{item.SEGMENT} and DUCT = #{item.DUCT}
+    </foreach>
+  end;
+  </update>
+</mapper>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdSlDataMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdSlData">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="DUCT_UUID" jdbcType="VARCHAR" property="ductUuid"/>
+        <result column="RECODE_DATE" jdbcType="TIMESTAMP" property="recodeDate"/>
+        <result column="RECODE_VALUE" jdbcType="DECIMAL" property="recodeValue"/>
+        <result column="IS_DENSITY" jdbcType="CHAR" property="isDensity"/>
+        <result column="SEGMENT_UUID" jdbcType="VARCHAR" property="segmentUuid"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="FLB" jdbcType="VARCHAR" property="flb"/>
+        <result column="GH" jdbcType="VARCHAR" property="gh"/>
+        <result column="BDQK" jdbcType="VARCHAR" property="bdqk"/>
+    </resultMap>
+
+    <select id="initSLXData" resultType="java.util.Map" parameterType="java.util.Map">
+        select aa.DUCT_CODE,aa.MILEAGE_CODE from
+        (
+        select UUID,DUCT_CODE,MILEAGE_CODE from J302_TD_DUCT_INFO where SEGMENT_UUID in <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+        #{item_segment}
+    </foreach> ORDER BY to_number(SEQ)
+        ) aa inner join
+        (
+        select DUCT_CODE,DUCT_UUID from J302_TD_SL_DATA where IS_DENSITY = #{isDensity} and SEGMENT_UUID in <foreach collection="group_segment" item="item_segment" open="("
+                                                                                                                     close=")" separator=",">
+        #{item_segment}
+    </foreach> GROUP BY DUCT_UUID,DUCT_CODE
+        ) bb
+        on aa.DUCT_CODE=bb.DUCT_CODE
+
+    </select>
+
+    <select id="getZMScore" resultType="java.lang.Integer" parameterType="java.util.Map">
+        WITH
+        msi
+        as(
+        select duct_code,RECODE_VALUE,to_char(RECODE_DATE,'YYYY') RECODE_DATE from J302_TD_SL_DATA where IS_DENSITY = '0' and
+        SEGMENT_UUID in
+        <foreach collection="UUID_LIST" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        and to_char(RECODE_DATE,'YYYY') in (#{SL_THIS},#{SL_SHOW})
+        )
+
+        select count(1) from (
+        select
+        max(abs(nvl(round((mm.RECODE_VALUE-nn.RECODE_VALUE)*1000,1),0))) RECODE_VALUE
+        from
+        (
+        select msi.* from msi where msi.RECODE_DATE = #{SL_SHOW}
+        ) mm
+        left outer join
+        (
+        select msi.* from msi where msi.RECODE_DATE = #{SL_THIS}
+        ) nn on mm.duct_code = nn.duct_code
+        ) temp where temp.RECODE_VALUE > #{STANDARD}
+
+    </select>
+
+    <select id="getSlByName" resultType="java.util.Map" parameterType="java.util.Map">
+        WITH
+        msi
+        as(
+        select aa.duct_code,aa.seq,to_char(bb.RECODE_DATE,'YYYY') RECODE_DATE,bb.RECODE_VALUE from
+        (
+        select UUID,duct_code,MILEAGE_CODE,seq from J302_TD_DUCT_INFO where SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        <if test="_parameter.containsKey('pointMeter') and pointMeter != null">
+            and MILEAGE_CODE
+            between
+            to_number(#{pointMeter})-to_number(#{marginMeter})
+            and
+            to_number(#{pointMeter})+to_number(#{marginMeter})
+        </if>
+        )aa inner join
+        (
+        select duct_code,RECODE_VALUE,RECODE_DATE,IS_DENSITY from J302_TD_SL_DATA where IS_DENSITY = #{isDensity} and SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        )bb on aa.duct_code=bb.duct_code
+        )
+
+
+        select pp.duct_code,oo.RECODE_DATE, oo.RECODE_VALUE from
+        (
+        select duct_code,seq from msi GROUP BY duct_code,seq
+        ) pp left join
+        (
+        select
+        mm.duct_code,mm.RECODE_DATE, nvl(round((mm.RECODE_VALUE-nn.RECODE_VALUE)*1000,2),0) RECODE_VALUE
+        from
+        (
+        select msi.* from msi where msi.RECODE_DATE = #{show_key}
+        ) mm
+        left outer join
+        (
+        select msi.* from msi where msi.RECODE_DATE = #{init_date}
+        ) nn on mm.duct_code = nn.duct_code
+
+        ) oo
+        on pp.duct_code=oo.duct_code ORDER BY pp.seq
+    </select>
+
+    <select id="getDiffData" resultType="java.util.Map" parameterType="java.util.Map">
+        select aa.duct_code,bb.RECODE_DATE,round( ( bb.RECODE_VALUE - #{base_key} ) * 100, 2 ) RECODE_VALUE from
+        (
+        select mm.UUID,mm.duct_code,mm.seq
+        from
+        (
+        select UUID,duct_code,seq from J302_TD_DUCT_INFO where SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        <if test="_parameter.containsKey('pointMeter') and pointMeter != null">
+            and MILEAGE_CODE
+            between
+            to_number(#{pointMeter})-to_number(#{marginMeter})
+            and
+            to_number(#{pointMeter})+to_number(#{marginMeter})
+        </if>
+        )mm inner join
+        (
+        select DUCT_CODE from J302_TD_SL_DATA where IS_DENSITY = #{isDensity} and SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        )nn on mm.DUCT_CODE=nn.DUCT_CODE group by mm.duct_code,mm.seq,mm.UUID
+        )aa left join
+        (
+        select DUCT_CODE,RECODE_VALUE,to_char(RECODE_DATE,'YYYY') RECODE_DATE,IS_DENSITY from J302_TD_SL_DATA where
+        IS_DENSITY = #{isDensity} and SEGMENT_UUID in <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+        #{item_segment}
+    </foreach> and
+        to_char(RECODE_DATE,'YYYY') = #{show_key}
+        )bb on aa.DUCT_CODE=bb.DUCT_CODE ORDER BY aa.seq
+    </select>
+
+    <select id="getLegend" resultType="java.util.Map" parameterType="java.lang.String">
+        select rownum rn,aa.SL_YEAR,
+            case
+             when (to_number(aa.SL_YEAR)-to_number(lead(aa.SL_YEAR, 1, null) over(order by aa.SL_YEAR desc))) = 1
+             then  lead(aa.SL_YEAR, 1, null) over(order by aa.SL_YEAR desc)
+             else
+              null
+           end yearn
+    from
+    (
+    select to_char(RECODE_DATE,'YYYY') SL_YEAR from J302_TD_SL_DATA where  IS_DENSITY = #{IS_DENSITY} GROUP BY RECODE_DATE
+    ) aa
+  </select>
+
+    <select id="getMapDiffData" resultType="java.util.Map" parameterType="java.util.Map">
+
+			   WITH
+				 msi
+        as(
+            select aa.*,to_char(bb.RECODE_DATE,'YYYY') RECODE_DATE,bb.RECODE_VALUE from (select UUID DUCT_UUID,DUCT_CODE,seq,MILEAGE_CODE from J302_TD_DUCT_INFO where UUID in (#{duct_arr})) aa  inner join  (select * from J302_TD_SL_DATA where  IS_DENSITY = #{isDensity}) bb
+            on bb.duct_code=aa.duct_code
+        )
+
+
+        select pp.duct_code,oo.RECODE_DATE, round( ( oo.RECODE_VALUE -  #{base_key} ) * 100, 2 ) RECODE_VALUE from
+        (
+            select duct_code,seq from msi GROUP BY duct_code,seq
+        ) pp left join
+        (
+              select msi.* from msi where msi.RECODE_DATE = #{show_key}
+
+        ) oo
+         on pp.duct_code=oo.duct_code ORDER BY pp.seq
+    </select>
+    <select id="getWarning" resultType="java.util.Map">
+      select tab1.MAx_VALUE,(mli.LINE_NAME || '\n' || tab1.segment_name) from
+        (select msi.LINE_ID,tab.MAx_VALUE,(msi.start_station_name || '~' || msi.end_station_name ||'\n'|| msi.DIRECTION) segment_name from
+        (
+        select * from
+            (select now_year.SEGMENT_ID,MAX(abs(SL_VALUE-SL_VALUE2)) MAx_VALUE from
+            (
+            select round(ms.SL_VALUE*1000,2) SL_VALUE,ms.SEGMENT_ID,ms.DUCT from J302_METRO_SL_INFO ms where ms.SL_VALUE is not null and ms.SL_YEAR=(select max(to_number(SL_YEAR)) MAX_YEAR from J302_METRO_SL_INFO) and DENSITY = '0'
+            ) now_year inner join
+            (
+            select  round(ms.SL_VALUE*1000,2) SL_VALUE2,ms.SEGMENT_ID,ms.DUCT from J302_METRO_SL_INFO ms where ms.SL_VALUE is not null and ms.SL_YEAR=(select max(to_number(SL_YEAR))-1 MAX_YEAR from J302_METRO_SL_INFO) and DENSITY = '0'
+            ) next_year on  now_year.DUCT = next_year.DUCT and now_year.SEGMENT_ID = next_year.SEGMENT_ID
+            GROUP BY  now_year.SEGMENT_ID  ORDER BY MAx_VALUE desc
+        ) main_tab where MAx_VALUE > 5
+        ) tab
+        left join J302_METRO_SEGMENT_INFO msi on tab.SEGMENT_ID = msi.ID
+        ) tab1 left join J302_METRO_LINE_INFO mli
+    on tab1.LINE_ID = mli.LINE_ID
+  </select>
+
+    <select id="getDuctDate" resultType="java.util.Map" parameterType="java.util.Map">
+        WITH
+        tab
+        as(
+        select to_char(RECODE_DATE,'YYYY') SL_YEAR,RECODE_VALUE SL_VALUE,DUCT_CODE DUCT from J302_TD_SL_DATA where IS_DENSITY=#{isDensity} and SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        )
+        select bb.SL_YEAR XAIX,aa.YAIX from
+        (
+        select tab.SL_YEAR XAIX,tab.SL_VALUE YAIX from tab where tab.DUCT=(select DUCT_CODE from J302_TD_DUCT_INFO where DUCT_CODE=#{point} and SEGMENT_UUID in <foreach
+            collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+        #{item_segment}
+    </foreach>)
+        ) aa right join
+        (
+        select tab.SL_YEAR from tab GROUP BY SL_YEAR ORDER BY tab.SL_YEAR
+        ) bb on aa.XAIX = bb.SL_YEAR ORDER BY bb.SL_YEAR
+
+    </select>
+
+    <select id="initPtdSlXData" resultType="java.util.Map" parameterType="java.util.Map">
+        select aa.duct_code,aa.MILEAGE_CODE from
+        (
+        select UUID,DUCT_CODE,MILEAGE_CODE,seq from J302_TD_DUCT_INFO where SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        and MILEAGE_CODE
+        between
+        to_number(#{pointMeter})-to_number(#{marginMeter})
+        and
+        to_number(#{pointMeter})+to_number(#{marginMeter})
+        )aa inner join
+        (
+        select DUCT_CODE from J302_TD_SL_DATA where IS_DENSITY = #{isDensity} and SEGMENT_UUID in
+        <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        )bb on aa.DUCT_CODE=bb.DUCT_CODE
+
+        GROUP BY aa.duct_code,aa.MILEAGE_CODE,aa.seq ORDER BY seq
+    </select>
+
+    <select id="getMapSlByName" resultType="java.util.Map" parameterType="java.util.Map">
+			   WITH
+				 msi
+        as(
+            select aa.*,to_char(bb.RECODE_DATE,'YYYY') RECODE_DATE,bb.RECODE_VALUE from (select UUID DUCT_UUID,DUCT_CODE,seq,MILEAGE_CODE from J302_TD_DUCT_INFO where UUID in (#{duct_arr}) aa  inner join  (select * from J302_TD_SL_DATA where  IS_DENSITY = #{isDensity}) bb
+            on bb.DUCT_CODE=aa.DUCT_CODE
+        )
+        select pp.duct_code,oo.RECODE_DATE, oo.RECODE_VALUE from
+        (
+            select duct_code,seq from msi GROUP BY duct_code,seq
+        ) pp left join
+        (
+        select
+             mm.duct_code,mm.RECODE_DATE, nvl(round((mm.RECODE_VALUE-nn.RECODE_VALUE)*100,2),0) RECODE_VALUE
+             from
+                (
+                    select msi.* from msi where msi.RECODE_DATE = #{show_key}
+                            ) mm
+                left outer join
+                (
+                     select msi.* from msi where msi.RECODE_DATE = #{init_date}
+                ) nn on mm.DUCT_CODE = nn.DUCT_CODE
+
+        ) oo
+         on pp.duct_code=oo.duct_code ORDER BY pp.seq
+    </select>
+
+    <select id="getSlScore" resultType="java.lang.Double" parameterType="java.util.Map">
+        WITH
+        msi
+        as(
+        select aa.duct_code,aa.seq,bb.RECODE_DATE,bb.RECODE_VALUE from
+        (
+        select UUID,duct_code,MILEAGE_CODE,seq from J302_TD_DUCT_INFO where SEGMENT_UUID in
+        <foreach collection="UUID_LIST" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        )aa inner join
+        (
+        select duct_code,RECODE_VALUE,to_char(RECODE_DATE,'YYYY') RECODE_DATE,IS_DENSITY from J302_TD_SL_DATA where to_char(RECODE_DATE,'YYYY') in (#{SL_THIS},#{SL_SHOW}) and
+        IS_DENSITY = '0' and SEGMENT_UUID in
+        <foreach collection="UUID_LIST" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+        )bb on aa.duct_code=bb.duct_code
+        )
+        select val,rownum from (
+        select abs(round((aa.RECODE_VALUE-bb.RECODE_VALUE)*1000,2)) val from (
+        select DUCT_CODE,RECODE_VALUE from msi where RECODE_DATE = #{SL_SHOW}
+        ) aa inner join (
+        select DUCT_CODE,RECODE_VALUE from msi where RECODE_DATE = #{SL_THIS}
+        ) bb on aa.DUCT_CODE = bb.DUCT_CODE ORDER BY val desc
+        ) cc where rownum &lt; 15
+    </select>
+    <select id="getZdjcSlYjData" resultType="java.util.Map">
+         select substr(t.linecode,0,instr(t.linecode,'0')-1) || '号线-' || t.sectionname "line",'4' "max",abs(t.bc)*1000 "value" from J302_TD_ZDJC_SL_POI_V t
+    </select>
+
+    <select id="selectSLByDuct" resultType="java.util.Map" parameterType="java.util.Map">
+          WITH
+        tab
+        as(
+        select to_char(RECODE_DATE,'YYYY') SL_YEAR,RECODE_VALUE SL_VALUE,DUCT_CODE DUCT from J302_TD_SL_DATA where IS_DENSITY='0' and SEGMENT_UUID in  <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+        #{item_segment}
+    </foreach>
+        )
+        select tab.SL_VALUE*1000 YAIX from tab where tab.DUCT=(select DUCT_CODE from J302_TD_DUCT_INFO where DUCT_CODE=#{duct} and SEGMENT_UUID in  <foreach collection="group_segment" item="item_segment" open="(" close=")" separator=",">
+        #{item_segment}
+    </foreach> and tab.SL_YEAR = (select max(tab.SL_YEAR) from tab) )
+    </select>
+
+</mapper>

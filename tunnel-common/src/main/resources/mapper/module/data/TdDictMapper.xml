@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdDictMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdDict">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="DICT_KEY" jdbcType="VARCHAR" property="dictKey"/>
+        <result column="DICT_VALUE" jdbcType="VARCHAR" property="dictValue"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="PID" jdbcType="VARCHAR" property="pid"/>
+        <result column="SEQ" jdbcType="CHAR" property="seq"/>
+        <result column="FOR_MODULE" jdbcType="VARCHAR" property="forModule"/>
+        <result column="STATUS" jdbcType="CHAR" property="status"/>
+        <result column="IS_PARENT" jdbcType="CHAR" property="isParent"/>
+    </resultMap>
+
+    <update id="updateDict" parameterType="com.company.project.module.data.model.TdDict">
+        update J302_TD_DICT set
+         DICT_KEY=#{dictKey},DICT_VALUE=#{dictValue},REMARK=#{remark},SEQ=#{seq},FOR_MODULE=#{forModule}
+          where UUID = #{uuid}
+    </update>
+
+    <select id="getDictColor" resultType="java.util.Map">
+    select aa.DICT_KEY,bb.DICT_VALUE,aa.PID,aa.SEQ  from (
+    select  DICT_KEY,UUID,DICT_VALUE,PID,FOR_MODULE,SEQ  from  J302_TD_DICT jtd
+		where pid in (select UUID from J302_TD_DICT where pid = '166' and status = '1')
+		ORDER BY seq desc
+    )aa
+    inner join
+    (
+    select  UUID,DICT_VALUE  from  J302_TD_DICT jtd
+    ) bb
+    on aa.DICT_VALUE=bb.UUID
+  </select>
+
+    <insert id="insertApp" parameterType="java.util.Map">
+    insert into J302_TD_DICT(UUID,PID,FOR_MODULE,DICT_KEY,DICT_VALUE) values(#{UUID},'29','FAULT_APP',#{DICT_KEY},#{DICT_VALUE})
+  </insert>
+
+    <select id="getHealthMarck" resultType="java.util.Map">
+     select * from J302_TD_DICT where PID in(select UUID from J302_TD_DICT where PID =(select UUID from J302_TD_DICT where UUID = '79' and STATUS = '1') and STATUS = '1') and STATUS = '1' ORDER BY SEQ
+  </select>
+
+    <select id="getHealthWeight" resultType="java.util.Map">
+   select * from J302_TD_DICT where pid = '122' and status = '1' ORDER BY SEQ
+  </select>
+    <select id="findDictDataByModule" resultType="com.company.project.module.data.model.TdDict"
+            parameterType="java.util.Map">
+    select t.*, t.rowid from J302_TD_DICT t where t.for_module like #{module} || '%' and status = '1' order by to_number(t.uuid)
+  </select>
+    <select id="findFaultTypeDict" resultType="map">
+        select t.big_type,
+               t.big_type_t,
+               t.middle_type,
+               t.middle_type_t,
+               t.small_type,
+               t.type_desc
+          from j302_td_fault_type_v t
+         group by t.big_type,
+                  t.big_type_t,
+                  t.middle_type,
+                  t.middle_type_t,
+                  t.small_type,
+                  t.type_desc
+        </select>
+    <select id="findFaultTypeDictForApp" resultType="map">
+        select t.major_type,
+               t.major_type_t,
+               t.big_type,
+               t.big_type_t,
+               t.middle_type,
+               t.middle_type_t,
+               t.small_type,
+               t.type_desc,
+               t."GRADE_TYPE",
+               t."GRADE_DESC"
+          from j302_td_fault_type_v t
+         group by t.major_type,
+                  t.major_type_t,
+                  t.big_type,
+                  t.big_type_t,
+                  t.middle_type,
+                  t.middle_type_t,
+                  t.small_type,
+                  t.type_desc,
+                  t."GRADE_TYPE",
+                  t."GRADE_DESC"
+        </select>
+    <select id="findFaultTypeDictForAppN" resultType="map">
+        select * from J302_TD_FAULT_TYPE_V_N t
+        </select>
+
+    <select id="findDictForApp" resultType="map">
+        select t.*,'p' d_type
+        from J302_TD_DICT t
+        <where>t.for_module = 'FAULT_APP'
+            and t.pid = '0'
+        </where>
+        union all
+        select t.*,'p' d_type
+        from J302_TD_DICT t
+        <where>t.for_module = 'FAULT_APP'
+            and t.pid = '200000'
+        </where>
+        union all
+        select t.*,'c' d_type
+        from J302_TD_DICT t
+        <where>t.for_module = 'FAULT_APP'
+            and t.pid != '200000' and t.pid != '0'
+        </where>
+    </select>
+    <!-- <select id="findDoorCheckItemDictForApp" resultType="map">
+         SELECT DISTINCT T.LEVEL4,
+         T.DEVICE_TYPE DEVICE_TYPE_NAME,
+         T.DEVICE_LEVEL_CODE,
+         T.DEVICE_LEVEL_CODE || T.DEVICE_TYPE_CODE DOOR_CHECK_ITEM_CODE
+         FROM J302_SI_DEVICE_FAULT_TYPE T
+         <where>T.DEVICE_LEVEL_CODE IN ('01030501', '01030502', '01030503') AND T.STATUS='1'</where>
+     </select>-->
+    <!--map形式-->
+    <select id="findDoorCheckItemDictForApp" resultType="map">
+        SELECT DISTINCT T.LEVEL4 LEVEL4_NAME,
+        T.DEVICE_TYPE DEVICE_TYPE_NAME,
+        T.DEVICE_LEVEL_CODE,
+        T.DEVICE_LEVEL_CODE || T.DEVICE_TYPE_CODE DOOR_CHECK_ITEM_CODE
+        FROM J302_SI_DEVICE_FAULT_TYPE T
+        <where>T.DEVICE_LEVEL_CODE IN ('01030501', '01030502', '01030503') AND T.STATUS='1'</where>
+    </select>
+    <resultMap id="parentResultMap" type="java.util.Map">
+        <result column="F_UUID" jdbcType="VARCHAR" property="fUuid"/>
+        <result column="F_DICT_VALUE" jdbcType="VARCHAR" property="fDictValue"/>
+        <result column="HASCHILD" jdbcType="VARCHAR" property="hasChild"/>
+        <collection property="childList" ofType="java.util.Map" javaType="java.util.List">
+            <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+            <result column="DICT_VALUE" jdbcType="VARCHAR" property="dictValue"/>
+        </collection>
+    </resultMap>
+    <select id="findTreeDicts" resultMap="parentResultMap">
+        select A.UUID F_UUID,A.DICT_VALUE F_DICT_VALUE,B.DICT_VALUE,B.UUID,'1' HASCHILD from (
+           select UUID,DICT_VALUE,FOR_MODULE from J302_TD_DICT where FOR_MODULE like 'COMMON%' and PID = '0' and STATUS = '1' and is_parent = '1'
+        ) A left join (
+        select UUID,DICT_VALUE,FOR_MODULE from J302_TD_DICT where FOR_MODULE like 'COMMON%' and PID != '0' and STATUS = '1' and is_parent = '1'
+        ) B on A.FOR_MODULE = substr(B.FOR_MODULE,0,length(A.FOR_MODULE))
+    </select>
+
+    <select id="findDictByPid" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from J302_TD_DICT where pid = #{pid} and status = '1'
+        <if test="_parameter.containsKey('keyWord') and keyWord != ''">
+            and DICT_VALUE like '%'||#{keyWord}||'%'
+        </if>
+    </select>
+
+    <update id="deleteDictById" parameterType="java.lang.String">
+        update J302_TD_DICT set status = '0' where UUID = #{id}
+    </update>
+
+</mapper>

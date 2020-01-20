@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.paodingsoft.java</groupId>
+    <artifactId>metro_parent</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>../tunnel_api</module>
+        <module>../metro_api</module>
+        <module>../tunnel_app</module>
+        <module>../tunnel_common</module>
+    </modules>
+    <properties>
+        <java.version>1.8</java.version>
+        <!-- 文件拷贝时的编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 编译时的编码 -->
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <!--jdk版本-->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <junit.version>4.12</junit.version>
+
+        <spring-boot.version>1.5.13.RELEASE</spring-boot.version>
+        <swagger2.version>2.7.0</swagger2.version>
+        <shiro.version>1.4.0</shiro.version>
+        <shiro-redis.version>3.1.0</shiro-redis.version>
+        <quartz.version>2.3.0</quartz.version>
+        <freemarker.version>2.3.23</freemarker.version>
+
+        <mybatis-generator-core.version>1.3.5</mybatis-generator-core.version>
+        <mybatis.version>3.4.5</mybatis.version>
+        <mapper.version>3.4.2</mapper.version>
+        <mybatis-spring.version>1.3.1</mybatis-spring.version>
+        <pagehelper.version>4.2.1</pagehelper.version>
+        <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
+        <fastjson.version>1.2.47</fastjson.version>
+        <ojdbc6.version>11.2.0.3</ojdbc6.version>
+
+        <guava.version>23.0</guava.version>
+        <commons-httpclient.version>3.1</commons-httpclient.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
+        <commons-fileupload.version>1.3.3</commons-fileupload.version>
+        <commons-io.version>2.6</commons-io.version>
+        <jsoup.version>1.9.2</jsoup.version>
+
+        <poi.version>4.1.0</poi.version>
+        <easyexcel.version>1.1.2-beat1</easyexcel.version>
+        <javacsv.version>2.0</javacsv.version>
+        <ip2region.version>1.7</ip2region.version>
+        <docker.registry>HOST yours:5000</docker.registry>
+        <!--前端库-->
+        <adminlte.version>2.4.10</adminlte.version>
+        <bootstrap.version>3.4.1</bootstrap.version>
+
+        <bootstrap-table.version>1.14.2</bootstrap-table.version>
+
+        <jquery.version>3.3.1</jquery.version>
+        <fontawesome.version>4.7.0</fontawesome.version>
+        <ionicons.version>2.0.0</ionicons.version>
+        <!--<jquery-validation.version>1.19.0</jquery-validation.version>-->
+        <jquery-migrate.version>3.0.0</jquery-migrate.version>
+        <bootstrap-datepicker.version>1.8.0</bootstrap-datepicker.version>
+        <echarts.version>4.2.1</echarts.version>
+        <swiper.version>4.5.0</swiper.version>
+        <bootstrap-modal.version>2.2.5</bootstrap-modal.version>
+
+        <webjars-locator.version>0.32</webjars-locator.version>
+
+        <bootstrap-treeview.version>1.2.0</bootstrap-treeview.version>
+        <bootstrap-notify.version>3.1.3</bootstrap-notify.version>
+        <animate.version>3.5.2</animate.version>
+
+        <jquery-validation.version>1.13.0</jquery-validation.version>
+        <leaflet.version>1.3.4</leaflet.version>
+        <ztree.version>3.5.37</ztree.version>
+        <select2.version>4.0.10</select2.version>
+        <bootstrap-daterangepicker.version>2.1.27</bootstrap-daterangepicker.version>
+        <bootstrap-datetimepicker.version>2.4.4</bootstrap-datetimepicker.version>
+        <jquery-treegrid.version>0.2.0</jquery-treegrid.version>
+        <multiple-select.version>1.2.1</multiple-select.version>
+        <sweetalert2.version>7.33.1</sweetalert2.version>
+        <jfreechart.version>1.0.19</jfreechart.version>
+        <poi-tl.version>1.6.0-beta1</poi-tl.version>
+        <nekohtml.version>1.9.22</nekohtml.version>
+
+
+    </properties>
+
+    <!-- Inherit defaults from Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.13.RELEASE</version>
+    </parent>
+    <dependencies>
+
+        <!-- aop依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--MyBatis 及 插件依赖-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>${pagehelper.version}</version>
+        </dependency>
+        <!--阿里 FastJson依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <!-- HttpClient依赖 -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons-httpclient.version}</version>
+        </dependency>
+        <!-- xss过滤 -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons-collections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>ip2region</artifactId>
+            <version>${ip2region.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <!-- 应与application.properties(或application.yml)中context-path保持一致 -->
+        <finalName>metro_parent</finalName>
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+
+
+        <!--<resources>
+            &lt;!&ndash; 打包时将jsp文件拷贝到META-INF目录下&ndash;&gt;
+            <resource>
+                &lt;!&ndash; 指定resources插件处理哪个目录下的资源文件 &ndash;&gt;
+                <directory>src/main/webapp</directory>
+                &lt;!&ndash;注意此次必须要放在此目录下才能被访问到&ndash;&gt;
+                <targetPath>META-INF/resources</targetPath>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>-->
+    </build>
+
+    <repositories>
+        <repository>
+            <id>aliyun-repos</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun-plugin</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

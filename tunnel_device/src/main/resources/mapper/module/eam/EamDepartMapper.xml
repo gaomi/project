@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.eam.dao.EamDepartMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.module.eam.model.EamDepart">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="DEPTID" jdbcType="VARCHAR" property="deptid" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="INSERT_DATE" jdbcType="TIMESTAMP" property="insertDate" />
+  </resultMap>
+</mapper>

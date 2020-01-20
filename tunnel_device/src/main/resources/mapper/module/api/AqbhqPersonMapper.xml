@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.api.dao.AqbhqPersonMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.module.api.model.AqbhqPerson">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="PERSONID" jdbcType="VARCHAR" property="personid" />
+    <result column="PERSONNAME" jdbcType="VARCHAR" property="personname" />
+    <result column="PERSONSEX" jdbcType="VARCHAR" property="personsex" />
+    <result column="PERSONCONTACT" jdbcType="VARCHAR" property="personcontact" />
+    <result column="PERSONDESCRIPTION" jdbcType="OTHER" property="persondescription" />
+    <result column="METROLINES" jdbcType="OTHER" property="metrolines" />
+    <result column="INSERT_DATE" jdbcType="OTHER" property="insertDate" />
+  </resultMap>
+
+
+
+  <insert id="saveAllPerson" parameterType="java.util.List">
+    insert into J302_API_AQBHQ_PERSON
+    (PERSONID,PERSONNAME,PERSONSEX,PERSONCONTACT,PERSONDESCRIPTION,METROLINES,INSERT_DATE)
+    (select temp.* from (
+    <foreach collection="list" item="item" separator="union all">
+      select
+      #{item.personid ,jdbcType = VARCHAR} PERSONID,
+      #{item.personname,jdbcType = VARCHAR} PERSONNAME,
+      #{item.personsex,jdbcType = VARCHAR} PERSONSEX
+      ,#{item.personcontact,jdbcType = VARCHAR} PERSONCONTACT
+      ,#{item.persondescription,jdbcType = VARCHAR} PERSONDESCRIPTION,
+      #{item.metrolines,jdbcType = VARCHAR} METROLINES,
+      sysdate INSERT_DATE
+      from dual
+    </foreach>
+    ) temp
+    )
+
+  </insert>
+
+
+</mapper>

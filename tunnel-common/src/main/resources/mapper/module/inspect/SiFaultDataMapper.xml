@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.inspect.dao.SiFaultDataMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.inspect.model.SiFaultData">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="LINE_CODE" jdbcType="VARCHAR" property="lineCode"/>
+        <result column="INTERNAL_CODE" jdbcType="VARCHAR" property="internalCode"/>
+        <result column="END_KI_MILEAGE" jdbcType="DECIMAL" property="endKiMileage"/>
+        <result column="DEVICE_TYPE" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="FAULT_TYPE1" jdbcType="VARCHAR" property="faultType1"/>
+        <result column="FAULT_TYPE2" jdbcType="VARCHAR" property="faultType2"/>
+        <result column="FAULT_UNIT" jdbcType="VARCHAR" property="faultUnit"/>
+        <result column="FAULT_TYPE3" jdbcType="VARCHAR" property="faultType3"/>
+        <result column="FAULT_QUANTITY" jdbcType="VARCHAR" property="faultQuantity"/>
+        <result column="FAULT_LEVEL" jdbcType="VARCHAR" property="faultLevel"/>
+        <result column="AFFECTE_EQUIPMENT" jdbcType="VARCHAR" property="affecteEquipment"/>
+        <result column="LEVEL3" jdbcType="VARCHAR" property="level3"/>
+        <result column="START_KI_MILEAGE" jdbcType="DECIMAL" property="startKiMileage"/>
+        <result column="INSERT_DATE" jdbcType="TIMESTAMP" property="insertDate"/>
+        <result column="IS_FINISH" jdbcType="CHAR" property="isFinish"/>
+        <result column="DEVICE_UUID" jdbcType="VARCHAR" property="deviceUuid"/>
+        <result column="DUCT_COUNT" jdbcType="DECIMAL" property="ductCount"/>
+        <result column="START_DUCT_CODE" jdbcType="DECIMAL" property="startDuctCode"/>
+        <result column="START_HUN_MILEAGE" jdbcType="DECIMAL" property="startHunMileage"/>
+        <result column="START_MILEAGE_FLAG" jdbcType="VARCHAR" property="startMileageFlag"/>
+        <result column="END_DUCT_CODE" jdbcType="DECIMAL" property="endDuctCode"/>
+        <result column="END_HUN_MILEAGE" jdbcType="DECIMAL" property="endHunMileage"/>
+        <result column="END_MILEAGE_FLAG" jdbcType="VARCHAR" property="endMileageFlag"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="FAULT_DESC" jdbcType="VARCHAR" property="faultDesc"/>
+        <result column="OPT_DESC" jdbcType="VARCHAR" property="optDesc"/>
+        <result column="OPT_DATE" jdbcType="TIMESTAMP" property="optDate"/>
+        <result column="FAULT_STATUS" jdbcType="CHAR" property="faultStatus"/>
+        <result column="LEVEL4" jdbcType="VARCHAR" property="level4"/>
+        <result column="OPERATOR_NO" jdbcType="VARCHAR" property="operatorNo"/>
+        <result column="PLAN_TYPE" jdbcType="CHAR" property="planType"/>
+        <result column="PLAN_UUID" jdbcType="VARCHAR" property="planUuid"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="IS_CHECK" jdbcType="VARCHAR" property="isCheck"/>
+        <result column="MATERIAL_CONSUMPTION" jdbcType="VARCHAR" property="materialConsumption"/>
+        <result column="REPAIR_DESC" jdbcType="VARCHAR" property="repairDesc"/>
+    </resultMap>
+    <resultMap id="SiFaultResultMap" type="java.util.Map">
+        <result column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="LINE_CODE" jdbcType="VARCHAR" property="lineCode"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="INTERNAL_CODE" jdbcType="VARCHAR" property="internalCode"/>
+        <result column="END_KI_MILEAGE" jdbcType="DECIMAL" property="endKiMileage"/>
+        <result column="DEVICE_TYPE" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="FAULT_TYPE1" jdbcType="VARCHAR" property="faultType1"/>
+        <result column="FAULT_TYPE2" jdbcType="VARCHAR" property="faultType2"/>
+        <result column="FAULT_UNIT" jdbcType="VARCHAR" property="faultUnit"/>
+        <result column="FAULT_TYPE3" jdbcType="VARCHAR" property="faultType3"/>
+        <result column="FAULT_QUANTITY" jdbcType="VARCHAR" property="faultQuantity"/>
+        <result column="FAULT_LEVEL" jdbcType="VARCHAR" property="faultLevel"/>
+        <result column="AFFECTE_EQUIPMENT" jdbcType="VARCHAR" property="affecteEquipment"/>
+        <result column="LEVEL3" jdbcType="VARCHAR" property="level3"/>
+        <result column="START_KI_MILEAGE" jdbcType="DECIMAL" property="startKiMileage"/>
+        <result column="INSERT_DATE" jdbcType="TIMESTAMP" property="insertDate"/>
+        <result column="IS_FINISH" jdbcType="CHAR" property="isFinish"/>
+        <result column="DEVICE_UUID" jdbcType="VARCHAR" property="deviceUuid"/>
+        <result column="DUCT_COUNT" jdbcType="DECIMAL" property="ductCount"/>
+        <result column="START_DUCT_CODE" jdbcType="DECIMAL" property="startDuctCode"/>
+        <result column="START_HUN_MILEAGE" jdbcType="DECIMAL" property="startHunMileage"/>
+        <result column="START_MILEAGE_FLAG" jdbcType="VARCHAR" property="startMileageFlag"/>
+        <result column="END_DUCT_CODE" jdbcType="DECIMAL" property="endDuctCode"/>
+        <result column="END_HUN_MILEAGE" jdbcType="DECIMAL" property="endHunMileage"/>
+        <result column="END_MILEAGE_FLAG" jdbcType="VARCHAR" property="endMileageFlag"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="FAULT_DESC" jdbcType="VARCHAR" property="faultDesc"/>
+        <result column="OPT_DESC" jdbcType="VARCHAR" property="optDesc"/>
+        <result column="FAULT_STATUS" jdbcType="CHAR" property="faultStatus"/>
+        <result column="LEVEL4" jdbcType="VARCHAR" property="level4"/>
+        <result column="OPERATOR_NO" jdbcType="VARCHAR" property="operatorNo"/>
+        <result column="PLAN_TYPE" jdbcType="CHAR" property="planType"/>
+        <result column="PLAN_UUID" jdbcType="VARCHAR" property="planUuid"/>
+        <result column="FAULT_TYPE_1" jdbcType="VARCHAR" property="fault_Type_1"/>
+        <result column="DEVICE_TYPE_1" jdbcType="VARCHAR" property="device_type_1"/>
+        <result column="FAULT_TYPE_2" jdbcType="VARCHAR" property="fault_Type_2"/>
+        <result column="FAULT_TYPE_3" jdbcType="VARCHAR" property="fault_Type_3"/>
+        <result column="IS_CHECK" jdbcType="VARCHAR" property="isCheck"/>
+        <result column="MATERIAL_CONSUMPTION" jdbcType="VARCHAR" property="materialConsumption"/>
+        <result column="REPAIR_DESC" jdbcType="VARCHAR" property="repairDesc"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <collection property="imageList" ofType="java.lang.String" javaType="java.util.List">
+            <result column="IMAGELIST" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <insert id="saveAllSiFault" parameterType="java.util.List">
+        insert into J302_SI_FAULT_DATA (UUID, LINE_CODE, INTERNAL_CODE, END_KI_MILEAGE, DEVICE_TYPE, FAULT_TYPE1,
+        FAULT_TYPE2, FAULT_UNIT,
+        FAULT_TYPE3, FAULT_QUANTITY, FAULT_LEVEL, AFFECTE_EQUIPMENT, LEVEL3, START_KI_MILEAGE,
+        IS_FINISH, DEVICE_UUID, DUCT_COUNT, START_DUCT_CODE, START_HUN_MILEAGE, START_MILEAGE_FLAG, END_DUCT_CODE,
+        END_HUN_MILEAGE,
+        END_MILEAGE_FLAG,REMARK,FAULT_DESC,OPT_DESC,FAULT_STATUS,LEVEL4,OPERATOR_NO,PLAN_TYPE,PLAN_UUID,UPDOWN,IS_CHECK,MATERIAL_CONSUMPTION,REPAIR_DESC,INSERT_DATE)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select
+            #{item.uuid,jdbcType = VARCHAR} UUID,
+            #{item.lineCode ,jdbcType = VARCHAR} LINE_CODE,
+            #{item.internalCode ,jdbcType = VARCHAR} INTERNAL_CODE,
+            #{item.endKiMileage,jdbcType = DECIMAL} END_KI_MILEAGE,
+            #{item.deviceType,jdbcType = VARCHAR} DEVICE_TYPE,
+            #{item.faultType1,jdbcType = VARCHAR} FAULT_TYPE1,
+            #{item.faultType2,jdbcType = VARCHAR} FAULT_TYPE2,
+            #{item.faultUnit,jdbcType = VARCHAR} FAULT_UNIT,
+            #{item.faultType3,jdbcType = VARCHAR} FAULT_TYPE3,
+            #{item.faultQuantity,jdbcType = VARCHAR} FAULT_QUANTITY,
+            #{item.faultLevel,jdbcType = VARCHAR} FAULT_LEVEL,
+            #{item.affecteEquipment,jdbcType = VARCHAR} AFFECTE_EQUIPMENT,
+            #{item.level3,jdbcType = VARCHAR} LEVEL3,
+            #{item.startKiMileage,jdbcType = DECIMAL} START_KI_MILEAGE,
+            #{item.isFinish ,jdbcType=CHAR} IS_FINISH,
+            #{item.deviceUuid ,jdbcType = VARCHAR} DEVICE_UUID,
+            #{item.ductCount,jdbcType = DECIMAL} DUCT_COUNT,
+            #{item.startDuctCode,jdbcType = DECIMAL} START_DUCT_CODE,
+            #{item.startHunMileage,jdbcType = DECIMAL} START_HUN_MILEAGE,
+            #{item.startMileageFlag ,jdbcType = VARCHAR} START_MILEAGE_FLAG,
+            #{item.endDuctCode,jdbcType = DECIMAL} END_DUCT_CODE,
+            #{item.endHunMileage,jdbcType = DECIMAL} END_HUN_MILEAGE,
+            #{item.endMileageFlag,jdbcType = VARCHAR} END_MILEAGE_FLAG,
+            #{item.remark,jdbcType = VARCHAR} REMARK,
+            #{item.faultDesc,jdbcType = VARCHAR} FAULT_DESC,
+            #{item.optDesc,jdbcType = VARCHAR} OPT_DESC,
+            #{item.faultStatus ,jdbcType=CHAR} FAULT_STATUS,
+            #{item.level4,jdbcType = VARCHAR} LEVEL4,
+            #{item.operatorNo,jdbcType = VARCHAR} OPERATOR_NO,
+            #{item.planType,jdbcType=CHAR} PLAN_TYPE,#{item.planUuid,jdbcType = VARCHAR} PLAN_UUID,
+            #{item.updown,jdbcType = CHAR} UPDOWN,
+            #{item.isCheck,jdbcType = VARCHAR} IS_CHECK,
+            #{item.materialConsumption,jdbcType = VARCHAR} MATERIAL_CONSUMPTION,
+            #{item.repairDesc,jdbcType = VARCHAR} REPAIR_DESC,
+            sysdate INSERT_DATE
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+    <select id="findByInternalCode" parameterType="string" resultType="map">
+        select * from J302_TD_FAULT_LOG_V where INTERNAL_CODE = #{code} order by INSERT_DATE desc
+    </select>
+    <insert id="batchSaveAllSiFault" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into J302_SI_FAULT_DATA (UUID, LINE_CODE, INTERNAL_CODE, END_KI_MILEAGE, DEVICE_TYPE, FAULT_TYPE1,
+        FAULT_TYPE2, FAULT_UNIT,
+        FAULT_TYPE3, FAULT_QUANTITY, FAULT_LEVEL, AFFECTE_EQUIPMENT, LEVEL3, START_KI_MILEAGE,
+        IS_FINISH, DEVICE_UUID, DUCT_COUNT, START_DUCT_CODE, START_HUN_MILEAGE, START_MILEAGE_FLAG, END_DUCT_CODE,
+        END_HUN_MILEAGE,
+        END_MILEAGE_FLAG,REMARK,FAULT_DESC,OPT_DESC,FAULT_STATUS,LEVEL4,OPERATOR_NO,PLAN_TYPE,PLAN_UUID,UPDOWN,IS_CHECK,MATERIAL_CONSUMPTION,REPAIR_DESC,INSERT_DATE)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select
+            #{item.uuid,jdbcType = VARCHAR} UUID,
+            #{item.lineCode ,jdbcType = VARCHAR} LINE_CODE,
+            #{item.internalCode ,jdbcType = VARCHAR} INTERNAL_CODE,
+            #{item.endKiMileage,jdbcType = DECIMAL} END_KI_MILEAGE,
+            #{item.deviceType,jdbcType = VARCHAR} DEVICE_TYPE,
+            #{item.faultType1,jdbcType = VARCHAR} FAULT_TYPE1,
+            #{item.faultType2,jdbcType = VARCHAR} FAULT_TYPE2,
+            #{item.faultUnit,jdbcType = VARCHAR} FAULT_UNIT,
+            #{item.faultType3,jdbcType = VARCHAR} FAULT_TYPE3,
+            #{item.faultQuantity,jdbcType = VARCHAR} FAULT_QUANTITY,
+            #{item.faultLevel,jdbcType = VARCHAR} FAULT_LEVEL,
+            #{item.affecteEquipment,jdbcType = VARCHAR} AFFECTE_EQUIPMENT,
+            #{item.level3,jdbcType = VARCHAR} LEVEL3,
+            #{item.startKiMileage,jdbcType = DECIMAL} START_KI_MILEAGE,
+            #{item.isFinish ,jdbcType=CHAR} IS_FINISH,
+            #{item.deviceUuid ,jdbcType = VARCHAR} DEVICE_UUID,
+            #{item.ductCount,jdbcType = DECIMAL} DUCT_COUNT,
+            #{item.startDuctCode,jdbcType = DECIMAL} START_DUCT_CODE,
+            #{item.startHunMileage,jdbcType = DECIMAL} START_HUN_MILEAGE,
+            #{item.startMileageFlag ,jdbcType = VARCHAR} START_MILEAGE_FLAG,
+            #{item.endDuctCode,jdbcType = DECIMAL} END_DUCT_CODE,
+            #{item.endHunMileage,jdbcType = DECIMAL} END_HUN_MILEAGE,
+            #{item.endMileageFlag,jdbcType = VARCHAR} END_MILEAGE_FLAG,
+            #{item.remark,jdbcType = VARCHAR} REMARK,
+            #{item.faultDesc,jdbcType = VARCHAR} FAULT_DESC,
+            #{item.optDesc,jdbcType = VARCHAR} OPT_DESC,
+            #{item.faultStatus ,jdbcType=CHAR} FAULT_STATUS,
+            #{item.level4,jdbcType = VARCHAR} LEVEL4,
+            #{item.operatorNo,jdbcType = VARCHAR} OPERATOR_NO,
+            #{item.planType,jdbcType=CHAR} PLAN_TYPE,#{item.planUuid,jdbcType = VARCHAR} PLAN_UUID,
+            #{item.updown,jdbcType = CHAR} UPDOWN,
+            #{item.isCheck,jdbcType = VARCHAR} IS_CHECK,
+            #{item.materialConsumption,jdbcType = VARCHAR} MATERIAL_CONSUMPTION,
+            #{item.repairDesc,jdbcType = VARCHAR} REPAIR_DESC,
+            #{item.insertDate,jdbcType = VARCHAR} INSERT_DATE
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+    <select id="getCheckFault" resultMap="SiFaultResultMap" parameterType="java.util.Map">
+        select "UUID","LINE_CODE","INTERNAL_CODE","END_KI_MILEAGE","DEVICE_TYPE","FAULT_TYPE1",
+        "FAULT_TYPE2","FAULT_UNIT","FAULT_TYPE3","FAULT_QUANTITY","FAULT_LEVEL","AFFECTE_EQUIPMENT",
+        "LEVEL3","START_KI_MILEAGE","INSERT_DATE","IS_FINISH","DEVICE_UUID","DUCT_COUNT","START_DUCT_CODE",
+        "START_HUN_MILEAGE","START_MILEAGE_FLAG","END_DUCT_CODE","END_HUN_MILEAGE","END_MILEAGE_FLAG",
+        "REMARK","FAULT_DESC","OPT_DESC","OPT_DATE","FAULT_STATUS","LEVEL4","OPERATOR_NO","PLAN_TYPE",
+        "PLAN_UUID","UPDOWN",
+        "IMAGELIST"
+        , "DEVICE_TYPE_1",
+        "FAULT_TYPE_1",
+        "FAULT_TYPE_2",
+        "FAULT_TYPE_3" from J302_SI_FAULT_CHECK_V where DEVICE_UUID is not null and START_DUCT_CODE is not null and
+        FAULT_STATUS = #{status}
+        <if test="_parameter.containsKey('lineCode') and lineCode != null">
+            and SUBSTR(DEVICE_UUID, 0, 2) = #{lineCode}
+        </if>
+        <if test="_parameter.containsKey('startCode') and _parameter.containsKey('endCode')">
+            and( (SUBSTR(DEVICE_UUID, 3, 2) >= #{startCode} and SUBSTR(DEVICE_UUID, 3, 2) &lt;=#{endCode})
+            or
+            (SUBSTR(DEVICE_UUID, 5, 2) >= #{startCode} and SUBSTR(DEVICE_UUID, 5, 2) &lt;=#{endCode}))
+        </if>
+        <if test="_parameter.containsKey('direction') and direction != null">
+            and UPDOWN = #{direction}
+        </if>
+        <if test="_parameter.containsKey('smallType') and smallType != null">
+            and FAULT_TYPE3 = #{smallType}
+        </if>
+        <if test="_parameter.containsKey('bigType') and bigType != null">
+            and FAULT_TYPE1 = #{bigType}
+        </if>
+        <if test="_parameter.containsKey('middleType') and middleType != null">
+            and FAULT_TYPE2 = #{middleType}
+        </if>
+    </select>
+
+    <select id="getFaultByWorkOrder" resultMap="SiFaultResultMap" parameterType="string">
+        select "UUID",
+        "LINE_CODE",
+        "INTERNAL_CODE",
+        "END_KI_MILEAGE",
+        "DEVICE_TYPE",
+        "FAULT_TYPE1",
+        "FAULT_TYPE2",
+        "FAULT_UNIT",
+        "FAULT_TYPE3",
+        "FAULT_QUANTITY",
+        "FAULT_LEVEL",
+        "AFFECTE_EQUIPMENT",
+        "LEVEL3",
+        "START_KI_MILEAGE",
+        "INSERT_DATE",
+        "IS_FINISH",
+        "DEVICE_UUID",
+        "DUCT_COUNT",
+        "START_DUCT_CODE",
+        "START_HUN_MILEAGE",
+        "START_MILEAGE_FLAG",
+        "END_DUCT_CODE",
+        "END_HUN_MILEAGE",
+        "END_MILEAGE_FLAG",
+        "REMARK",
+        "FAULT_DESC",
+        "OPT_DESC",
+        "OPT_DATE",
+        "FAULT_STATUS",
+        "LEVEL4",
+        "OPERATOR_NO",
+        "PLAN_TYPE",
+        "PLAN_UUID",
+        "UPDOWN",
+        "IMAGELIST",
+        "DEVICE_TYPE_1",
+        "FAULT_TYPE_1",
+        "FAULT_TYPE_2",
+        "FAULT_TYPE_3",
+        "STATUS"
+        from J302_SI_FAULT_CHECK_V
+        where DEVICE_UUID is not null
+        and START_DUCT_CODE is not null
+        and PLAN_UUID = #{uuid} and FAULT_STATUS != '20'
+        union all
+        select "UUID",
+        "LINE_CODE",
+        "INTERNAL_CODE",
+        "END_KI_MILEAGE",
+        "DEVICE_TYPE",
+        "FAULT_TYPE1",
+        "FAULT_TYPE2",
+        "FAULT_UNIT",
+        "FAULT_TYPE3",
+        "FAULT_QUANTITY",
+        "FAULT_LEVEL",
+        "AFFECTE_EQUIPMENT",
+        "LEVEL3",
+        "START_KI_MILEAGE",
+        "INSERT_DATE",
+        "IS_FINISH",
+        "DEVICE_UUID",
+        "DUCT_COUNT",
+        "START_DUCT_CODE",
+        "START_HUN_MILEAGE",
+        "START_MILEAGE_FLAG",
+        "END_DUCT_CODE",
+        "END_HUN_MILEAGE",
+        "END_MILEAGE_FLAG",
+        "REMARK",
+        "FAULT_DESC",
+        "OPT_DESC",
+        "OPT_DATE",
+        "FAULT_STATUS",
+        "LEVEL4",
+        "OPERATOR_NO",
+        "PLAN_TYPE",
+        "PLAN_UUID",
+        "UPDOWN",
+        "IMAGELIST",
+        "DEVICE_TYPE_1",
+        "FAULT_TYPE_1",
+        "FAULT_TYPE_2",
+        "FAULT_TYPE_3",
+        "STATUS"
+        from J302_SI_FAULT_CHECK_V
+        where DEVICE_UUID is not null
+        and START_DUCT_CODE is not null
+        and PLAN_UUID = #{uuid} and FAULT_STATUS = '20' and IS_FINISH != '0'
+
+    </select>
+
+    <!--&#45;&#45;         ,REPAIR_DESC-->
+    <!--&#45;&#45;             #{item.REPAIR_DESC,jdbcType =VARCHAR}-->
+    <insert id="batchSaveNewFault" parameterType="java.util.List">
+        insert into J302_SI_FAULT_DATA (uuid,DEVICE_UUID,INTERNAL_CODE,START_DUCT_CODE,END_DUCT_CODE,UPDOWN,LINE_UUID,
+        START_MILEAGE_FLAG, START_KI_MILEAGE,START_HUN_MILEAGE, END_MILEAGE_FLAG, END_KI_MILEAGE,
+        END_HUN_MILEAGE,DUCT_COUNT,FAULT_TYPE2,LEVEL3,LEVEL4,FAULT_TYPE1,
+        FAULT_LEVEL,PLAN_UUID,OPERATOR_NO,
+        DEVICE_TYPE,FAULT_UNIT,FAULT_DESC,AFFECTE_EQUIPMENT,
+        IS_FINISH,FAULT_QUANTITY,FAULT_STATUS,
+        INSERT_DATE,IS_CHECK,
+        MATERIAL_CONSUMPTION
+        )
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() ,
+            #{item.DEVICE_UUID,jdbcType = VARCHAR} ,
+            #{item.INTERNAL_CODE,jdbcType = VARCHAR} ,
+            #{item.START_DUCT_CODE,jdbcType = VARCHAR} ,
+            #{item.END_DUCT_CODE,jdbcType =VARCHAR} ,
+            #{item.HIGH_LOW,jdbcType = VARCHAR} ,
+            #{item.LINE_UUID,jdbcType = VARCHAR} ,
+
+            #{item.START_MILEAGE_FLAG,jdbcType =VARCHAR} ,
+            #{item.START_KI_MILEAGE,jdbcType =VARCHAR} ,
+            #{item.START_HUN_MILEAGE,jdbcType =VARCHAR} ,
+            #{item.END_MILEAGE_FLAG,jdbcType =VARCHAR} ,
+
+            #{item.END_KI_MILEAGE,jdbcType =VARCHAR} ,
+            #{item.END_HUN_MILEAGE,jdbcType =VARCHAR} ,
+            #{item.DUCT_COUNT,jdbcType =VARCHAR} ,
+            #{item.FAULT_TYPE2,jdbcType =VARCHAR} ,
+            substr(#{item.LEVEL3,jdbcType =VARCHAR},0,6) ,
+            #{item.LEVEL4,jdbcType =VARCHAR} ,
+            #{item.FAULT_TYPE1,jdbcType =VARCHAR} ,
+            #{item.FAULT_LEVEL_NAME,jdbcType =VARCHAR} ,
+            #{planUuid,jdbcType =VARCHAR} ,
+            #{operatorNo,jdbcType =VARCHAR} ,
+            #{item.DEVICE_TYPE,jdbcType =VARCHAR} ,
+            #{item.FAULT_UNIT,jdbcType =VARCHAR} ,
+            #{item.FAULT_DESC,jdbcType =VARCHAR} ,
+            #{item.AFFECTE_EQUIPMENT_CODE,jdbcType =VARCHAR} ,
+            #{item.IS_FINISH,jdbcType =VARCHAR} ,
+            #{item.FAULT_QUANTITY,jdbcType =VARCHAR} ,
+            <choose>
+                <when test='item.TYPE=="add" or item.TYPE == "edit"'>
+                    '10',
+                </when>
+                <when test='item.TYPE=="change" and item.FAULT_STATUS != "20"'>
+                    '50',
+                </when>
+                <otherwise>
+                    #{item.FAULT_STATUS,jdbcType =VARCHAR} ,
+                </otherwise>
+            </choose>
+            sysdate,
+            #{item.IS_CHECK,jdbcType =VARCHAR} ,
+            #{item.MATERIAL_CONSUMPTION,jdbcType =VARCHAR}
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+    <insert id="saveResData" parameterType="java.util.List">
+        insert into J302_SI_FAULT_DATA_RES (UUID,INTERNAL_CODE,RES_NAME,PLAN_UUID,RES_TYPE,RES_PATH,INSERT_DATE)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() ,
+            #{item.INTERNAL_CODE,jdbcType =VARCHAR},
+            #{item.RES_NAME,jdbcType =VARCHAR},
+            #{item.PLAN_UUID,jdbcType =VARCHAR},
+            #{item.RES_TYPE,jdbcType =VARCHAR},
+            #{item.RES_PATH,jdbcType =VARCHAR},
+            sysdate
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+    <insert id="saveDeviceRes" parameterType="java.util.List">
+        insert into J302_SI_DEVICE_CHECK_RES
+        (UUID,RES_NAME,DEVICE_UUID,PLAN_UUID,RES_TYPE,RES_PATH,DEVICE_CHECK,INSERT_DATE)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() ,
+            #{item.RES_NAME,jdbcType =VARCHAR},
+            #{item.DEVICE_UUID,jdbcType =VARCHAR},
+            #{item.PLAN_UUID,jdbcType =VARCHAR},
+            #{item.RES_TYPE,jdbcType =VARCHAR},
+            #{item.RES_PATH,jdbcType =VARCHAR},
+            #{item.DEVICE_CHECK,jdbcType =VARCHAR},
+            sysdate
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+    <update id="updateDeviceItem" parameterType="java.util.Set">
+        begin
+        <foreach collection="set" item="item">
+            update J302_SI_PLAN_DEVICE_ITEM set IS_CHECK = '1' where PLAN_UUID = #{item.PLAN_UUID} and DEVICE_CHECK =
+            #{item.DEVICE_CHECK};
+        </foreach>
+        end;
+    </update>
+
+    <update id="updateFaultPlan" parameterType="java.util.Map">
+        update J302_SI_FAULT_PLAN ufp set ufp.status ='10',ufp.RE_START_DATE = to_date(extract(year from sysdate)||#{RE_START_DATE},'yyyy/MM/dd HH24:mi'),ufp.RE_END_DATE = to_date(extract(year from sysdate)||#{RE_END_DATE},'yyyy/MM/dd HH24:mi'),ufp.COMMIN_DATE = sysdate  where ufp.PLAN_NO = #{PLAN_UUID}
+    </update>
+
+    <insert id="updateFault" parameterType="java.util.List">
+        insert into J302_SI_FAULT_DATA(uuid,DEVICE_UUID,INTERNAL_CODE,START_DUCT_CODE,END_DUCT_CODE,START_MILEAGE_FLAG,
+        START_KI_MILEAGE,START_HUN_MILEAGE, END_MILEAGE_FLAG,UPDOWN,LINE_UUID,PLAN_UUID,OPERATOR_NO
+        ,END_KI_MILEAGE,END_HUN_MILEAGE,DUCT_COUNT,FAULT_TYPE2,LEVEL3,LEVEL4,FAULT_TYPE1,FAULT_LEVEL,DEVICE_TYPE,FAULT_UNIT,FAULT_DESC,
+        AFFECTE_EQUIPMENT,IS_FINISH,FAULT_QUANTITY,FAULT_STATUS,INSERT_DATE,IS_CHECK,MATERIAL_CONSUMPTION,REPAIR_DESC
+        )
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() ,
+            DEVICE_UUID,
+            INTERNAL_CODE,
+            START_DUCT_CODE,
+            END_DUCT_CODE,
+            START_MILEAGE_FLAG,
+            START_KI_MILEAGE,
+            START_HUN_MILEAGE,
+            END_MILEAGE_FLAG,
+            UPDOWN,
+            LINE_UUID,
+            PLAN_UUID,
+            #{item.OPERATOR_NO,jdbcType =VARCHAR} ,
+            END_KI_MILEAGE,
+            END_HUN_MILEAGE,
+            DUCT_COUNT,
+            FAULT_TYPE2,
+            LEVEL3,
+            LEVEL4,
+            FAULT_TYPE1,
+            FAULT_LEVEL,
+            DEVICE_TYPE,
+            #{item.FAULT_UNIT,jdbcType =VARCHAR} ,
+            #{item.FAULT_DESC,jdbcType =VARCHAR} ,
+            #{item.AFFECTE_EQUIPMENT,jdbcType =VARCHAR} ,
+            #{item.IS_FINISH,jdbcType =VARCHAR} ,
+            #{item.FAULT_QUANTITY,jdbcType =VARCHAR} ,
+            '10',
+            sysdate,
+            #{item.IS_CHECK,jdbcType =VARCHAR} ,
+            #{item.MATERIAL_CONSUMPTION,jdbcType =VARCHAR},
+            #{item.REPAIR_DESC,jdbcType =VARCHAR}
+            from (
+            select rownum rn, sfd.* from J302_SI_FAULT_DATA sfd where sfd.INTERNAL_CODE = #{item.INTERNAL_CODE} ORDER BY
+            sfd.INSERT_DATE desc
+            )temp where rn =1
+        </foreach>
+        ) temp
+        )
+    </insert>
+    <insert id="batchSaveFaultStatus" parameterType="java.util.List">
+        insert into J302_SI_FAULT_STATUS (UUID, FAULT_UUID, FAULT_STATUS, UPDATE_DATE,PLAN_UUID,PLAN_TYPE,OPERATOR_NO)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select sys_guid() ,
+            #{item.FAULT_UUID,jdbcType = VARCHAR} ,
+            #{item.FAULT_STATUS,jdbcType = VARCHAR} ,
+            sysdate ,
+            #{item.PLAN_UUID,jdbcType =VARCHAR} ,
+            #{item.PLAN_TYPE,jdbcType =VARCHAR} ,
+            #{item.OPERATOR_NO,jdbcType =VARCHAR}
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+
+    <select id="findAllFaultForWebByV" resultType="map" parameterType="java.util.Map">
+        select a.* from J302_APP_FAULT_INFO_V a
+        <where>
+            <if test="deptId != null and deptId != ''">
+                -- and a.COMPANY_NAME= #{deptId}
+            </if>
+            <if test="planId != null and planId != ''">
+                and a.PLAN_UUID like '%' || #{deptId} || '%'
+            </if>
+            <if test="plan_status != null and plan_status != ''">
+                and a.FAULT_STATUS= #{plan_status}
+            </if>
+            <if test="updown != null and updown != ''">
+                and a.HIGH_LOW_T= #{updown}
+            </if>
+            <if test="lineId != null and lineId != ''">
+                and a.LINE_UUID= #{lineId}
+            </if>
+            <choose>
+                <when test="sStationName != null and eStationName != null">
+                    and ( a.START_STATION_UUID= #{sStationName} or a.END_STATION_UUID= #{eStationName})
+                </when>
+                <otherwise>
+                    <if test="sStationName != null and sStationName != ''">
+                        and a.START_STATION_UUID= #{sStationName}
+                    </if>
+                    <if test="eStationName != null and eStationName != ''">
+                        and a.END_STATION_UUID = #{eStationName}
+                    </if>
+                </otherwise>
+            </choose>
+            <if test="UUID != null and UUID != ''">
+                and a.UUID= #{UUID}
+            </if>
+            <if test="LINE_UUID != null and LINE_UUID != ''">
+                and a.LINE_UUID= #{LINE_UUID}
+            </if>
+            <if test="sCreateTime != null and sCreateTime != ''">
+                and a.INSERT_DATE >= to_date(#{sCreateTime},'yyyy-MM-dd')
+            </if>
+            <if test="operator != null and operator != ''">
+                and a.OPERATOR_NO like '%'||#{operator}||'%'
+            </if>
+            <if test="eCreateTime != null and eCreateTime != ''">
+                and a.INSERT_DATE &lt;= to_date(#{eCreateTime},'yyyy-MM-dd')
+            </if>
+            <if test="keyWord != null and keyWord != ''">
+                and (a.DEVICE_TYPE_NAME like '%' || #{keyWord} || '%' or a.FAULT_TYPE1_NAME like '%' || #{keyWord} ||
+                '%')
+            </if>
+        </where>
+    </select>
+</mapper>

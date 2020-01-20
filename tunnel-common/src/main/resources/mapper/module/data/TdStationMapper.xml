@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdStationMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdStation">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="STATION_CODE" jdbcType="VARCHAR" property="stationCode"/>
+        <result column="LINE_CODE" jdbcType="VARCHAR" property="lineCode"/>
+        <result column="STATION_NAME" jdbcType="VARCHAR" property="stationName"/>
+        <result column="UPDOWN" jdbcType="CHAR" property="updown"/>
+        <result column="START_FLAG" jdbcType="VARCHAR" property="startFlag"/>
+        <result column="START_FLAG_TYPE" jdbcType="VARCHAR" property="startFlagType"/>
+        <result column="START_MILEAGE" jdbcType="DECIMAL" property="startMileage"/>
+        <result column="END_FLAG" jdbcType="VARCHAR" property="endFlag"/>
+        <result column="END_FLAG_TYPE" jdbcType="VARCHAR" property="endFlagType"/>
+        <result column="END_MILEAGE" jdbcType="DECIMAL" property="endMileage"/>
+        <result column="UP_OUT_MILEAGE" jdbcType="DECIMAL" property="upOutMileage"/>
+        <result column="UP_IN_MILEAGE" jdbcType="DECIMAL" property="upInMileage"/>
+        <result column="UP_MIDDLE_MILEAGE" jdbcType="DECIMAL" property="upMiddleMileage"/>
+        <result column="UP_OUT_DUCT" jdbcType="DECIMAL" property="upOutDuct"/>
+        <result column="UP_IN_DUCT" jdbcType="DECIMAL" property="upInDuct"/>
+        <result column="UP_MIDDLE_DUCT" jdbcType="DECIMAL" property="upMiddleDuct"/>
+        <result column="DOWN_OUT_MILEAGE" jdbcType="DECIMAL" property="downOutMileage"/>
+        <result column="DOWN_IN_MILEAGE" jdbcType="DECIMAL" property="downInMileage"/>
+        <result column="DOWN_MIDDLE_MILEAGE" jdbcType="DECIMAL" property="downMiddleMileage"/>
+        <result column="DOWN_OUT_DUCT" jdbcType="DECIMAL" property="downOutDuct"/>
+        <result column="DOWN_IN_DUCT" jdbcType="DECIMAL" property="downInDuct"/>
+        <result column="DOWN_MIDDLE_DUCT" jdbcType="DECIMAL" property="downMiddleDuct"/>
+        <result column="STATUS" jdbcType="CHAR" property="status"/>
+        <result column="DATA_SOURCE" jdbcType="CHAR" property="dataSource"/>
+        <result column="LINE_UUID" jdbcType="VARCHAR" property="lineUuid"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="CLASS_TYPE" jdbcType="CHAR" property="classType"/>
+        <result column="ORDERCODE" jdbcType="DECIMAL" property="ordercode"/>
+        <result column="IS_TUNNEL" jdbcType="CHAR" property="isTunnel"/>
+    </resultMap>
+
+
+    <select id="findBaseInfoForApp" resultType="java.util.Map" parameterType="java.util.Map">
+    select * from J302_APP_LINE_STATION_V v order by v.line_name,v.station_code
+  </select>
+    <select id="selectStation" resultType="map" parameterType="string">
+    select startSt.STATION_NAME startStation,station2.STATION_NAME endStation, case
+         when substr(station2.line_id, 0,1) = '0' then
+          concat(substr(station2.line_id, 2), '号线')
+         else
+           concat(station2.line_id, '号线')
+       end line from (
+select station.STATION_NAME,temp.* from
+(select START_STATION,END_STATION,LINE_ID from J302_METRO_SEGMENT_INFO where ID ='4E02C014E9CB4650BB0045622E7CAB10') temp inner join J302_METRO_STATION_INFO station on  temp.START_STATION = station.STATION_ID where temp.LINE_ID = station.LINE_ID
+) startSt inner join J302_METRO_STATION_INFO station2 on  startSt.END_STATION = station2.STATION_ID where startSt.LINE_ID = station2.LINE_ID
+
+  </select>
+</mapper>

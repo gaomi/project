@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.DeviceLevelMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.module.data.model.DeviceLevel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="LEVEL1" jdbcType="VARCHAR" property="level1" />
+    <result column="LEVEL2" jdbcType="VARCHAR" property="level2" />
+    <result column="LEVEL3" jdbcType="VARCHAR" property="level3" />
+    <result column="LEVEL4" jdbcType="VARCHAR" property="level4" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="CODE1" jdbcType="CHAR" property="code1" />
+    <result column="CODE2" jdbcType="CHAR" property="code2" />
+    <result column="CODE3" jdbcType="CHAR" property="code3" />
+    <result column="CODE4" jdbcType="CHAR" property="code4" />
+  </resultMap>
+  <select id="selectAllDeviceLevel" resultType="map" parameterType="java.util.Map">
+    select t.* from J302_TD_DEVICE_LEVEL_V1 t
+  </select>
+</mapper>

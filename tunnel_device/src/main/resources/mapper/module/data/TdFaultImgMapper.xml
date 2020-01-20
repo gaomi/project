@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.data.dao.TdFaultImgMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.data.model.TdFaultImg">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="UUID" jdbcType="VARCHAR" property="uuid"/>
+        <result column="INTERNAL_CODE" jdbcType="VARCHAR" property="internalCode"/>
+        <result column="IMAGE_URL" jdbcType="VARCHAR" property="imageUrl"/>
+    </resultMap>
+
+    <insert id="saveAll" parameterType="java.util.List">
+        insert into J302_TD_FAULT_IMG (UUID,INTERNAL_CODE,IMAGE_URL)
+        (select temp.* from (
+        <foreach collection="list" item="item" separator="union all">
+            select
+            sys_guid() UUID,
+            #{item.internalCode ,jdbcType = VARCHAR} INTERNAL_CODE,
+            #{item.imageUrl,jdbcType = VARCHAR} IMAGE_URL
+            from dual
+        </foreach>
+        ) temp
+        )
+    </insert>
+
+    <select id="getImageById" resultType="java.util.Map" parameterType="java.util.Map">
+    select * from J302_TD_FAULT_IMG where INTERNAL_CODE IN
+        <foreach collection="ids" item="item_segment" open="(" close=")" separator=",">
+            #{item_segment}
+        </foreach>
+  </select>
+</mapper>

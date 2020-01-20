@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.api.dao.BhInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.module.api.model.BhInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="LINE" jdbcType="VARCHAR" property="line" />
+    <result column="GQ" jdbcType="VARCHAR" property="gq" />
+    <result column="BEGIN" jdbcType="VARCHAR" property="begin" />
+    <result column="END" jdbcType="VARCHAR" property="end" />
+    <result column="SXX" jdbcType="VARCHAR" property="sxx" />
+    <result column="LCB" jdbcType="VARCHAR" property="lcb" />
+    <result column="QMB" jdbcType="VARCHAR" property="qmb" />
+    <result column="BMB" jdbcType="VARCHAR" property="bmb" />
+    <result column="GH" jdbcType="VARCHAR" property="gh" />
+    <result column="ZYG" jdbcType="VARCHAR" property="zyg" />
+    <result column="SBMC" jdbcType="VARCHAR" property="sbmc" />
+    <result column="XLMC" jdbcType="VARCHAR" property="xlmc" />
+    <result column="LXMC" jdbcType="VARCHAR" property="lxmc" />
+    <result column="BHMS" jdbcType="VARCHAR" property="bhms" />
+    <result column="BHDJ" jdbcType="VARCHAR" property="bhdj" />
+    <result column="BHL" jdbcType="VARCHAR" property="bhl" />
+    <result column="BHDW" jdbcType="VARCHAR" property="bhdw" />
+    <result column="BHCJSJ" jdbcType="VARCHAR" property="bhcjsj" />
+    <result column="CZRXM" jdbcType="VARCHAR" property="czrxm" />
+    <result column="CZRGH" jdbcType="VARCHAR" property="czrgh" />
+    <result column="CHZRXM" jdbcType="VARCHAR" property="chzrxm" />
+    <result column="CZSJ" jdbcType="VARCHAR" property="czsj" />
+    <result column="WXQKSM" jdbcType="VARCHAR" property="wxqksm" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="XGRXM" jdbcType="VARCHAR" property="xgrxm" />
+    <result column="XGSJ" jdbcType="VARCHAR" property="xgsj" />
+    <result column="XGFS" jdbcType="VARCHAR" property="xgfs" />
+    <result column="BHBH" jdbcType="VARCHAR" property="bhbh" />
+  </resultMap>
+</mapper>

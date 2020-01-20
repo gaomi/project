@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.module.sys.dao.SysRoleMapper">
+    <resultMap id="BaseResultMap" type="com.company.project.module.sys.model.SysRole">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="TYPE" jdbcType="DECIMAL" property="type"/>
+        <result column="STATUS" jdbcType="DECIMAL" property="status"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="OPERATOR" jdbcType="VARCHAR" property="operator"/>
+        <result column="OPERATE_TIME" jdbcType="TIMESTAMP" property="operateTime"/>
+        <result column="OPERATE_IP" jdbcType="VARCHAR" property="operateIp"/>
+    </resultMap>
+    <select id="findUserRole" resultMap="BaseResultMap">
+  	select r.*
+    from J302_TD_SYS_role r
+    left join J302_TD_SYS_user_role ur
+      on (r.id = ur.role_id)
+    left join J302_TD_SYS_user u
+      on (u.id = ur.user_id)
+   where u.user_name = #{userName}
+  </select>
+    <!-- 根据用户ID查询角色 -->
+    <select id="findRoleByUserId" parameterType="string" resultType="String">
+ 		 select DISTINCT r.name
+		from J302_TD_SYS_user_role a,J302_TD_SYS_role r
+		where a.role_id=r.id
+			and a.user_id=  #{userId}
+ 	</select>
+    <select id="findDtoById" resultType="com.company.project.module.sys.model.dto.SysRoleMenuDto">
+		select r.id id,r.name name,r.remark,
+            rm.menu_id menuId from j302_td_sys_role r
+          left join j302_td_sys_role_menu rm on(r.id = RM.role_id)
+            where r.id = #{id}
+  </select>
+
+</mapper>
