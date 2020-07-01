@@ -64,7 +64,7 @@
         <guava.version>23.0</guava.version>
 
         <jsoup.version>1.9.2</jsoup.version>
-        <quartz.version>2.3.0</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <freemarker.version>2.3.23</freemarker.version>
 
         <poi.version>4.1.0</poi.version>
